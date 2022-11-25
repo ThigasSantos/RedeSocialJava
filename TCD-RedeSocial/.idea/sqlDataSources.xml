@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="54af1a38-46db-47e4-9118-619b9d867564" name="RedeSocialDS Mapping">
+      <data-sources db="43ccb913-f6ec-4241-b095-3f1a52dfa91c" ddl="1f89bea9-9086-40a4-9fa8-138a137d4a47" />
+      <scope>
+        <node kind="database" qname="redesocial">
+          <node kind="schema" qname="public" />
+        </node>
+      </scope>
+    </mapping>
+  </component>
+</project>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>43ccb913-f6ec-4241-b095-3f1a52dfa91c</OriginalElement>
+  <nodes>
+    <node x="346.5" y="637.5">43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.telefone</node>
+    <node x="-70.5" y="368.5">43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.reacao</node>
+    <node x="116.5" y="-93.5">43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.atuacao</node>
+    <node x="651.5" y="368.5">43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.credencial</node>
+    <node x="546.0" y="571.0">43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.seguir</node>
+    <node x="-82.0" y="137.5">43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.postagem</node>
+    <node x="336.0" y="335.5">43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.usuario</node>
+    <node x="121.5" y="137.5">43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.comunidade</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.atuacao" target="43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.comunidade" relationship="REFERENCES">
+      <point x="0.0" y="82.5" />
+      <point x="0.0" y="-71.5" />
+    </edge>
+    <edge source="43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.atuacao" target="43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.usuario" relationship="REFERENCES">
+      <point x="81.5" y="0.0" />
+      <point x="423.0" y="-11.0" />
+      <point x="5.0" y="-93.5" />
+    </edge>
+    <edge source="43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.reacao" target="43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.postagem" relationship="REFERENCES">
+      <point x="0.0" y="-60.5" />
+      <point x="0.0" y="71.5" />
+    </edge>
+    <edge source="43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.postagem" target="43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.comunidade" relationship="REFERENCES">
+      <point x="80.0" y="0.0" />
+      <point x="-76.5" y="0.0" />
+    </edge>
+    <edge source="43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.reacao" target="43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.usuario" relationship="REFERENCES">
+      <point x="68.5" y="0.0" />
+      <point x="-82.0" y="0.0" />
+    </edge>
+    <edge source="43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.seguir" target="43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.usuario" relationship="REFERENCES">
+      <point x="-0.0" y="-38.0" />
+      <point x="618.0" y="450.5" />
+      <point x="82.0" y="21.5" />
+    </edge>
+    <edge source="43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.telefone" target="43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.usuario" relationship="REFERENCES">
+      <point x="0.0" y="-71.5" />
+      <point x="0.0" y="93.5" />
+    </edge>
+    <edge source="43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.postagem" target="43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.postagem" relationship="REFERENCES">
+      <point x="-10.75" y="71.5" />
+      <point x="-67.52975484606614" y="280.5" />
+      <point x="-67.52975484606614" y="259.59350057012546" />
+      <point x="-122.30950969213227" y="259.59350057012546" />
+      <point x="-122.30950969213227" y="209.0" />
+      <point x="-80.0" y="0.0" />
+    </edge>
+    <edge source="43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.postagem" target="43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.usuario" relationship="REFERENCES">
+      <point x="0.0" y="-71.5" />
+      <point x="-2.0" y="81.38255416191558" />
+      <point x="392.76324629418383" y="81.38255416191558" />
+      <point x="-25.23675370581617" y="-94.11288483466376" />
+    </edge>
+    <edge source="43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.usuario" target="43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.credencial" relationship="REFERENCES">
+      <point x="82.0" y="0.0" />
+      <point x="-66.5" y="0.0" />
+    </edge>
+    <edge source="43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.comunidade" target="43ccb913-f6ec-4241-b095-3f1a52dfa91c.TABLE:redesocial.public.usuario" relationship="REFERENCES">
+      <point x="-0.0" y="71.5" />
+      <point x="198.0" y="407.5" />
+      <point x="-82.0" y="-21.5" />
+    </edge>
+  </edges>
+  <settings layout="Compact" zoom="0.9088082901554406" showDependencies="false" x="348.1993922462933" y="358.4418472063853" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Comments</Category>
+    <Category>Key columns</Category>
+  </Categories>
+</Diagram>
+
