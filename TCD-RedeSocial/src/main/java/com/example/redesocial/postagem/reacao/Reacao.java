@@ -10,22 +10,10 @@ public class Reacao implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated
-    private TipoReacao tipoReacao;
-
-
     // <editor-folder  defaultstate="collapsed" desc="Getters/Setters" >
 
     public Long getId() {
         return id;
-    }
-
-    public TipoReacao getTipoReacao() {
-        return tipoReacao;
-    }
-
-    public void setTipoReacao(TipoReacao tipoReacao) {
-        this.tipoReacao = tipoReacao;
     }
 
     // </editor-folder>

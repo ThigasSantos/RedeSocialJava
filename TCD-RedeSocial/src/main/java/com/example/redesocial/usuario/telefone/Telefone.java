@@ -9,8 +9,6 @@ public class Telefone implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private TipoTelefone tipoTelefone;
-
     private String numero;
 
     // <editor-folder  defaultstate="collapsed" desc="Getters/Setters" >
@@ -18,14 +16,6 @@ public class Telefone implements Serializable {
 
     public Long getId() {
         return id;
-    }
-
-    public TipoTelefone getTipoTelefone() {
-        return tipoTelefone;
-    }
-
-    public void setTipoTelefone(TipoTelefone tipoTelefone) {
-        this.tipoTelefone = tipoTelefone;
     }
 
     public String getNumero() {

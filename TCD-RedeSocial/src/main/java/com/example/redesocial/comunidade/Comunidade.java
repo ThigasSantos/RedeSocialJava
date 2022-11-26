@@ -24,10 +24,6 @@ public class Comunidade implements Serializable {
 
     @OneToMany
     @JoinColumn(name = "comunidade_id")
-    private List<Atuacao> atuacoes;
-
-    @OneToMany
-    @JoinColumn(name = "comunidade_id")
     private List<Postagem> postagens;
 
     public Comunidade() {
@@ -71,14 +67,6 @@ public class Comunidade implements Serializable {
 
     public void setDono(Usuario dono) {
         this.dono = dono;
-    }
-
-    public List<Atuacao> getAtuacoes() {
-        return atuacoes;
-    }
-
-    public void setAtuacoes(List<Atuacao> atuacoes) {
-        this.atuacoes = atuacoes;
     }
 
     public List<Postagem> getPostagens() {

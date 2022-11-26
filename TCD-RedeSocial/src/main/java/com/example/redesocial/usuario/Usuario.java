@@ -1,6 +1,5 @@
 package com.example.redesocial.usuario;
 
-import com.example.redesocial.comunidade.Atuacao;
 import com.example.redesocial.comunidade.Comunidade;
 import com.example.redesocial.postagem.reacao.Reacao;
 import com.example.redesocial.usuario.credencial.Credencial;
@@ -40,10 +39,6 @@ public class Usuario implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id")
     private List<Postagem> postagens;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "usuario_id")
-    private List<Atuacao> atuacoes;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "dono_id")
@@ -135,14 +130,6 @@ public class Usuario implements Serializable {
 
     public void setPostagens(List<Postagem> postagens) {
         this.postagens = postagens;
-    }
-
-    public List<Atuacao> getAtuacoes() {
-        return atuacoes;
-    }
-
-    public void setAtuacoes(List<Atuacao> atuacoes) {
-        this.atuacoes = atuacoes;
     }
 
     public List<Comunidade> getComunidades() {
