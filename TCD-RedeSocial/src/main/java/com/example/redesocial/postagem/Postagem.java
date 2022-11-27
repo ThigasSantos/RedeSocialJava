@@ -1,7 +1,6 @@
 package com.example.redesocial.postagem;
 
 import com.example.redesocial.comunidade.Comunidade;
-import com.example.redesocial.postagem.reacao.Reacao;
 import com.example.redesocial.usuario.Usuario;
 
 import java.io.Serializable;
@@ -23,13 +22,22 @@ public class Postagem implements Serializable {
     @ManyToOne
     private Usuario usuario;
 
-    @OneToMany
-    @JoinColumn(name = "postagem_pai_id")
+    @OneToMany(mappedBy = "postagemPai")
     private List<Postagem> respostas;
+
+    @ManyToOne
+    @JoinColumn(name = "postagem_pai_id")
+    private Postagem postagemPai;
+
+    @ManyToMany
+    @JoinTable(name = "curte",
+    joinColumns = @JoinColumn(name = "postagem_id"),
+    inverseJoinColumns = @JoinColumn(name = "usuario_id"))
+    private List<Usuario> usuariosCurtiram;
 
     @OneToMany
     @JoinColumn(name = "postagem_id")
-    private List<Reacao> reacoes;
+    private List<Midia> midias;
 
     // <editor-folder  defaultstate="collapsed" desc="Getters/Setters" >
     public String getConteudo() {
@@ -64,12 +72,20 @@ public class Postagem implements Serializable {
         this.respostas = respostas;
     }
 
-    public List<Reacao> getReacoes() {
-        return reacoes;
+    public List<Usuario> getUsuariosCurtiram() {
+        return usuariosCurtiram;
     }
 
-    public void setReacoes(List<Reacao> reacoes) {
-        this.reacoes = reacoes;
+    public void setUsuariosCurtiram(List<Usuario> usuariosCurtiram) {
+        this.usuariosCurtiram = usuariosCurtiram;
+    }
+
+    public List<Midia> getMidias() {
+        return midias;
+    }
+
+    public void setMidias(List<Midia> midias) {
+        this.midias = midias;
     }
 
     public Long getId() {

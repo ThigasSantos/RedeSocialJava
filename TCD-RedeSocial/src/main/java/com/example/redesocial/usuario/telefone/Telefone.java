@@ -8,8 +8,8 @@ public class Telefone implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String numero;
+    private Integer numero;
+    private Short ddd;
 
     // <editor-folder  defaultstate="collapsed" desc="Getters/Setters" >
 
@@ -18,12 +18,20 @@ public class Telefone implements Serializable {
         return id;
     }
 
-    public String getNumero() {
+    public Integer getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(Integer numero) {
         this.numero = numero;
+    }
+
+    public Short getDdd() {
+        return ddd;
+    }
+
+    public void setDdd(Short ddd) {
+        this.ddd = ddd;
     }
 
     // </editor-folder>

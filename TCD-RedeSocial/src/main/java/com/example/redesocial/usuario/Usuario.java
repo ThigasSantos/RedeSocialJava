@@ -1,7 +1,6 @@
 package com.example.redesocial.usuario;
 
 import com.example.redesocial.comunidade.Comunidade;
-import com.example.redesocial.postagem.reacao.Reacao;
 import com.example.redesocial.usuario.credencial.Credencial;
 import com.example.redesocial.usuario.telefone.Telefone;
 import com.example.redesocial.postagem.Postagem;
@@ -16,12 +15,8 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(length = 20)
-    private String nome;
-    @Column(length = 150)
-    private String sobrenome;
-    private String avatar;
+    private String nickname;
     private String sobre;
     private LocalDate dataNascimento;
 
@@ -30,7 +25,9 @@ public class Usuario implements Serializable {
     private List<Telefone> telefones;
 
     @ManyToMany
-    @JoinTable(name="seguir")
+    @JoinTable(name="segue",
+    joinColumns = @JoinColumn(name = "usuario_seguidor_id"),
+    inverseJoinColumns = @JoinColumn(name = "usuario_seguido_id"))
     private List<Usuario> seguindo;
 
     @ManyToMany(mappedBy="seguindo")
@@ -40,41 +37,37 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "usuario_id")
     private List<Postagem> postagens;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "dono_id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "dono")
+    private List<Comunidade> comunidadesLideradas;
+
+    @ManyToMany
+    @JoinTable(name = "participa")
     private List<Comunidade> comunidades;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "usuario_id")
-    private List<Reacao> reacoes;
+    @ManyToMany(mappedBy = "usuariosCurtiram")
+    private List<Postagem> postagensCurtidas;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Credencial credencial;
 
     // <editor-folder  defaultstate="collapsed" desc="Getters/Setters" >
-    public String getNome() {
-        return nome;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getSobrenome() {
-        return sobrenome;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
 
     public String getSobre() {
         return sobre;
@@ -132,6 +125,22 @@ public class Usuario implements Serializable {
         this.postagens = postagens;
     }
 
+    public List<Comunidade> getComunidadesLideradas() {
+        return comunidadesLideradas;
+    }
+
+    public void setComunidadesLideradas(List<Comunidade> comunidadesLideradas) {
+        this.comunidadesLideradas = comunidadesLideradas;
+    }
+
+    public List<Postagem> getPostagensCurtidas() {
+        return postagensCurtidas;
+    }
+
+    public void setPostagensCurtidas(List<Postagem> postagensCurtidas) {
+        this.postagensCurtidas = postagensCurtidas;
+    }
+
     public List<Comunidade> getComunidades() {
         return comunidades;
     }
@@ -140,16 +149,5 @@ public class Usuario implements Serializable {
         this.comunidades = comunidades;
     }
 
-    public List<Reacao> getReacoes() {
-        return reacoes;
-    }
-
-    public void setReacoes(List<Reacao> reacoes) {
-        this.reacoes = reacoes;
-    }
-
-    public Long getId() {
-        return id;
-    }
     // </editor-folder>
 }

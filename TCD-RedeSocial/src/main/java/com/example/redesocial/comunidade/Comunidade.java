@@ -18,13 +18,15 @@ public class Comunidade implements Serializable {
     private String nome;
     private String descricao;
     private LocalDate dataCriacao;
-
     @ManyToOne
     private Usuario dono;
 
     @OneToMany
     @JoinColumn(name = "comunidade_id")
     private List<Postagem> postagens;
+
+    @ManyToMany(mappedBy = "comunidades")
+    private List<Usuario> membros;
 
     public Comunidade() {
         this.dataCriacao = LocalDate.now();
