@@ -4,6 +4,12 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(
+            name = "findTelefones",
+            query = "SELECT t FROM Telefone t"
+    )
+})
 public class Telefone implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
