@@ -98,5 +98,13 @@ public class Postagem implements Serializable {
         return id;
     }
 
+    public Postagem getPostagemPai() {
+        return postagemPai;
+    }
+
+    public void setPostagemPai(Postagem postagemPai) {
+        this.postagemPai = postagemPai;
+    }
+    
     // </editor-folder >
 }
