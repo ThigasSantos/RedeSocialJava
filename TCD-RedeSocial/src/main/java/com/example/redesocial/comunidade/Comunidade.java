@@ -9,6 +9,12 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(
+            name = "findComunidades",
+            query = "SELECT c FROM Comunidade c"
+    )
+})
 public class Comunidade implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
