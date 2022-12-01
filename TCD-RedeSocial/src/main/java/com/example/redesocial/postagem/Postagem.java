@@ -9,6 +9,12 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(
+            name = "findPostagens",
+            query = "SELECT p FROM Postagem p"
+    )
+})
 public class Postagem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
