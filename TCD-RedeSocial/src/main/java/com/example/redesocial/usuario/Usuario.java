@@ -40,8 +40,7 @@ public class Usuario implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "dono")
     private List<Comunidade> comunidadesLideradas;
 
-    @ManyToMany
-    @JoinTable(name = "participa")
+    @ManyToMany(mappedBy = "membros")
     private List<Comunidade> comunidades;
 
     @ManyToMany(mappedBy = "usuariosCurtiram")
@@ -50,7 +49,17 @@ public class Usuario implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private Credencial credencial;
 
-    // <editor-fold  defaultstate="collapsed" desc="Getters/Setters" >
+    public Usuario(String nickname, String sobre, LocalDate dataNascimento, Credencial credencial) {
+        this.nickname = nickname;
+        this.sobre = sobre;
+        this.dataNascimento = dataNascimento;
+        this.credencial = credencial;
+    }
+
+    
+    
+   
+// <editor-fold  defaultstate="collapsed" desc="Getters/Setters" >
 
     public Long getId() {
         return id;

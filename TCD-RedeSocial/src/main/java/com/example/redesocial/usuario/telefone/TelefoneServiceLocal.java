@@ -12,7 +12,7 @@ import javax.ejb.Local;
  * @author andre-barros
  */
 @Local
-public interface TelefoneBeanLocal {
+public interface TelefoneServiceLocal {
 
     void salvar(Telefone telefone);
 

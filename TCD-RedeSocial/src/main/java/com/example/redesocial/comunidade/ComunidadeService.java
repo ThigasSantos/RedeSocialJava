@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
  * @author andre-barros
  */
 @Stateless
-public class ComunidadeBean implements ComunidadeBeanLocal {
+public class ComunidadeService implements ComunidadeServiceLocal {
 
     @PersistenceContext
     private EntityManager em;
@@ -22,7 +22,7 @@ public class ComunidadeBean implements ComunidadeBeanLocal {
     @Override
     public void salvar(Comunidade comunidade) {
         // Inserção de entidade
-        em.persist(em);
+        em.persist(comunidade);
     }
 
     @Override

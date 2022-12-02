@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
  * @author andre-barros
  */
 @Stateless
-public class TelefoneBean implements TelefoneBeanLocal {
+public class TelefoneService implements TelefoneServiceLocal {
 
     @PersistenceContext
     private EntityManager em;

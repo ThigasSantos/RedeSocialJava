@@ -17,9 +17,12 @@ public class Telefone implements Serializable {
     private Integer numero;
     private Short ddd;
 
+    public Telefone(Integer numero, Short ddd) {
+        this.numero = numero;
+        this.ddd = ddd;
+    } 
+      
     // <editor-folder  defaultstate="collapsed" desc="Getters/Setters" >
-
-
     public Long getId() {
         return id;
     }

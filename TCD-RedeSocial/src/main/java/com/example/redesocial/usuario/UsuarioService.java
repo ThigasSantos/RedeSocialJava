@@ -6,7 +6,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 @Stateless
-public class UsuarioBean implements UsuarioBeanLocal{
+public class UsuarioService implements UsuarioServiceLocal{
 
     @PersistenceContext
     private EntityManager em;
@@ -16,7 +16,7 @@ public class UsuarioBean implements UsuarioBeanLocal{
         em.persist(usuario);
     }
 
-    @Override
+     @Override
     public Usuario buscarUsuario(Long id) {
         Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.id = :id").setParameter("id", id);
         return (Usuario) q.getSingleResult();
@@ -32,5 +32,5 @@ public class UsuarioBean implements UsuarioBeanLocal{
 //        
 //        return (Object[]) q.getSingleResult();
     }
-
+    
 }

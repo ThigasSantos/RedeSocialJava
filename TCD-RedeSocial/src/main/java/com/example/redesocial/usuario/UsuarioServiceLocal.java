@@ -3,7 +3,7 @@ package com.example.redesocial.usuario;
 import javax.ejb.Local;
 
 @Local
-public interface UsuarioBeanLocal {
+public interface UsuarioServiceLocal {
 
     void persist(Usuario usuario);
     

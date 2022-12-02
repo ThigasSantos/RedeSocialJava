@@ -12,7 +12,7 @@ import javax.ejb.Local;
  * @author andre-barros
  */
 @Local
-public interface ComunidadeBeanLocal {
+public interface ComunidadeServiceLocal {
 
     void salvar(Comunidade comunidade);
 

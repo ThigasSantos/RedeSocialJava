@@ -31,13 +31,31 @@ public class Comunidade implements Serializable {
     @JoinColumn(name = "comunidade_id")
     private List<Postagem> postagens;
 
-    @ManyToMany(mappedBy = "comunidades")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "participa")
     private List<Usuario> membros;
 
     public Comunidade() {
         this.dataCriacao = LocalDate.now();
     }
 
+    public Comunidade(String nome, String descricao, LocalDate dataCriacao, Usuario dono, List<Usuario> membros) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.dataCriacao = dataCriacao;
+        this.dono = dono;
+        this.membros = membros;
+    }
+
+    public Comunidade(String nome, String descricao, LocalDate dataCriacao, Usuario dono) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.dataCriacao = dataCriacao;
+        this.dono = dono;
+    }
+
+    
+    
 
     // <editor-folder  defaultstate="collapsed" desc="Getters/Setters" >
 
