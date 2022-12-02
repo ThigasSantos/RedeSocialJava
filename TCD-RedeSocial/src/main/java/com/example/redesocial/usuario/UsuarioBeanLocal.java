@@ -6,4 +6,6 @@ import javax.ejb.Local;
 public interface UsuarioBeanLocal {
 
     void persist(Usuario usuario);
+    
+    Usuario buscarUsuario(Long id);
 }

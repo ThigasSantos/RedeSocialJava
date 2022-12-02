@@ -50,7 +50,7 @@ public class Usuario implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private Credencial credencial;
 
-    // <editor-folder  defaultstate="collapsed" desc="Getters/Setters" >
+    // <editor-fold  defaultstate="collapsed" desc="Getters/Setters" >
 
     public Long getId() {
         return id;
@@ -149,5 +149,5 @@ public class Usuario implements Serializable {
         this.comunidades = comunidades;
     }
 
-    // </editor-folder>
+    // </editor-fold>
 }
