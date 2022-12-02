@@ -22,7 +22,7 @@ public class PostagemBean implements PostagemBeanLocal {
     @Override
     public void salvar(Postagem postagem) {
         // Inserção de entidade
-        em.persist(em);
+        em.persist(postagem);
     }
 
     @Override
