@@ -14,7 +14,16 @@ public class Midia implements Serializable {
     private Long id;
     private String link;
 
-    // <editor-folder  defaultstate="collapsed" desc="Getters/Setters" >
+    public Midia() {
+    }
+
+    public Midia(String link) {
+        this.link = link;
+    }
+
+    
+    
+    // <editor-fold  defaultstate="collapsed" desc="Getters/Setters" >
     public Long getId() {
         return id;
     }
@@ -30,5 +39,5 @@ public class Midia implements Serializable {
     public void setLink(String link) {
         this.link = link;
     }
-    // </editor-folder>
+    // </editor-fold>
 }
