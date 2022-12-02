@@ -14,14 +14,16 @@ public class Credencial implements Serializable {
     private String email;
     private String senha;
 
+    public Credencial() {
+    }
+    
     public Credencial(TipoPerfil tipoPerfil, String email, String senha) {
         this.tipoPerfil = tipoPerfil;
         this.email = email;
         this.senha = senha;
     }
-
     
-    // <editor-folder  defaultstate="collapsed" desc="Getters/Setters" >
+    // <editor-fold  defaultstate="collapsed" desc="Getters/Setters" >
 
     public Long getId() {
         return id;
@@ -51,5 +53,5 @@ public class Credencial implements Serializable {
         this.senha = senha;
     }
 
-    // </editor-folder>
+    // </editor-fold>
 }

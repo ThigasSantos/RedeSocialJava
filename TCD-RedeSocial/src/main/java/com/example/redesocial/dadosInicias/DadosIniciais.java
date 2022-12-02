@@ -1,6 +1,8 @@
 package com.example.redesocial.dadosInicias;
 import com.example.redesocial.comunidade.Comunidade;
 import com.example.redesocial.comunidade.ComunidadeServiceLocal;
+import com.example.redesocial.postagem.Midia;
+import com.example.redesocial.postagem.Postagem;
 import com.example.redesocial.usuario.Usuario;
 import com.example.redesocial.usuario.credencial.Credencial;
 import javax.annotation.PostConstruct;
@@ -38,7 +40,7 @@ public class DadosIniciais {
                 LocalDate.of(2000, Month.FEBRUARY, 7),
                 thiagoCR
         );
-        
+                      
         Telefone thiagoTel1 = new Telefone(12345651,(short)38);
         Telefone thiagoTel2 = new Telefone(17635651,(short)38);
         thiago.setTelefones(List.of(thiagoTel1,thiagoTel2));
@@ -140,6 +142,66 @@ public class DadosIniciais {
         rafael.setSeguindo(List.of(thiago,felipe,juninho));
         juninho.setSeguindo(List.of(marcos));
         marcos.setSeguindo(List.of(thiago,felipe,andre,rafael,juninho));
+        
+        Midia thiagoMidia1 = new Midia("Imagem1");
+        Postagem thiagoPost1 = new Postagem(
+                "Bom Dia, primeiro post aqui streando essa rede :D",
+                thiago,
+                List.of(felipe,andre,rafael),
+                List.of(thiagoMidia1)
+                );
+        Postagem thiagoPost2 = new Postagem(
+                "Segunda postagem do dia",
+                thiago,
+                List.of(rafael)
+                );
+        
+        Midia rafaelMidia1 = new Midia("Imagem Rafa1");
+        Midia rafaelMidia2 = new Midia("Imagem Rafa2");
+        Postagem rafaelPost1 = new Postagem(
+                "Testando os novos pots dessa rede que e melhor que o twiter",
+                rafael,
+                List.of(thiago,marcos),
+                List.of(rafaelMidia1,rafaelMidia2)
+            );
+        
+        rafael.setPostagens(List.of(rafaelPost1));
+        
+        Postagem marcosPost = new Postagem(
+                "kkkkkk otimo post",
+                marcos,
+                rafaelPost1,
+                List.of(rafael)
+            );
+        
+        marcos.setPostagens(List.of(marcosPost));
+        
+        Postagem felipePost = new Postagem(
+                "Oi comunidade, qual e a boa de hoje ? qual anime vamos ver ?",
+                comunidade2,
+                felipe,    
+                List.of(rafael,marcos)
+            );
+        
+        felipe.setPostagens(List.of(felipePost));
+        
+        Postagem andrePost = new Postagem(
+                "Sempre firmes em WEB em hahaha, vamos para mais um dia!!",
+                comunidade3,
+                andre,
+                List.of(thiago,rafael,felipe)
+            );
+        
+        andre.setPostagens(List.of(andrePost));
+        
+        Postagem thiagoRePost = new Postagem(
+                "Mais um dia de estudos haha",
+                comunidade3,
+                thiago,
+                List.of(andre,felipe)
+            );
+        thiagoRePost.setPostagemPai(andrePost);
+        thiago.setPostagens(List.of(thiagoPost1,thiagoPost2,thiagoRePost));
         
         usuarioService.persist(thiago);
         usuarioService.persist(rafael);

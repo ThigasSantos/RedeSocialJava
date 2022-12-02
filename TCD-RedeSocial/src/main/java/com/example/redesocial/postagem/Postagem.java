@@ -41,11 +41,53 @@ public class Postagem implements Serializable {
     inverseJoinColumns = @JoinColumn(name = "usuario_id"))
     private List<Usuario> usuariosCurtiram;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "postagem_id")
     private List<Midia> midias;
 
-    // <editor-folder  defaultstate="collapsed" desc="Getters/Setters" >
+    public Postagem() {
+    }
+
+    public Postagem(String conteudo, Usuario usuario, List<Usuario> usuariosCurtiram, List<Midia> midias) {
+        this.conteudo = conteudo;
+        this.usuario = usuario;
+        this.usuariosCurtiram = usuariosCurtiram;
+        this.midias = midias;
+    }
+
+    public Postagem(String conteudo, Usuario usuario, List<Usuario> usuariosCurtiram) {
+        this.conteudo = conteudo;
+        this.usuario = usuario;
+        this.usuariosCurtiram = usuariosCurtiram;
+    }
+
+    public Postagem(String conteudo, Usuario usuario, Postagem postagemPai, List<Usuario> usuariosCurtiram) {
+        this.conteudo = conteudo;
+        this.usuario = usuario;
+        this.postagemPai = postagemPai;
+        this.usuariosCurtiram = usuariosCurtiram;
+    }
+    
+    
+    public Postagem(String conteudo, Usuario usuario, Postagem postagemPai, List<Usuario> usuariosCurtiram, List<Midia> midias) {
+        this.conteudo = conteudo;
+        this.usuario = usuario;
+        this.postagemPai = postagemPai;
+        this.usuariosCurtiram = usuariosCurtiram;
+        this.midias = midias;
+    }
+
+    public Postagem(String conteudo, Comunidade comunidade, Usuario usuario, List<Usuario> usuariosCurtiram) {
+        this.conteudo = conteudo;
+        this.comunidade = comunidade;
+        this.usuario = usuario;
+        this.usuariosCurtiram = usuariosCurtiram;
+    }
+
+    
+    
+    
+    // <editor-fold  defaultstate="collapsed" desc="Getters/Setters" >
     public String getConteudo() {
         return conteudo;
     }
@@ -106,5 +148,5 @@ public class Postagem implements Serializable {
         this.postagemPai = postagemPai;
     }
     
-    // </editor-folder >
+    // </editor-fold >
 }

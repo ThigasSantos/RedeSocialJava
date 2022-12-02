@@ -49,6 +49,9 @@ public class Usuario implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private Credencial credencial;
 
+    public Usuario() {
+    }
+    
     public Usuario(String nickname, String sobre, LocalDate dataNascimento, Credencial credencial) {
         this.nickname = nickname;
         this.sobre = sobre;
