@@ -11,4 +11,9 @@ public final class JsonUtils {
             .withFormatting(true)
             .withDateFormat("dd/MM/yyyy", Locale.forLanguageTag("pt_BR"))
             .withPropertyOrderStrategy(PropertyOrderStrategy.LEXICOGRAPHICAL));
+
+    public static String toJson(Object object) {
+        return jsonb.toJson(object);
+    }
+
 }
