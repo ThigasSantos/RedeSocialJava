@@ -50,4 +50,11 @@ public class ComunidadeService implements ComunidadeServiceLocal {
         // Exclusão permanente de entidade
         em.remove(comunidade);
     }
+
+    @Override
+    public Comunidade findPostsComunidades(Comunidade comunidade) {
+        String consulta = "SELECT c FROM Comunidade c, IN (c.postagens) WHERE c.Id = :IdComunidade";
+        return em.createQuery(consulta, Comunidade.class).getSingleResult();
+    }
+    
 }

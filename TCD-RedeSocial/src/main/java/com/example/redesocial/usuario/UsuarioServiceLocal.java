@@ -8,4 +8,6 @@ public interface UsuarioServiceLocal {
     void persist(Usuario usuario);
     
     Usuario buscarUsuario(Long id);
+
+    Usuario findPostsSeguidores(Usuario usuario);
 }
