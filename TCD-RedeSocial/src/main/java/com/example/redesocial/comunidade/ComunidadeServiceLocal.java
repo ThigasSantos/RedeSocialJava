@@ -23,5 +23,7 @@ public interface ComunidadeServiceLocal {
     void remover(Comunidade comunidade);
 
     void update(Comunidade comunidade);
+
+    Comunidade findPostsComunidades(Comunidade comunidade);
     
 }
