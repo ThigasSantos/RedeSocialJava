@@ -12,7 +12,7 @@ import javax.ejb.Local;
  * @author felipe
  */
 @Local
-public interface PostagemBeanLocal {
+public interface PostagemServiceLocal {
     void salvar(Postagem postagem);
 
     Postagem localizarPorId(long id);
@@ -22,4 +22,8 @@ public interface PostagemBeanLocal {
     void remover(Postagem postagem);
 
     void update(Postagem postagem);
+
+    Postagem findRespostasPosts(Postagem postagem);
+
+    Postagem findUsuariosCurtiram(Postagem postagem);
 }

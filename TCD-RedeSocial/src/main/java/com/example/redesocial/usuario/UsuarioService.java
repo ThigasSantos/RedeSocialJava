@@ -32,5 +32,11 @@ public class UsuarioService implements UsuarioServiceLocal{
 //        
 //        return (Object[]) q.getSingleResult();
     }
+
+    @Override
+    public Usuario findPostsSeguidores(Usuario usuario) {
+        String consulta = "SELECT u.postagens FROM Usuario u, IN (u.seguindo), IN (u.postagens) WHERE u.id = :idUsuario";
+        return em.createQuery(consulta, Usuario.class).getSingleResult();
+    }
     
 }

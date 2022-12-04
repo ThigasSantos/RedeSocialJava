@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
  * @author felipe
  */
 @Stateless
-public class PostagemBean implements PostagemBeanLocal {
+public class PostagemService implements PostagemServiceLocal {
 
     @PersistenceContext
     private EntityManager em;
@@ -50,4 +50,18 @@ public class PostagemBean implements PostagemBeanLocal {
         // Exclusão permanente de entidade
         em.remove(postagem);
     }
+
+    @Override
+    public Postagem findRespostasPosts(Postagem postagem) {
+        String consulta = "SELECT p.respostas FROM Postagem p, IN (p.respostas) WHERE p.id = :idPostagem";
+        return em.createQuery(consulta, Postagem.class).getSingleResult();
+    }
+
+    @Override
+    public Postagem findUsuariosCurtiram(Postagem postagem) {
+        String consulta = "SELECT p.usuariosCurtiram FROM Postagem p, IN (p.usuariosCurtiram) WHERE p.id = :idPostagem";
+        return em.createQuery(consulta, Postagem.class).getSingleResult();
+    }
+    
+    
 }
