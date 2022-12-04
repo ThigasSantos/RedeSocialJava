@@ -4,6 +4,8 @@ import com.example.redesocial.comunidade.Comunidade;
 import com.example.redesocial.usuario.Usuario;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,7 +24,7 @@ public class Postagem implements Serializable {
 
     @Column(length = 2500)
     private String conteudo;
-
+    private LocalDateTime dataPostagem;
     @ManyToOne
     private Comunidade comunidade;
     @ManyToOne
@@ -90,6 +92,14 @@ public class Postagem implements Serializable {
     // <editor-fold  defaultstate="collapsed" desc="Getters/Setters" >
     public String getConteudo() {
         return conteudo;
+    }
+
+    public LocalDateTime getDataPostagem() {
+        return dataPostagem;
+    }
+
+    public void setDataPostagem(LocalDateTime dataPostagem) {
+        this.dataPostagem = dataPostagem;
     }
 
     public void setConteudo(String conteudo) {
