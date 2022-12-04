@@ -1,20 +1,33 @@
 package com.example.redesocial.servlets;
 
+import com.example.redesocial.comunidade.Comunidade;
 import com.example.redesocial.comunidade.ComunidadeServiceLocal;
+import com.example.redesocial.postagem.PostagemBean;
+import com.example.redesocial.postagem.PostagemBeanLocal;
+import com.example.redesocial.usuario.Usuario;
+import com.example.redesocial.usuario.credencial.Credencial;
+import com.example.redesocial.usuario.credencial.TipoPerfil;
 import com.example.redesocial.utils.HTMLGenerator;
 
 import javax.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.util.List;
 
 @WebServlet(name = "Queries", value = "/testes/queries")
+@Transactional
 public class Servlet extends HttpServlet {
 
     @Inject
     ComunidadeServiceLocal comunidadeService;
+
+    @Inject
+    PostagemBeanLocal postagemBean;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,7 +40,9 @@ public class Servlet extends HttpServlet {
                 "<style>" +
                 "body { padding: 30px }" +
                 "h1 { text-align: center }" +
+                "details[open] { font-size: 1.3em }" +
                 "details > pre{ " +
+                "overflow-x: scroll;" +
                 "background-color: rgb(252, 252, 252);" +
                 "border-radius: 20px;" +
                 "padding: 10 50px;" +
@@ -38,9 +53,14 @@ public class Servlet extends HttpServlet {
         out.println("<h1> Testes de Queries: </h1>");
 
         out.println(HTMLGenerator.testQuery(
-                "Retornar todas as comunidades",
+                "Todas as comunidades",
                 comunidadeService.findComunidades()
                 ));
+
+        out.println(HTMLGenerator.testQuery(
+                "Todos as Postagens",
+                postagemBean.findPostagens()
+        ));
     }
 
     @Override

@@ -34,7 +34,7 @@ public class ComunidadeService implements ComunidadeServiceLocal {
     @Override
     public List<Comunidade> findComunidades() {
         // Recuperação de todas as entidades
-        return em.createNamedQuery("Comunidade.findComunidades",Comunidade.class).getResultList();
+        return em.createNamedQuery("findComunidades",Comunidade.class).getResultList();
     }
 
     @Override

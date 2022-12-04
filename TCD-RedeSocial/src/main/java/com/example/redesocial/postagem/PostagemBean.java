@@ -34,7 +34,7 @@ public class PostagemBean implements PostagemBeanLocal {
     @Override
     public List<Postagem> findPostagens() {
         // Recuperação de todas as entidades
-        return em.createNamedQuery("Postagem.findPostagens", Postagem.class).getResultList();
+        return em.createNamedQuery("findPostagens", Postagem.class).getResultList();
     }
 
     @Override

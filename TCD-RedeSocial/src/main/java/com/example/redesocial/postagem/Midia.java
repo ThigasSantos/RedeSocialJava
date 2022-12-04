@@ -20,8 +20,6 @@ public class Midia implements Serializable {
     public Midia(String link) {
         this.link = link;
     }
-
-    
     
     // <editor-fold  defaultstate="collapsed" desc="Getters/Setters" >
     public Long getId() {
