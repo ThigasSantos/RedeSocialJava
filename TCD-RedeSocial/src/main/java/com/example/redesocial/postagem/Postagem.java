@@ -4,9 +4,7 @@ import com.example.redesocial.comunidade.Comunidade;
 import com.example.redesocial.usuario.Usuario;
 import com.example.redesocial.utils.json.customserializers.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 import java.io.Serializable;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -146,6 +144,6 @@ public class Postagem implements Serializable {
     public void setPostagemPai(Postagem postagemPai) {
         this.postagemPai = postagemPai;
     }
-    
+
     // </editor-fold >
 }

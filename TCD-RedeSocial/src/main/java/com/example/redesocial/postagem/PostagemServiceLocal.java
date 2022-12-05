@@ -23,7 +23,7 @@ public interface PostagemServiceLocal {
 
     void update(Postagem postagem);
 
-    Postagem findRespostasPosts(Postagem postagem);
+    List<Object[]> findRespostasPosts(Postagem postagem);
 
-    Postagem findUsuariosCurtiram(Postagem postagem);
+    List<Object[]> findUsuariosCurtiram(Postagem postagem);
 }

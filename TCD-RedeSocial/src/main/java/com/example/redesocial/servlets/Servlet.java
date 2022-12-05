@@ -1,12 +1,11 @@
 package com.example.redesocial.servlets;
-
 import com.example.redesocial.comunidade.Comunidade;
 import com.example.redesocial.comunidade.ComunidadeServiceLocal;
-import com.example.redesocial.postagem.PostagemBean;
-import com.example.redesocial.postagem.PostagemBeanLocal;
+import com.example.redesocial.postagem.Postagem;
+import com.example.redesocial.postagem.PostagemServiceLocal;
 import com.example.redesocial.usuario.Usuario;
-import com.example.redesocial.usuario.credencial.Credencial;
-import com.example.redesocial.usuario.credencial.TipoPerfil;
+import com.example.redesocial.usuario.UsuarioService;
+import com.example.redesocial.usuario.UsuarioServiceLocal;
 import com.example.redesocial.utils.HTMLGenerator;
 
 import javax.inject.Inject;
@@ -16,8 +15,6 @@ import javax.servlet.annotation.*;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDate;
-import java.util.List;
 
 @WebServlet(name = "Queries", value = "/testes/queries")
 @Transactional
@@ -27,7 +24,10 @@ public class Servlet extends HttpServlet {
     ComunidadeServiceLocal comunidadeService;
 
     @Inject
-    PostagemBeanLocal postagemBean;
+    PostagemServiceLocal postagemService;
+
+    @Inject
+    UsuarioServiceLocal usuarioService;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,13 +53,42 @@ public class Servlet extends HttpServlet {
         out.println("<h1> Testes de Queries: </h1>");
 
         out.println(HTMLGenerator.testQuery(
-                "Todas as comunidades",
+                "Todas as Comunidades",
                 comunidadeService.findComunidades()
                 ));
 
         out.println(HTMLGenerator.testQuery(
                 "Todos as Postagens",
-                postagemBean.findPostagens()
+                postagemService.findPostagens()
+        ));
+
+        out.println(HTMLGenerator.testQuery(
+                "Feed",
+                usuarioService.findPostsSeguidores(new Usuario() {{
+                    setId(1L);
+                }})
+        ));
+
+        out.println(HTMLGenerator.testQuery(
+                "Respostas Postagem",
+                postagemService.findRespostasPosts(new Postagem() {{
+                    setId(4L);
+        }})
+     ));
+
+        out.println(HTMLGenerator.testQuery(
+                "Usuarios que curtiram a Postagem",
+                postagemService.findUsuariosCurtiram(new Postagem() {{
+                    setId(1L);
+                }})
+        ));
+
+        out.println(HTMLGenerator.testQuery(
+                "Postagens da Comunidade",
+                comunidadeService.findPostsComunidades(
+                        new Comunidade() {{
+                            setId(2L);
+                        }})
         ));
     }
 

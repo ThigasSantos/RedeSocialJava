@@ -1,9 +1,12 @@
 package com.example.redesocial.usuario;
 
+import com.example.redesocial.postagem.Postagem;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.List;
 
 @Stateless
 public class UsuarioService implements UsuarioServiceLocal{
@@ -34,9 +37,11 @@ public class UsuarioService implements UsuarioServiceLocal{
     }
 
     @Override
-    public Usuario findPostsSeguidores(Usuario usuario) {
-        String consulta = "SELECT u.postagens FROM Usuario u, IN (u.seguindo), IN (u.postagens) WHERE u.id = :idUsuario";
-        return em.createQuery(consulta, Usuario.class).getSingleResult();
+    public List<Object[]> findPostsSeguidores(Usuario usuario) {
+        String consulta = "SELECT s.postagens FROM Usuario u JOIN u.seguindo s WHERE u.id = :idUsuario";
+        return em.createQuery(consulta, Object[].class)
+                .setParameter("idUsuario", usuario.getId())
+                .getResultList();
     }
     
 }

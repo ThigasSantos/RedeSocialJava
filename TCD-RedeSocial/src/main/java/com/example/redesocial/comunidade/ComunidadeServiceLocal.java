@@ -24,6 +24,6 @@ public interface ComunidadeServiceLocal {
 
     void update(Comunidade comunidade);
 
-    Comunidade findPostsComunidades(Comunidade comunidade);
+    List<Object[]> findPostsComunidades(Comunidade comunidade);
     
 }

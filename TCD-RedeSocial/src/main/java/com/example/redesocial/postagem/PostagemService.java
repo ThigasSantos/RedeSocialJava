@@ -52,15 +52,19 @@ public class PostagemService implements PostagemServiceLocal {
     }
 
     @Override
-    public Postagem findRespostasPosts(Postagem postagem) {
-        String consulta = "SELECT p.respostas FROM Postagem p, IN (p.respostas) WHERE p.id = :idPostagem";
-        return em.createQuery(consulta, Postagem.class).getSingleResult();
+    public List<Object[]> findRespostasPosts(Postagem postagem) {
+        String consulta = "SELECT r FROM Postagem p JOIN p.respostas r WHERE p.id = :idPostagem";
+        return em.createQuery(consulta, Object[].class)
+                .setParameter("idPostagem", postagem.getId())
+                .getResultList();
     }
 
     @Override
-    public Postagem findUsuariosCurtiram(Postagem postagem) {
-        String consulta = "SELECT p.usuariosCurtiram FROM Postagem p, IN (p.usuariosCurtiram) WHERE p.id = :idPostagem";
-        return em.createQuery(consulta, Postagem.class).getSingleResult();
+    public List<Object[]> findUsuariosCurtiram(Postagem postagem) {
+        String consulta = "SELECT  u.id, u.nickname FROM Postagem p JOIN p.usuariosCurtiram u WHERE p.id = :idPostagem";
+        return em.createQuery(consulta, Object[].class)
+                .setParameter("idPostagem", postagem.getId())
+                .getResultList();
     }
     
     
