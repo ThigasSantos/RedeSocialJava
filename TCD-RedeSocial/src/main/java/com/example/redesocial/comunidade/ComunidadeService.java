@@ -34,7 +34,7 @@ public class ComunidadeService implements ComunidadeServiceLocal {
     @Override
     public List<Comunidade> findComunidades() {
         // Recuperação de todas as entidades
-        return em.createNamedQuery("Comunidade.findComunidades",Comunidade.class).getResultList();
+        return em.createNamedQuery("findComunidades",Comunidade.class).getResultList();
     }
 
     @Override
@@ -52,9 +52,11 @@ public class ComunidadeService implements ComunidadeServiceLocal {
     }
 
     @Override
-    public Comunidade findPostsComunidades(Comunidade comunidade) {
-        String consulta = "SELECT c FROM Comunidade c, IN (c.postagens) WHERE c.Id = :IdComunidade";
-        return em.createQuery(consulta, Comunidade.class).getSingleResult();
+    public List<Object[]> findPostsComunidades(Comunidade comunidade) {
+        String consulta = "SELECT c.postagens FROM Comunidade c WHERE c.id = :IdComunidade";
+        return em.createQuery(consulta, Object[].class)
+                .setParameter("IdComunidade", comunidade.getId())
+                .getResultList();
     }
     
 }

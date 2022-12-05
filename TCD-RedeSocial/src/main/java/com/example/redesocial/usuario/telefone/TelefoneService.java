@@ -31,7 +31,7 @@ public class TelefoneService implements TelefoneServiceLocal {
 
     @Override
     public List<Telefone> findTelefones() {
-        return em.createNamedQuery("Telefone.findTelefones",Telefone.class).getResultList();
+        return em.createNamedQuery("findTelefones",Telefone.class).getResultList();
     }
 
     @Override

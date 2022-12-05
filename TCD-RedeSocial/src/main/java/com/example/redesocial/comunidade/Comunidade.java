@@ -2,6 +2,13 @@ package com.example.redesocial.comunidade;
 
 import com.example.redesocial.postagem.Postagem;
 import com.example.redesocial.usuario.Usuario;
+import com.example.redesocial.utils.json.customserializers.LocalDateSerializer;
+import com.example.redesocial.utils.json.customserializers.PostagemListSerializer;
+import com.example.redesocial.utils.json.customserializers.UsuarioListSerializer;
+import com.example.redesocial.utils.json.customserializers.UsuarioSingleSerializer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.io.Serializable;
 
 import javax.persistence.*;
@@ -19,24 +26,29 @@ public class Comunidade implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(length = 50)
     private String nome;
     private String descricao;
+
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate dataCriacao;
+
     @ManyToOne
+    @JsonSerialize(using = UsuarioSingleSerializer.class)
     private Usuario dono;
 
     @OneToMany
     @JoinColumn(name = "comunidade_id")
+    @JsonSerialize(using = PostagemListSerializer.class)
     private List<Postagem> postagens;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "participa")
+    @JsonSerialize(using = UsuarioListSerializer.class)
     private List<Usuario> membros;
 
     public Comunidade() {
-        this.dataCriacao = LocalDate.now();
+
     }
 
     public Comunidade(String nome, String descricao, LocalDate dataCriacao, Usuario dono, List<Usuario> membros) {
@@ -47,20 +59,15 @@ public class Comunidade implements Serializable {
         this.membros = membros;
     }
 
-    public Comunidade(String nome, String descricao, LocalDate dataCriacao, Usuario dono) {
-        this.nome = nome;
-        this.descricao = descricao;
-        this.dataCriacao = dataCriacao;
-        this.dono = dono;
-    }
-
-    
-    
-
-    // <editor-folder  defaultstate="collapsed" desc="Getters/Setters" >
+    // <editor-fold  defaultstate="collapsed" desc="Getters/Setters" >
 
     public Long getId() {
         return id;
+    }
+
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -103,7 +110,13 @@ public class Comunidade implements Serializable {
         this.postagens = postagens;
     }
 
+    public List<Usuario> getMembros() {
+        return membros;
+    }
 
+    public void setMembros(List<Usuario> membros) {
+        this.membros = membros;
+    }
 
-    // </editor-folder>
+    // </editor-fold>
 }

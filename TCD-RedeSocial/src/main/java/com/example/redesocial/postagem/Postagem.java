@@ -2,11 +2,11 @@ package com.example.redesocial.postagem;
 
 import com.example.redesocial.comunidade.Comunidade;
 import com.example.redesocial.usuario.Usuario;
-
+import com.example.redesocial.utils.json.customserializers.*;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -22,25 +22,30 @@ public class Postagem implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 2500)
+    @Column(length = 400)
     private String conteudo;
     private LocalDateTime dataPostagem;
     @ManyToOne
+    @JsonSerialize(using = ComunidadeSingleSerializer.class)
     private Comunidade comunidade;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonSerialize(using = UsuarioSingleSerializer.class)
     private Usuario usuario;
 
     @OneToMany(mappedBy = "postagemPai")
+    @JsonSerialize(using = PostagemListSerializer.class)
     private List<Postagem> respostas;
 
     @ManyToOne
     @JoinColumn(name = "postagem_pai_id")
+    @JsonSerialize(using = PostagemSingleSerializer.class)
     private Postagem postagemPai;
 
     @ManyToMany
     @JoinTable(name = "curte",
     joinColumns = @JoinColumn(name = "postagem_id"),
     inverseJoinColumns = @JoinColumn(name = "usuario_id"))
+    @JsonSerialize(using = UsuarioListSerializer.class)
     private List<Usuario> usuariosCurtiram;
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -69,15 +74,6 @@ public class Postagem implements Serializable {
         this.postagemPai = postagemPai;
         this.usuariosCurtiram = usuariosCurtiram;
     }
-    
-    
-    public Postagem(String conteudo, Usuario usuario, Postagem postagemPai, List<Usuario> usuariosCurtiram, List<Midia> midias) {
-        this.conteudo = conteudo;
-        this.usuario = usuario;
-        this.postagemPai = postagemPai;
-        this.usuariosCurtiram = usuariosCurtiram;
-        this.midias = midias;
-    }
 
     public Postagem(String conteudo, Comunidade comunidade, Usuario usuario, List<Usuario> usuariosCurtiram) {
         this.conteudo = conteudo;
@@ -85,9 +81,6 @@ public class Postagem implements Serializable {
         this.usuario = usuario;
         this.usuariosCurtiram = usuariosCurtiram;
     }
-
-    
-    
     
     // <editor-fold  defaultstate="collapsed" desc="Getters/Setters" >
     public String getConteudo() {
@@ -150,6 +143,10 @@ public class Postagem implements Serializable {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Postagem getPostagemPai() {
         return postagemPai;
     }
@@ -157,6 +154,6 @@ public class Postagem implements Serializable {
     public void setPostagemPai(Postagem postagemPai) {
         this.postagemPai = postagemPai;
     }
-    
+
     // </editor-fold >
 }

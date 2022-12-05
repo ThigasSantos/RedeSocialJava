@@ -4,8 +4,13 @@ import com.example.redesocial.comunidade.Comunidade;
 import com.example.redesocial.usuario.credencial.Credencial;
 import com.example.redesocial.usuario.telefone.Telefone;
 import com.example.redesocial.postagem.Postagem;
-import java.io.Serializable;
+import com.example.redesocial.utils.json.customserializers.ComunidadeSingleSerializer;
+import com.example.redesocial.utils.json.customserializers.LocalDateSerializer;
+import com.example.redesocial.utils.json.customserializers.PostagemListSerializer;
+import com.example.redesocial.utils.json.customserializers.UsuarioListSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import java.io.Serializable;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -18,9 +23,10 @@ public class Usuario implements Serializable {
     @Column(length = 20)
     private String nickname;
     private String sobre;
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate dataNascimento;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "usuario_id")
     private List<Telefone> telefones;
 
@@ -28,23 +34,29 @@ public class Usuario implements Serializable {
     @JoinTable(name="segue",
     joinColumns = @JoinColumn(name = "usuario_seguidor_id"),
     inverseJoinColumns = @JoinColumn(name = "usuario_seguido_id"))
+    @JsonSerialize(using = UsuarioListSerializer.class)
     private List<Usuario> seguindo;
 
     @ManyToMany(mappedBy="seguindo")
+    @JsonSerialize(using = UsuarioListSerializer.class)
     private List<Usuario> seguidoPor;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id")
+    @JsonSerialize(using = PostagemListSerializer.class)
     private List<Postagem> postagens;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "dono")
+    @ManyToMany(mappedBy = "usuariosCurtiram")
+    @JsonSerialize(using = PostagemListSerializer.class)
+    private List<Postagem> postagensCurtidas;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "dono", orphanRemoval = true)
+    @JsonSerialize(using = ComunidadeSingleSerializer.class)
     private List<Comunidade> comunidadesLideradas;
 
     @ManyToMany(mappedBy = "membros")
+    @JsonSerialize(using = ComunidadeSingleSerializer.class)
     private List<Comunidade> comunidades;
-
-    @ManyToMany(mappedBy = "usuariosCurtiram")
-    private List<Postagem> postagensCurtidas;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Credencial credencial;
@@ -59,10 +71,7 @@ public class Usuario implements Serializable {
         this.credencial = credencial;
     }
 
-    
-    
-   
-// <editor-fold  defaultstate="collapsed" desc="Getters/Setters" >
+    // <editor-fold  defaultstate="collapsed" desc="Getters/Setters" >
 
     public Long getId() {
         return id;
@@ -162,4 +171,6 @@ public class Usuario implements Serializable {
     }
 
     // </editor-fold>
+
+
 }
