@@ -6,7 +6,6 @@ import com.example.redesocial.utils.json.customserializers.LocalDateSerializer;
 import com.example.redesocial.utils.json.customserializers.PostagemListSerializer;
 import com.example.redesocial.utils.json.customserializers.UsuarioListSerializer;
 import com.example.redesocial.utils.json.customserializers.UsuarioSingleSerializer;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.io.Serializable;

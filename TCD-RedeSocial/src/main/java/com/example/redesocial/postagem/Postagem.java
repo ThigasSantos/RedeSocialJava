@@ -24,6 +24,8 @@ public class Postagem implements Serializable {
 
     @Column(length = 400)
     private String conteudo;
+
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime dataPostagem;
     @ManyToOne
     @JsonSerialize(using = ComunidadeSingleSerializer.class)
