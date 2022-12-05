@@ -14,6 +14,7 @@ import com.example.redesocial.usuario.UsuarioServiceLocal;
 import com.example.redesocial.usuario.credencial.TipoPerfil;
 import com.example.redesocial.usuario.telefone.Telefone;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
 import java.util.logging.Level;
@@ -150,11 +151,13 @@ public class DadosIniciais {
                 List.of(felipe,andre,rafael),
                 List.of(thiagoMidia1)
                 );
+        thiagoPost1.setDataPostagem(LocalDateTime.of(2022, Month.MARCH, 25, 18, 27));
         Postagem thiagoPost2 = new Postagem(
                 "Segunda postagem do dia",
                 thiago,
                 List.of(rafael)
                 );
+        thiagoPost2.setDataPostagem(LocalDateTime.of(2022, Month.MARCH, 26, 18, 47));
         
         Midia rafaelMidia1 = new Midia("Imagem Rafa1");
         Midia rafaelMidia2 = new Midia("Imagem Rafa2");
@@ -164,7 +167,7 @@ public class DadosIniciais {
                 List.of(thiago,marcos),
                 List.of(rafaelMidia1,rafaelMidia2)
             );
-        
+        rafaelPost1.setDataPostagem(LocalDateTime.of(2022, Month.MARCH, 25, 13, 47));
         rafael.setPostagens(List.of(rafaelPost1));
         
         Postagem marcosPost = new Postagem(
@@ -173,7 +176,7 @@ public class DadosIniciais {
                 rafaelPost1,
                 List.of(rafael)
             );
-        
+        marcosPost.setDataPostagem(LocalDateTime.of(2022, Month.MARCH, 25, 15, 22));
         marcos.setPostagens(List.of(marcosPost));
         
         Postagem felipePost = new Postagem(
@@ -182,7 +185,7 @@ public class DadosIniciais {
                 felipe,    
                 List.of(rafael,marcos)
             );
-        
+        felipePost.setDataPostagem(LocalDateTime.of(2022, Month.MARCH, 26, 15, 22));
         felipe.setPostagens(List.of(felipePost));
         
         Postagem andrePost = new Postagem(
@@ -191,7 +194,7 @@ public class DadosIniciais {
                 andre,
                 List.of(thiago,rafael,felipe)
             );
-        
+        andrePost.setDataPostagem(LocalDateTime.of(2022, Month.MARCH, 26, 15, 22));
         andre.setPostagens(List.of(andrePost));
         
         Postagem thiagoRePost = new Postagem(
@@ -200,6 +203,7 @@ public class DadosIniciais {
                 thiago,
                 List.of(andre,felipe)
             );
+        thiagoRePost.setDataPostagem(LocalDateTime.of(2022, Month.MARCH, 26, 15, 32));
         thiagoRePost.setPostagemPai(andrePost);
         thiago.setPostagens(List.of(thiagoPost1,thiagoPost2,thiagoRePost));
         

@@ -5,6 +5,8 @@ import com.example.redesocial.usuario.Usuario;
 import com.example.redesocial.utils.json.customserializers.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.*;
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class Postagem implements Serializable {
 
     @Column(length = 400)
     private String conteudo;
-
+    private LocalDateTime dataPostagem;
     @ManyToOne
     @JsonSerialize(using = ComunidadeSingleSerializer.class)
     private Comunidade comunidade;
@@ -83,6 +85,14 @@ public class Postagem implements Serializable {
     // <editor-fold  defaultstate="collapsed" desc="Getters/Setters" >
     public String getConteudo() {
         return conteudo;
+    }
+
+    public LocalDateTime getDataPostagem() {
+        return dataPostagem;
+    }
+
+    public void setDataPostagem(LocalDateTime dataPostagem) {
+        this.dataPostagem = dataPostagem;
     }
 
     public void setConteudo(String conteudo) {
