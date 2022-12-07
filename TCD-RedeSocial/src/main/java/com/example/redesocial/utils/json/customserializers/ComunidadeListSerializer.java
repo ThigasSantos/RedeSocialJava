@@ -1,7 +1,6 @@
 package com.example.redesocial.utils.json.customserializers;
 
 import com.example.redesocial.comunidade.Comunidade;
-import com.example.redesocial.usuario.Usuario;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;

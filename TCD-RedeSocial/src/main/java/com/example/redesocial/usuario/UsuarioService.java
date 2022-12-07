@@ -1,15 +1,15 @@
 package com.example.redesocial.usuario;
 
-import com.example.redesocial.postagem.Postagem;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.io.Serializable;
 import java.util.List;
 
 @Stateless
-public class UsuarioService implements UsuarioServiceLocal{
+public class UsuarioService implements Serializable, UsuarioServiceLocal{
 
     @PersistenceContext
     private EntityManager em;
@@ -42,6 +42,19 @@ public class UsuarioService implements UsuarioServiceLocal{
         return em.createQuery(consulta, Object[].class)
                 .setParameter("idUsuario", usuario.getId())
                 .getResultList();
+    }
+
+    @Override
+    public Usuario buscarPorCredencial(String email, String senha) {
+        String consulta = "SELECT u FROM Usuario u JOIN u.credencial c WHERE c.email = :email AND c.senha = :senha";
+        try {
+            return (Usuario) em.createQuery(consulta)
+                    .setParameter("email", email)
+                    .setParameter("senha", senha)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
     
 }

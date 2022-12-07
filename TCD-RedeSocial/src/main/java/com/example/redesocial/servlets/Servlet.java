@@ -4,7 +4,6 @@ import com.example.redesocial.comunidade.ComunidadeServiceLocal;
 import com.example.redesocial.postagem.Postagem;
 import com.example.redesocial.postagem.PostagemServiceLocal;
 import com.example.redesocial.usuario.Usuario;
-import com.example.redesocial.usuario.UsuarioService;
 import com.example.redesocial.usuario.UsuarioServiceLocal;
 import com.example.redesocial.utils.HTMLGenerator;
 
@@ -64,31 +63,22 @@ public class Servlet extends HttpServlet {
 
         out.println(HTMLGenerator.testQuery(
                 "Feed",
-                usuarioService.findPostsSeguidores(new Usuario() {{
-                    setId(1L);
-                }})
+                usuarioService.findPostsSeguidores(new Usuario() {{ setId(1L); }})
         ));
 
         out.println(HTMLGenerator.testQuery(
                 "Respostas Postagem",
-                postagemService.findRespostasPosts(new Postagem() {{
-                    setId(4L);
-        }})
-     ));
+                postagemService.findRespostasPosts(new Postagem() {{ setId(4L); }})
+        ));
 
         out.println(HTMLGenerator.testQuery(
                 "Usuarios que curtiram a Postagem",
-                postagemService.findUsuariosCurtiram(new Postagem() {{
-                    setId(1L);
-                }})
+                postagemService.findUsuariosCurtiram(new Postagem() {{ setId(1L); }})
         ));
 
         out.println(HTMLGenerator.testQuery(
                 "Postagens da Comunidade",
-                comunidadeService.findPostsComunidades(
-                        new Comunidade() {{
-                            setId(2L);
-                        }})
+                comunidadeService.findPostsComunidades(new Comunidade() {{ setId(2L); }})
         ));
     }
 

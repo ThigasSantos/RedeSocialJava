@@ -1,7 +1,5 @@
 package com.example.redesocial.usuario;
 
-import com.example.redesocial.postagem.Postagem;
-
 import javax.ejb.Local;
 import java.util.List;
 
@@ -13,4 +11,6 @@ public interface UsuarioServiceLocal {
     Usuario buscarUsuario(Long id);
 
     List<Object[]> findPostsSeguidores(Usuario usuario);
+
+    Usuario buscarPorCredencial(String email, String senha);
 }

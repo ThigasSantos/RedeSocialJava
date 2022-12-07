@@ -171,6 +171,4 @@ public class Usuario implements Serializable {
     }
 
     // </editor-fold>
-
-
 }
