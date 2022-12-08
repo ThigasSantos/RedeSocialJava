@@ -20,7 +20,7 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(length = 20)
+    @Column(length = 45, nullable = false, unique = true)
     private String nickname;
     private String sobre;
     @JsonSerialize(using = LocalDateSerializer.class)
