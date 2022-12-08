@@ -89,7 +89,6 @@ public class Usuario implements Serializable {
         this.nickname = nickname;
     }
 
-
     public String getSobre() {
         return sobre;
     }
