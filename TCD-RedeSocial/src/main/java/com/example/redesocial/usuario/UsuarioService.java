@@ -1,5 +1,7 @@
 package com.example.redesocial.usuario;
 
+import com.example.redesocial.dtos.PostagemDTO;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;

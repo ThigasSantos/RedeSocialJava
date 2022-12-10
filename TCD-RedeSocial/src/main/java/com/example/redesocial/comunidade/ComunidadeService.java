@@ -43,8 +43,6 @@ public class ComunidadeService implements ComunidadeServiceLocal {
         em.merge(comunidade);
     }
     
-    // TODO envio da entidade para a lixeira
-    
     @Override
     public void remover(Comunidade comunidade) {
         // Exclusão permanente de entidade

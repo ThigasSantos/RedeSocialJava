@@ -11,8 +11,18 @@
 <f:view>
     <cp:header />
     <h:outputText value="HOME PAGE"/>
-    <c:if test="#{usuarioSessionBean.conectado}">
-        <h:outputLabel value="Bem vindo #{usuarioSessionBean.usuario.nickname}"/>
-    </c:if>
+    <h:outputText rendered="#{usuarioSessionBean.conectado}" value="Bem vindo #{usuarioSessionBean.usuario.nickname}"/>
+    <ui:repeat value="#{postagemBean.postagensPopulares}" var="postagem">
+        <h:panelGroup>
+            <br /><br />
+            <h:outputText value="#{postagem.usuarioNickName} publicou:"/><br />
+            <h:outputText value="#{postagem.conteudo}" /><br />
+            <h:outputText value="curtidas: #{postagem.qtdCurtidas}"  />
+            <h:outputText value=" respostas: #{postagem.qtdRespostas}"  /><br />
+            <ui:repeat value="#{postagem.midiasLinks}" var="link">
+                <img src="#{link}" alt="aff"/>
+            </ui:repeat>
+        </h:panelGroup>
+    </ui:repeat>
 </f:view>
 </html>

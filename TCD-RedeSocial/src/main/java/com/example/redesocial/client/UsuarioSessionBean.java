@@ -13,7 +13,6 @@ import java.io.Serializable;
 public class UsuarioSessionBean implements Serializable {
 
     private Usuario usuario;
-
     private Boolean conectado = false;
 
     public void conectar(Usuario u) {
@@ -26,7 +25,6 @@ public class UsuarioSessionBean implements Serializable {
         String path = externalContext.getApplicationContextPath();
         externalContext.redirect(path);
         externalContext.invalidateSession();
-
     }
 
     // <editor-fold  defaultstate="collapsed" desc="Getters/Setters" >
@@ -45,6 +43,5 @@ public class UsuarioSessionBean implements Serializable {
     public void setConectado(Boolean conectado) {
         this.conectado = conectado;
     }
-
     // </editor-fold>
 }

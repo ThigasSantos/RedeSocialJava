@@ -1,6 +1,7 @@
 package com.example.redesocial.postagem;
 
 import com.example.redesocial.comunidade.Comunidade;
+import com.example.redesocial.dtos.PostagemDTO;
 import com.example.redesocial.usuario.Usuario;
 import com.example.redesocial.utils.json.customserializers.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

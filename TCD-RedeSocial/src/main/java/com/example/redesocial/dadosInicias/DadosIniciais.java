@@ -29,11 +29,7 @@ public class DadosIniciais {
     private static final Logger LOG = Logger.getLogger(DadosIniciais.class.getName());
     @PostConstruct
     public void preencherDados() {
-        // dados de usuario (Usuario, telefone, credencial, posts sem comunidade)
-       //List<Usuario> usuarios = JsonUtils.jsonb.fromJson(FakeData.getFakeData(), new ArrayList<Usuario>(){}.getClass().getGenericSuperclass());
-       // usuarios.forEach(usuario -> usuarioBean.persist(usuario));
-        // fazer relações
-        
+
         Credencial thiagoCR = new Credencial(TipoPerfil.ADMINISTRADOR,"thigas@gmail.com","senha123");
         Usuario thiago = new Usuario(
                 "thigas",
@@ -159,8 +155,8 @@ public class DadosIniciais {
                 );
         thiagoPost2.setDataPostagem(LocalDateTime.of(2022, Month.MARCH, 26, 18, 47));
         
-        Midia rafaelMidia1 = new Midia("Imagem Rafa1");
-        Midia rafaelMidia2 = new Midia("Imagem Rafa2");
+        Midia rafaelMidia1 = new Midia("ImagemRafa1");
+        Midia rafaelMidia2 = new Midia("ImagemRafa2");
         Postagem rafaelPost1 = new Postagem(
                 "Testando os novos pots dessa rede que e melhor que o twiter",
                 rafael,

@@ -80,6 +80,11 @@ public class Servlet extends HttpServlet {
                 "Postagens da Comunidade",
                 comunidadeService.findPostsComunidades(new Comunidade() {{ setId(2L); }})
         ));
+
+        out.println(HTMLGenerator.testQuery(
+                "Postagens mais curtidas",
+                postagemService.postagensMaisPopulares()
+        ));
     }
 
     @Override

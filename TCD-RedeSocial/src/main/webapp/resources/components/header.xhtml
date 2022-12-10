@@ -8,23 +8,15 @@
       xmlns:cp="http://java.sun.com/jsf/composite"
       xmlns:c="http://java.sun.com/jstl/core"
 >
-<h:body>
    <cp:interface>
        <cp:implementation>
             <!-- Nome da Aplicação | log -->
             <!-- URLs  -->
             <!-- Login / Logout -->
            <h:form>
-               <c:if test="#{usuarioSessionBean.conectado}">
-                   <h:commandButton value="Desconectar" action="#{usuarioSessionBean.desconectar()}" />
-               </c:if>
-               <c:if test="#{not usuarioSessionBean.conectado}">
-                   <h:commandButton value="Conectar" action="#{pageController.goToLogin()}" />
-               </c:if>
+               <h:commandButton rendered="#{usuarioSessionBean.conectado}" value="Desconectar" action="#{usuarioSessionBean.desconectar()}" />
+               <h:commandButton rendered="#{not usuarioSessionBean.conectado}"  value="Conectar" action="#{pageController.goToLogin()}" />
            </h:form>
-
        </cp:implementation>
    </cp:interface>
-    <h:outputLabel value="Hello, world"/>
-</h:body>
 </html>

@@ -1,14 +1,12 @@
 package com.example.redesocial.utils.json.customserializers;
 
-import com.example.redesocial.dtos.RespostaDTO;
 import com.example.redesocial.postagem.Postagem;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 public class PostagemSingleSerializer extends StdSerializer<Postagem> {
 
@@ -21,12 +19,10 @@ public class PostagemSingleSerializer extends StdSerializer<Postagem> {
 
     @Override
     public void serialize(Postagem postagem, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-        RespostaDTO resposta = new RespostaDTO(
-                postagem.getId(),
-                postagem.getConteudo(),
-                postagem.getUsuario().getNickname()
-        );
-
-        jsonGenerator.writeObject(resposta);
+        jsonGenerator.writeObject(new HashMap<>() {{
+            put("id", postagem.getId());
+            put("conteudo", postagem.getConteudo());
+            put("nickname", postagem.getUsuario().getNickname());
+        }});
     }
 }
