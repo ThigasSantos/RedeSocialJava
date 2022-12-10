@@ -16,6 +16,20 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(
+            name = "Usuario.all", 
+            query = "select u from Usuario u "
+                    + "order by u.id"),
+    @NamedQuery(
+            name = "User.byNickname", 
+            query = "select u from Usuario u "
+                    + "where u.nickname = :nickname"),
+    @NamedQuery(
+            name = "Credencial.byUsuario", 
+            query = "select u.credencial from Usuario u, IN(u.credencial) "
+                    + "where u.id = :id")
+})
 public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
