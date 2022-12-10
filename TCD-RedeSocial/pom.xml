@@ -14,6 +14,17 @@
                     <target>11</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>2.1.0.Beta1</version>
+                <configuration>
+                    <commands>
+                        <command>/subsystem=logging/file-handler=debug:add(level=DEBUG,autoflush=true,file={"relative-to"=>"jboss.server.log.dir", "path"=>"debug.log"})</command>
+                        <command>/subsystem=logging/logger=org.jboss.asadd(level=DEBUG,handlers=[debug])</command>
+                    </commands>
+                </configuration>
+            </plugin>
         </plugins>
         <resources>
             <resource>
@@ -34,17 +45,18 @@
     </properties>
     
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.omnifaces/omnifaces-security-jaspic-undertow -->
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
             <version>8.0.0</version>
-            <type>jar</type>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>12.0.0</version>
+            <version>10.0.0</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.googlecode.owasp-java-html-sanitizer/owasp-java-html-sanitizer -->
@@ -54,5 +66,6 @@
             <version>2.14.0</version>
         </dependency>
     </dependencies>
-
 </project>
+
+<!-- https://github.com/wildfly/quickstart/tree/main/ee-security#configure-the-server-->

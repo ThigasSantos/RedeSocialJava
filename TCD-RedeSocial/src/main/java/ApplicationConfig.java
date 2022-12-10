@@ -5,6 +5,7 @@ import javax.inject.Named;
 import javax.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition;
 import javax.security.enterprise.authentication.mechanism.http.LoginToContinue;
 import javax.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
+import javax.security.enterprise.identitystore.IdentityStore;
 import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
 
 /*
@@ -19,10 +20,10 @@ import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
 @Named
 @DatabaseIdentityStoreDefinition(
         dataSourceLookup = "java:/RedeSocialDS",
-        callerQuery = "select c.senha from usuario, IN(u.credencial) c "
-        + "where id = ?",
-        groupsQuery = "select c.tipoPerfil from usuario, IN(u.credencial)"
-        + "where id = ?",
+        callerQuery = "select c.senha from usuario u LEFT JOIN credencial c ON c.id = u.credencial_id "
+        + "where c.email = ?",
+        groupsQuery = "select c.tipoPerfil from usuario u LEFT JOIN credencial c ON c.id = u.credencial_id "
+        + "where c.email = ?",
         hashAlgorithm = Pbkdf2PasswordHash.class,
         hashAlgorithmParameters = {
             "Pbkdf2PasswordHash.Iterations=3071",
@@ -31,7 +32,7 @@ import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
 )
 @CustomFormAuthenticationMechanismDefinition(
         loginToContinue = @LoginToContinue(
-                loginPage = "/login.xhtml",
+                loginPage = "/login",
                 errorPage = "",
                 useForwardToLogin = false
         )

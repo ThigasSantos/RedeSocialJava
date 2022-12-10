@@ -22,12 +22,12 @@ import java.util.List;
             query = "select u from Usuario u "
                     + "order by u.id"),
     @NamedQuery(
-            name = "User.byNickname", 
+            name = "Usuario.byNickname",
             query = "select u from Usuario u "
                     + "where u.nickname = :nickname"),
     @NamedQuery(
             name = "Credencial.byUsuario", 
-            query = "select u.credencial from Usuario u, IN(u.credencial) "
+            query = "select u.credencial from Usuario u "
                     + "where u.id = :id")
 })
 public class Usuario implements Serializable {
@@ -72,7 +72,8 @@ public class Usuario implements Serializable {
     @JsonSerialize(using = ComunidadeSingleSerializer.class)
     private List<Comunidade> comunidades;
 
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @OneToOne(cascade = CascadeType.ALL, optional = false)
     private Credencial credencial;
 
     public Usuario() {

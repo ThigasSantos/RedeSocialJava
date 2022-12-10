@@ -1,6 +1,10 @@
 package com.example.redesocial.usuario;
 
+import com.example.redesocial.usuario.credencial.Credencial;
+import com.example.redesocial.usuario.credencial.CredencialServiceLocal;
+
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -14,8 +18,17 @@ public class UsuarioService implements Serializable, UsuarioServiceLocal{
     @PersistenceContext
     private EntityManager em;
 
+    @Inject
+    CredencialServiceLocal credencialService;
+
     @Override
     public void persist(Usuario usuario) {
+        Credencial cr = usuario.getCredencial();
+
+        usuario.setCredencial(
+                credencialService.criarCredencial(cr)
+        );
+
         em.persist(usuario);
     }
 
@@ -55,6 +68,13 @@ public class UsuarioService implements Serializable, UsuarioServiceLocal{
         } catch (NoResultException e) {
             return null;
         }
+    }
+
+    @Override
+    public List<Credencial> getCredencial(Usuario usuario) {
+        return em.createNamedQuery("Credencial.byUsuario", Credencial.class)
+                .setParameter("id", usuario.getId())
+                .getResultList();
     }
     
 }

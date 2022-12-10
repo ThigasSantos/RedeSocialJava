@@ -27,10 +27,10 @@ import javax.validation.constraints.NotEmpty;
 @RequestScoped
 public class LoginController {
     @NotEmpty
-    private String username;
+    private String username = "thigas@gmail.com";
 
     @NotEmpty
-    private String password;
+    private String password = "senha123";
 
     @Inject
     FacesContext facesContext;

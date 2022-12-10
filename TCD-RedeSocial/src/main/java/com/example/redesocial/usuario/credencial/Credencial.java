@@ -9,7 +9,7 @@ public class Credencial implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private TipoPerfil tipoPerfil;
     private String email;
     private String senha;

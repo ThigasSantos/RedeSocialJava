@@ -13,17 +13,18 @@ import java.util.logging.Logger;
 import com.example.redesocial.usuario.UsuarioServiceLocal;
 import com.example.redesocial.usuario.credencial.TipoPerfil;
 import com.example.redesocial.usuario.telefone.Telefone;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
-import java.util.logging.Level;
 
 @Singleton
 @Startup
 public class DadosIniciais {
     @Inject
     UsuarioServiceLocal usuarioService;
+
     @Inject
     ComunidadeServiceLocal comunidadeService;
     private static final Logger LOG = Logger.getLogger(DadosIniciais.class.getName());
@@ -34,7 +35,7 @@ public class DadosIniciais {
        // usuarios.forEach(usuario -> usuarioBean.persist(usuario));
         // fazer relações
         
-        Credencial thiagoCR = new Credencial(TipoPerfil.ADMINISTRADOR,"thigas@gmail.com","senha123");
+        Credencial thiagoCR =  new Credencial(TipoPerfil.ADMINISTRADOR,"thigas@gmail.com","senha123");
         Usuario thiago = new Usuario(
                 "thigas",
                 "Estudante de CC pelo IFNMG",
