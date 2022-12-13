@@ -16,6 +16,20 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(
+            name = "Usuario.all", 
+            query = "select u from Usuario u "
+                    + "order by u.id"),
+    @NamedQuery(
+            name = "Usuario.byNickname",
+            query = "select u from Usuario u "
+                    + "where u.nickname = :nickname"),
+    @NamedQuery(
+            name = "Credencial.byUsuario", 
+            query = "select u.credencial from Usuario u "
+                    + "where u.id = :id")
+})
 public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,7 +72,8 @@ public class Usuario implements Serializable {
     @JsonSerialize(using = ComunidadeSingleSerializer.class)
     private List<Comunidade> comunidades;
 
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @OneToOne(cascade = CascadeType.ALL, optional = false)
     private Credencial credencial;
 
     public Usuario() {
@@ -88,7 +103,6 @@ public class Usuario implements Serializable {
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
-
 
     public String getSobre() {
         return sobre;
@@ -171,6 +185,4 @@ public class Usuario implements Serializable {
     }
 
     // </editor-fold>
-
-
 }

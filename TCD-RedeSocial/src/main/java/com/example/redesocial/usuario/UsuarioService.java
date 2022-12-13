@@ -1,21 +1,34 @@
 package com.example.redesocial.usuario;
 
-import com.example.redesocial.postagem.Postagem;
+import com.example.redesocial.usuario.credencial.Credencial;
+import com.example.redesocial.usuario.credencial.CredencialServiceLocal;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.io.Serializable;
 import java.util.List;
 
 @Stateless
-public class UsuarioService implements UsuarioServiceLocal{
+public class UsuarioService implements Serializable, UsuarioServiceLocal{
 
     @PersistenceContext
     private EntityManager em;
 
+    @Inject
+    CredencialServiceLocal credencialService;
+
     @Override
     public void persist(Usuario usuario) {
+        Credencial cr = usuario.getCredencial();
+
+        usuario.setCredencial(
+                credencialService.criarCredencial(cr)
+        );
+
         em.persist(usuario);
     }
 
@@ -42,6 +55,38 @@ public class UsuarioService implements UsuarioServiceLocal{
         return em.createQuery(consulta, Object[].class)
                 .setParameter("idUsuario", usuario.getId())
                 .getResultList();
+    }
+
+    @Override
+    public Usuario buscarPorCredencial(String email, String senha) {
+        String consulta = "SELECT u FROM Usuario u JOIN u.credencial c WHERE c.email = :email AND c.senha = :senha";
+        try {
+            return (Usuario) em.createQuery(consulta)
+                    .setParameter("email", email)
+                    .setParameter("senha", senha)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public List<Credencial> getCredencial(Usuario usuario) {
+        return em.createNamedQuery("Credencial.byUsuario", Credencial.class)
+                .setParameter("id", usuario.getId())
+                .getResultList();
+    }
+    
+    @Override
+    public Usuario buscarPorEmail(String email) {
+        String consulta = "SELECT u FROM Usuario u JOIN u.credencial c WHERE c.email = :email";
+        try {
+            return (Usuario) em.createQuery(consulta)
+                    .setParameter("email", email)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
     
 }
