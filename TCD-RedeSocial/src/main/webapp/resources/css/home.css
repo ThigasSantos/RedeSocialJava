@@ -7,10 +7,20 @@
 
 body{
     --rede-rosa: #A239CA;
+    --rede-void: white;
+    --rede-roxo: #8A2BE2;
+    --rede-cinza: #bbbbbb;
+    --rede-branco: #0E0B16;
+    --rede-void2: #0E0B16;
+}
+
+.dark-mode{
+    --rede-rosa: #A239CA;
     --rede-void: #0E0B16;
     --rede-roxo: #8A2BE2;
     --rede-cinza: #bbbbbb;
     --rede-branco: white;
+    --rede-void2: #0E0B16;
 }
 
 body{
@@ -28,7 +38,7 @@ body{
     min-width: 3vw;
     padding-left: 3vh;
     padding-right: 3vh;
-    color:white;
+    color:var( --rede-branco);
 }
 
 .icon{
@@ -56,22 +66,42 @@ body{
 .sidebarOption:hover{
     background-color: var(--rede-cinza);
     border-radius: 30px;
-    color: var(--rede-void);
+    color: var( --rede-void2);
     transition: color 100ms ease-out;
+}
+
+.sidebarOption__tema:hover{
+    background-color: inherit;
+    color: inherit;
 }
 
 .sidebarOption.active{
     color: var(--rede-roxo);
 }
+.sidebarOption.active:hover{
+    color: var(--rede-roxo);
+    background-color: inherit;
+}
 
 .sidebar__encerrar{
     width: 100%;
     background-color: var(--rede-roxo);
-    color: white;
+    color: var( --rede-branco);
     border-radius: 3vh;
     height: 5vh;
     margin-top: 2vh;
     bottom:10%;
+}
+
+.sair{
+    display: flex;
+    align-items: center;
+    color: var( --rede-branco);
+}
+
+
+.sair:link{
+    text-decoration: none;
 }
 
 .feed{
@@ -94,7 +124,7 @@ body{
     font-size: 2em;
     font-weight: 800;
     opacity: 1;
-    color: white;
+    color: var( --rede-branco);
 }
 
 .feed::-webkit-scrollbar{
@@ -133,7 +163,7 @@ body{
     font-size: 2vw;
     border: none;
     outline: none;
-    color: white;
+    color: var( --rede-branco);
     background-color: var( --rede-void);
 }
 
@@ -153,7 +183,7 @@ body{
 .caixaDePostagem__button:hover{
     background-color: var(--rede-cinza);
     border-radius: 30px;
-    color: var(--rede-void);
+    color: var(--rede-void2);
     transition: color 100ms ease-out;
 }
 
@@ -168,7 +198,7 @@ body{
     border-bottom: 1px solid var(--rede-roxo);
     padding-bottom: 2vh;
     padding-top: 1vh;
-    color: white;
+    color: var( --rede-branco);
 }
 
 .post__body img{
@@ -210,4 +240,82 @@ body{
 
 .post__avatar{
     padding: 1vw;
+}
+
+
+/*Adiciona border-box para o input e para os pseudo-elementos*/
+input[type=checkbox], input[type=checkbox]::after, input[type=checkbox]::before {
+    box-sizing: border-box;
+}
+
+/*Estiliza e remove a aparencia padrão do elemento*/
+input[type=checkbox] {
+    outline: none;
+    position: relative;
+    z-index: 1;
+    margin: 2px;
+    padding: 0;
+    cursor: pointer;
+    width: 48px;
+    height: 24px;
+    overflow: hidden;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/*cria os elementos before e after*/
+input[type=checkbox]::before, input[type=checkbox]::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+
+    /*efeito animado*/
+    transition: left .15s cubic-bezier(.25, .8, .25, .1),
+                transform .15s ease-in;
+}
+
+/*Cor padrão de quando o elemento não esta selecionado*/
+input[type=checkbox]::before {
+    background-color: #ccc;
+    width: 100%;
+    height: 100%;
+    border-radius: 28px;
+}
+
+/*estiliza para parecer um botão toggle*/
+input[type=checkbox]::after {
+    margin: 2px 0 0 2px;
+    background: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/*troca a cor se estiver com a propriedade checked no html ou o usuário "checar"*/
+input[type=checkbox]:checked::before {
+    background-color: var( --rede-roxo);
+}
+
+/*muda a posição do botão toggle se estiver checado*/
+input[type=checkbox]:checked::after {
+    left: 24px;
+}
+
+/*Efeito opcional de quando pressiona o botão*/
+input[type=checkbox]:not([disabled]):active::after {
+    transform: scale(1.15, 0.85);
+}
+
+/*Se o input tiver com o atributo disabled a cor é alterada*/
+input[type=checkbox]:disabled::before {
+     background-color: #b1b4b7 !important;
+}
+
+/*Se o input tiver com o atributo disabled a cor é alterada*/
+input[type=checkbox]:disabled::after {
+     background-color: #dcd8d8 !important;
 }
