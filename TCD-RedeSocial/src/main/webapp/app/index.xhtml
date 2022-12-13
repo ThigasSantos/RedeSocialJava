@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+ xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <meta charset="UTF-8" />
         <meta  name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,7 +17,7 @@
               integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
               crossorigin="anonymous" />
     </h:head>
-    <h:body>
+    <h:body class="#{usuarioSessionBean.darkMode ?'dark-mode':''}">
         <div class="sidebar">
             <div class="icon">
             <i class="material-symbols-outlined" >gamepadREDE</i> 
@@ -37,15 +38,19 @@
                 <h2>Perfil</h2>
             </div>
 
-            <div class="sidebarOption">
-                <span class="material-icons">more_horiz</span>
-                <h2>Mais</h2>
-            </div>
+            <h:form class="sidebarOption sidebarOption__tema">  
+                <h:selectBooleanCheckbox class="checkBox__theme" value="#{usuarioSessionBean.darkMode}">
+                    <f:ajax render="@all" event="change" />
+                </h:selectBooleanCheckbox>
+                <h2>Tema</h2>
+            </h:form>
             
-            <div class="sidebarOption sidebar__encerrar">
-                <span class="material-symbols-outlined">login</span>
-                <h2>Encerrar Sessão</h2>
-            </div>
+            <h:form class="sidebarOption sidebar__encerrar">
+                <h:commandLink class="sair" action="#{usuarioSessionBean.desconectar()}">
+                    <span class="material-symbols-outlined">login</span>
+                    <h2>Encerrar Sessão</h2>
+                </h:commandLink>                
+            </h:form>
 
         </div>
 
