@@ -77,4 +77,16 @@ public class UsuarioService implements Serializable, UsuarioServiceLocal{
                 .getResultList();
     }
     
+    @Override
+    public Usuario buscarPorEmail(String email) {
+        String consulta = "SELECT u FROM Usuario u JOIN u.credencial c WHERE c.email = :email";
+        try {
+            return (Usuario) em.createQuery(consulta)
+                    .setParameter("email", email)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    
 }

@@ -4,6 +4,8 @@
  */
 package controllers;
 
+import com.example.redesocial.client.UsuarioSessionBean;
+import com.example.redesocial.usuario.UsuarioServiceLocal;
 import java.io.IOException;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -37,7 +39,11 @@ public class LoginController {
 
     @Inject
     SecurityContext securityContext;
+    
+    @Inject UsuarioServiceLocal usuarioService;
 
+    @Inject UsuarioSessionBean usuarioSession;
+    
     //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public String getUsername() {
         return username;
@@ -66,6 +72,7 @@ public class LoginController {
                 break;
             case SUCCESS:
                 getExternalContext().redirect(getExternalContext().getRequestContextPath() + "/app/index.xhtml");
+                usuarioSession.setUsuario(usuarioService.buscarPorEmail(username));
                 break;
         }
     }

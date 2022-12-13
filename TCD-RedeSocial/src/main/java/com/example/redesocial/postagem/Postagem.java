@@ -26,7 +26,7 @@ public class Postagem implements Serializable {
     private String conteudo;
 
     @JsonSerialize(using = LocalDateTimeSerializer.class)
-    private LocalDateTime dataPostagem;
+    private LocalDateTime dataPostagem = LocalDateTime.now();
     @ManyToOne
     @JsonSerialize(using = ComunidadeSingleSerializer.class)
     private Comunidade comunidade;
@@ -54,7 +54,7 @@ public class Postagem implements Serializable {
     @JoinColumn(name = "postagem_id")
     private List<Midia> midias;
 
-    public Postagem() {
+    public Postagem(){
     }
 
     public Postagem(String conteudo, Usuario usuario, List<Usuario> usuariosCurtiram, List<Midia> midias) {

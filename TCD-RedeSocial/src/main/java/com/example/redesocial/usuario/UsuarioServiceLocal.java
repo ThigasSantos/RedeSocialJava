@@ -17,4 +17,6 @@ public interface UsuarioServiceLocal {
     Usuario buscarPorCredencial(String email, String senha);
 
     List<Credencial> getCredencial(Usuario usuario);
+    
+    public Usuario buscarPorEmail(String email);
 }
