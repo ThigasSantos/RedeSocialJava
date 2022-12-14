@@ -76,6 +76,10 @@ public class LoginController {
                 break;
         }
     }
+    
+    public void cadastrar()throws IOException{
+        getExternalContext().redirect(getExternalContext().getRequestContextPath() + "/cadastro");
+    }
 
     private AuthenticationStatus processAuthentication() {
         ExternalContext ec = getExternalContext();

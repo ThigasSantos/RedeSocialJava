@@ -88,6 +88,15 @@ public class Usuario implements Serializable {
         this.credencial = credencial;
     }
 
+    public Usuario(String nickname, LocalDate dataNascimento, List<Telefone> telefones, Credencial credencial) {
+        this.nickname = nickname;
+        this.dataNascimento = dataNascimento;
+        this.telefones = telefones;
+        this.credencial = credencial;
+    }
+
+    
+    
     // <editor-fold  defaultstate="collapsed" desc="Getters/Setters" >
 
     public Long getId() {
