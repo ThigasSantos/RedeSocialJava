@@ -19,4 +19,6 @@ public interface UsuarioServiceLocal {
     List<Credencial> getCredencial(Usuario usuario);
     
     public Usuario buscarPorEmail(String email);
+
+    Usuario findComunidadesPorUsuario(Usuario usuario);
 }

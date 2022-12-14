@@ -88,5 +88,17 @@ public class UsuarioService implements Serializable, UsuarioServiceLocal{
             return null;
         }
     }
+
+    @Override
+    public Usuario findComunidadesPorUsuario(Usuario usuario) {
+        String consulta = "SELECT u.comunidades FROM Usuario u IN u.comunidades WHERE u.Id = :id";
+        try {
+            return (Usuario) em.createQuery(consulta)
+                    .setParameter("id", usuario.getId())
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
     
 }
