@@ -11,7 +11,9 @@ import com.example.redesocial.utils.json.customserializers.UsuarioListSerializer
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.io.Serializable;
+import javax.ejb.TransactionAttribute;
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 

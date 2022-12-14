@@ -8,6 +8,7 @@ import javax.inject.Named;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.inject.Inject;
+import javax.security.enterprise.SecurityContext;
 
 @Named
 @SessionScoped
@@ -16,9 +17,10 @@ public class UsuarioSessionBean implements Serializable {
     @Inject
     FacesContext facesContext;
 
-    private Usuario usuario;
+    @Inject
+    SecurityContext securityContext;
 
-    private Boolean conectado = false;
+    private Usuario usuario;
     
     private Boolean darkMode = false;
 
@@ -31,8 +33,12 @@ public class UsuarioSessionBean implements Serializable {
     }
 
     public void conectar(Usuario u) {
-        conectado = true;
         setUsuario(u);
+    }
+
+    public boolean isAuthenticated() {
+//       return securityContext.getCallerPrincipal() != null;
+        return usuario != null;
     }
 
     public void desconectar() throws IOException {
@@ -49,14 +55,6 @@ public class UsuarioSessionBean implements Serializable {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-    }
-
-    public Boolean getConectado() {
-        return conectado;
-    }
-
-    public void setConectado(Boolean conectado) {
-        this.conectado = conectado;
     }
 
     // </editor-fold>
