@@ -11,7 +11,11 @@ public class Credencial implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private TipoPerfil tipoPerfil;
+    
+    @Column(length = 250, nullable = false, unique = true)
     private String email;
+    
+    @Column(nullable = false)
     private String senha;
 
     public Credencial() {

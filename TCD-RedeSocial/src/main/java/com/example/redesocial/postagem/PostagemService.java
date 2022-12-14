@@ -4,10 +4,17 @@
  */
 package com.example.redesocial.postagem;
 
+import com.example.redesocial.comunidade.Comunidade;
+import com.example.redesocial.dtos.PostagemDTO;
+import com.example.redesocial.usuario.Usuario;
+import com.example.redesocial.usuario.UsuarioServiceLocal;
+
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 /**
  *
@@ -18,6 +25,9 @@ public class PostagemService implements PostagemServiceLocal {
 
     @PersistenceContext
     private EntityManager em;
+
+    @Inject
+    UsuarioServiceLocal usuarioService;
     
     @Override
     public void salvar(Postagem postagem) {
@@ -66,6 +76,21 @@ public class PostagemService implements PostagemServiceLocal {
                 .setParameter("idPostagem", postagem.getId())
                 .getResultList();
     }
-    
-    
+
+    @Override
+    public List<PostagemDTO> getPostagemFeed() {
+        String consulta = "SELECT new com.example.redesocial.dtos.PostagemDTO(p, p.usuariosCurtiram.size, p.respostas.size, u.nickname, p.dataPostagem) FROM Postagem p LEFT JOIN p.usuario u where p.comunidade is null group by p, u.nickname order by p.usuariosCurtiram.size desc, p.respostas.size desc";
+        return em.createQuery(consulta, PostagemDTO.class).getResultList();
+    }
+
+    @Override
+    public List<PostagemDTO> getPostagemFeed(Usuario u) {
+        List<Comunidade> comunidades = usuarioService.getComunidades(u);
+        List<Usuario> seguindo = usuarioService.getSeguindo(u);
+        String consulta = "SELECT new com.example.redesocial.dtos.PostagemDTO(p, p.usuariosCurtiram.size, p.respostas.size, u.nickname, p.dataPostagem) FROM Postagem p LEFT JOIN p.usuario u where p.comunidade in :comunidades or u in :seguindo group by p, u.nickname order by p.dataPostagem";
+        return em.createQuery(consulta, PostagemDTO.class)
+                .setParameter("comunidades", comunidades)
+                .setParameter("seguindo", seguindo)
+                .getResultList();
+    }
 }

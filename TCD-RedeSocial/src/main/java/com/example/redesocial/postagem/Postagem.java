@@ -50,7 +50,7 @@ public class Postagem implements Serializable {
     @JsonSerialize(using = UsuarioListSerializer.class)
     private List<Usuario> usuariosCurtiram;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "postagem_id")
     private List<Midia> midias;
 

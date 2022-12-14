@@ -4,6 +4,9 @@
  */
 package com.example.redesocial.postagem;
 
+import com.example.redesocial.dtos.PostagemDTO;
+import com.example.redesocial.usuario.Usuario;
+
 import java.util.List;
 import javax.ejb.Local;
 
@@ -26,4 +29,8 @@ public interface PostagemServiceLocal {
     List<Object[]> findRespostasPosts(Postagem postagem);
 
     List<Object[]> findUsuariosCurtiram(Postagem postagem);
+
+    List<PostagemDTO> getPostagemFeed();
+
+    List<PostagemDTO> getPostagemFeed(Usuario u);
 }

@@ -11,7 +11,9 @@ import com.example.redesocial.utils.json.customserializers.UsuarioListSerializer
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.io.Serializable;
+import javax.ejb.TransactionAttribute;
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -34,7 +36,7 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(length = 20)
+    @Column(length = 45, nullable = false, unique = true)
     private String nickname;
     private String sobre;
     @JsonSerialize(using = LocalDateSerializer.class)

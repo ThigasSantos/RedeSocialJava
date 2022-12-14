@@ -55,11 +55,11 @@ public class DadosIniciais {
                 LocalDate.of(1999, Month.MAY, 12),
                 rafaelCR
         );
-        
+
         Telefone rafaelTel1 = new Telefone(12135456,(short)38);
         Telefone rafaelTel2 = new Telefone(85239632,(short)23);
         rafael.setTelefones(List.of(rafaelTel1,rafaelTel2));
-        
+
         
         Credencial felipeCR = new Credencial(TipoPerfil.ADMINISTRADOR,"boasorte@gmail.com","senha125");
         Usuario felipe = new Usuario(
@@ -145,7 +145,7 @@ public class DadosIniciais {
         juninho.setSeguindo(List.of(marcos));
         marcos.setSeguindo(List.of(thiago,felipe,andre,rafael,juninho));
         
-        Midia thiagoMidia1 = new Midia("Imagem1");
+        Midia thiagoMidia1 = new Midia("https://picsum.photos/600/400");
         Postagem thiagoPost1 = new Postagem(
                 "Bom Dia, primeiro post aqui streando essa rede :D",
                 thiago,
@@ -160,8 +160,8 @@ public class DadosIniciais {
                 );
         thiagoPost2.setDataPostagem(LocalDateTime.of(2022, Month.MARCH, 26, 18, 47));
         
-        Midia rafaelMidia1 = new Midia("Imagem Rafa1");
-        Midia rafaelMidia2 = new Midia("Imagem Rafa2");
+        Midia rafaelMidia1 = new Midia("https://picsum.photos/600/400");
+        Midia rafaelMidia2 = new Midia("https://picsum.photos/600/400");
         Postagem rafaelPost1 = new Postagem(
                 "Testando os novos pots dessa rede que e melhor que o twiter",
                 rafael,

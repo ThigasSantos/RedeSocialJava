@@ -1,5 +1,6 @@
 package com.example.redesocial.usuario;
 
+import com.example.redesocial.comunidade.Comunidade;
 import com.example.redesocial.usuario.credencial.Credencial;
 
 import javax.ejb.Local;
@@ -19,4 +20,8 @@ public interface UsuarioServiceLocal {
     List<Credencial> getCredencial(Usuario usuario);
     
     public Usuario buscarPorEmail(String email);
+
+    List<Comunidade> getComunidades(Usuario u);
+
+    List<Usuario> getSeguindo(Usuario u);
 }

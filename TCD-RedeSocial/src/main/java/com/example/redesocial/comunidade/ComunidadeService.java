@@ -58,5 +58,14 @@ public class ComunidadeService implements ComunidadeServiceLocal {
                 .setParameter("IdComunidade", comunidade.getId())
                 .getResultList();
     }
+
+    @Override
+    public List<Object[]> findMembros(Comunidade comunidade) {
+        String consulta = "SELECT c.membros FROM Comunidade c WHERE c.id = :IdComunidade";
+        return em.createQuery(consulta, Object[].class)
+                .setParameter("IdComunidade", comunidade.getId())
+                .getResultList();
+    }
+    
     
 }

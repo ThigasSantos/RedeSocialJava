@@ -1,5 +1,6 @@
 package com.example.redesocial.usuario;
 
+import com.example.redesocial.comunidade.Comunidade;
 import com.example.redesocial.usuario.credencial.Credencial;
 import com.example.redesocial.usuario.credencial.CredencialServiceLocal;
 
@@ -87,6 +88,17 @@ public class UsuarioService implements Serializable, UsuarioServiceLocal{
         } catch (NoResultException e) {
             return null;
         }
+    }
+    @Override
+    public List<Comunidade> getComunidades(Usuario u) {
+        return em.createQuery("SELECT c from Usuario u left join u.comunidades c where u = :usuario", Comunidade.class)
+                .setParameter("usuario", u).getResultList();
+    }
+
+    @Override
+    public List<Usuario> getSeguindo(Usuario u) {
+        return em.createQuery("SELECT s from Usuario u left join u.seguindo s where u = :usuario", Usuario.class)
+                .setParameter("usuario", u).getResultList();
     }
     
 }
