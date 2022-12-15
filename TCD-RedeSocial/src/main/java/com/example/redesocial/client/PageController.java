@@ -21,6 +21,10 @@ public class PageController {
         redirect("/login");
     }
     
+    public void goToPerfil() throws IOException {
+        redirect("/perfil");
+    }
+    
     public void redirect(String url) throws IOException {
         externalContext.redirect(
                 externalContext.getApplicationContextPath() + url
