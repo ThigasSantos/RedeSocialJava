@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsf/composite"
+      >
+    <f:view>
+        <c:interface>
+            <c:attribute name="c" type="com.example.redesocial.dtos.ComunidadeDTO" />
+            <c:implementation>
+                <style type="text/css">
+                    .lblCartCount {
+                        position: relative;
+                        font-size: 16px;
+                        background: #8A2BE2 !important;
+                        color: #fff;
+                        padding: 0 5px;
+                        vertical-align: top;
+                        margin-left: -15px;
+                        margin-bottom: 0;
+
+                    }
+                    .badge {
+                        padding-left: 9px;
+                        padding-right: 9px;
+                        -webkit-border-radius: 9px;
+                        -moz-border-radius: 9px;
+                        border-radius: 9px;
+                    }
+                    .label-warning[href],
+                    .badge-warning[href] {
+                        background-color: #c67605;
+                    }
+
+                </style>
+                <div class="comunidade">
+
+                    <div class="comunidade__body">
+                        <div class="post__header">
+                            <div class="post__headerText">
+                                <h3>#{cc.attrs.c.nome}  #{cc.attrs.c.qtdMembros}
+                                </h3>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </c:implementation>
+        </c:interface>
+    </f:view>
+</html>
