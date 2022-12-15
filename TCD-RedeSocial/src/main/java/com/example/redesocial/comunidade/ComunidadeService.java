@@ -4,6 +4,8 @@
  */
 package com.example.redesocial.comunidade;
 
+import com.example.redesocial.dtos.ComunidadeDTO;
+import com.example.redesocial.usuario.Usuario;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -21,33 +23,26 @@ public class ComunidadeService implements ComunidadeServiceLocal {
     
     @Override
     public void salvar(Comunidade comunidade) {
-        // Inserção de entidade
         em.persist(comunidade);
     }
 
     @Override
     public Comunidade localizarPorId(long id) {
-        // Recuperação de entidade via ID
         return em.find(Comunidade.class, id);
     }
 
     @Override
     public List<Comunidade> findComunidades() {
-        // Recuperação de todas as entidades
         return em.createNamedQuery("findComunidades",Comunidade.class).getResultList();
     }
 
     @Override
     public void update(Comunidade comunidade) {
-        // Atualização de entidade preexistente
         em.merge(comunidade);
     }
-    
-    // TODO envio da entidade para a lixeira
-    
+      
     @Override
     public void remover(Comunidade comunidade) {
-        // Exclusão permanente de entidade
         em.remove(comunidade);
     }
 
@@ -67,5 +62,15 @@ public class ComunidadeService implements ComunidadeServiceLocal {
                 .getResultList();
     }
     
-    
+    @Override
+    public List<ComunidadeDTO> findComunidades(Usuario u) {
+        String consulta = "SELECT new com.example.redesocial.dtos.ComunidadeDTO(c.nome, COUNT(m.id)) FROM Usuario u "
+                + "LEFT JOIN u.comunidades c "
+                + "LEFT JOIN c.membros m WHERE u.id = :IdMembro "
+                + "GROUP BY c.nome";
+            
+        return em.createQuery(consulta, ComunidadeDTO.class)
+                .setParameter("IdMembro", u.getId())
+                .getResultList();
+    }
 }

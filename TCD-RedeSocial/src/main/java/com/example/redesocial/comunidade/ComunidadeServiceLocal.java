@@ -4,6 +4,8 @@
  */
 package com.example.redesocial.comunidade;
 
+import com.example.redesocial.dtos.ComunidadeDTO;
+import com.example.redesocial.usuario.Usuario;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -27,5 +29,7 @@ public interface ComunidadeServiceLocal {
     List<Object[]> findPostsComunidades(Comunidade comunidade);
 
     List<Object[]> findMembros(Comunidade comunidade);
+    
+    List<ComunidadeDTO> findComunidades(Usuario u);
     
 }
