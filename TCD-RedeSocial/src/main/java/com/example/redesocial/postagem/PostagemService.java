@@ -93,4 +93,10 @@ public class PostagemService implements PostagemServiceLocal {
                 .setParameter("seguindo", seguindo)
                 .getResultList();
     }
+    
+    @Override
+    public List<PostagemDTO> getPostagemPerfil(Usuario u) {
+        String consulta = "SELECT new com.example.redesocial.dtos.PostagemDTO(p, p.usuariosCurtiram.size, p.respostas.size, u.nickname, p.dataPostagem) FROM Postagem p LEFT JOIN p.usuario u where u = :usuario group by p, u.nickname order by p.usuariosCurtiram.size desc, p.respostas.size desc";
+        return em.createQuery(consulta, PostagemDTO.class).setParameter("usuario", u).getResultList();
+    }
 }

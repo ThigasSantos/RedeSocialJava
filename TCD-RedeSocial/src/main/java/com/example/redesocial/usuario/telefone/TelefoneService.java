@@ -42,7 +42,6 @@ public class TelefoneService implements TelefoneServiceLocal {
     @Override
     public void remover(Telefone telefone) {
         em.remove(telefone);
-    }
-    
+    }   
     
 }

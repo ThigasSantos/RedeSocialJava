@@ -2,6 +2,7 @@ package com.example.redesocial.usuario;
 
 import com.example.redesocial.comunidade.Comunidade;
 import com.example.redesocial.usuario.credencial.Credencial;
+import com.example.redesocial.usuario.telefone.Telefone;
 
 import javax.ejb.Local;
 import java.util.List;
@@ -24,4 +25,7 @@ public interface UsuarioServiceLocal {
     List<Comunidade> getComunidades(Usuario u);
 
     List<Usuario> getSeguindo(Usuario u);
+    
+    public List<Usuario> getSeguidoPor(Usuario u);
+    
 }

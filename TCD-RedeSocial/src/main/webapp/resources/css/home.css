@@ -93,6 +93,26 @@ body{
     bottom:10%;
 }
 
+.perfil{
+    display: flex;
+    align-items: center;
+    color: var( --rede-branco);
+}
+
+.perfil:link{
+    text-decoration: none;
+}
+
+.comunidade{
+    display: flex;
+    align-items: center;
+    color: var( --rede-branco);
+}
+
+.comunidade:link{
+    text-decoration: none;
+}
+
 .sair{
     display: flex;
     align-items: center;
@@ -317,4 +337,116 @@ input[type=checkbox]:disabled::before {
 /*Se o input tiver com o atributo disabled a cor é alterada*/
 input[type=checkbox]:disabled::after {
      background-color: #dcd8d8 !important;
+}
+
+.lblCartCount {
+    position: relative;
+    font-size: 16px;
+    background: #8A2BE2 !important;
+    color: #fff;
+    padding: 0 5px;
+    vertical-align: top;
+    margin-left: -15px;
+    margin-bottom: 0;
+}
+            
+.badge {
+    padding-left: 9px;
+    padding-right: 9px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+}
+
+.label-warning[href],
+.badge-warning[href] {
+    background-color: #c67605;
+}
+
+.banner img{
+    width: 100%;
+    height: 25vh;
+}
+
+.avatar img{
+    height: 12vw;   
+}
+.bio{
+    display: flex;
+    color: var(--rede-branco);
+    border-bottom: 1px solid var(--rede-branco);
+}
+
+.informacoes{
+    font-size: 2vh;
+    padding: 2vw;
+}
+
+.seg{
+    display: flex;
+}
+
+.user, .data{
+    color: var(--rede-cinza);
+}
+
+.seguindo{
+    padding-right: 1vw;
+    color: var(--rede-branco);
+}
+
+.seguindo__botao:link{
+    text-decoration: none;
+}
+
+.contatos_botao:link{
+    text-decoration: none;
+    color: var(--rede-branco);
+}
+
+.contatos_botao:link:hover{
+    text-decoration: underline var(--rede-branco);
+}
+
+.seguidores{
+    color: var(--rede-branco);
+}
+
+.seguidores__botao:link{
+    text-decoration: none;
+}
+
+.seguindo__botao:link:hover{
+    text-decoration: underline var(--rede-branco);
+}
+
+.seguidores__botao:link:hover{
+    text-decoration: underline var(--rede-branco);
+}
+
+.editarPefil{
+    background-color: var(--rede-roxo);
+    color: var( --rede-branco);
+    border-radius: 3vh;
+    height: 5vh;
+    margin-top: 2vh;
+    bottom:10%;
+    padding: 2vh;
+    display: flex;
+    align-items: center;
+}
+
+.editarPefil:hover{
+    background-color: var(--rede-cinza);
+    border-radius: 30px;
+    color: var( --rede-void2);
+    transition: color 100ms ease-out;
+}
+
+.editarPerfil__botao:link{
+    color: var(--rede-branco);
+}
+
+.editarPerfil__botao:link{
+    text-decoration: none;
 }

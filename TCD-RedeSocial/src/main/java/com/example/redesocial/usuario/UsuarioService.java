@@ -3,6 +3,7 @@ package com.example.redesocial.usuario;
 import com.example.redesocial.comunidade.Comunidade;
 import com.example.redesocial.usuario.credencial.Credencial;
 import com.example.redesocial.usuario.credencial.CredencialServiceLocal;
+import com.example.redesocial.usuario.telefone.Telefone;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -101,4 +102,10 @@ public class UsuarioService implements Serializable, UsuarioServiceLocal{
                 .setParameter("usuario", u).getResultList();
     }
     
+    @Override
+    public List<Usuario> getSeguidoPor(Usuario u) {
+        return em.createQuery("SELECT s from Usuario u left join u.seguidoPor s where u = :usuario", Usuario.class)
+                .setParameter("usuario", u).getResultList();
+    }
+
 }

@@ -75,7 +75,7 @@ public class Usuario implements Serializable {
     private List<Comunidade> comunidades;
 
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
+    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER)
     private Credencial credencial;
 
     public Usuario() {

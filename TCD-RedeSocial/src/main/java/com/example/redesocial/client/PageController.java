@@ -22,7 +22,11 @@ public class PageController {
     }
     
     public void goToPerfil() throws IOException {
-        redirect("/perfil");
+        redirect("/app/perfil");
+    }
+    
+    public void goToEditarPerfil() throws IOException{
+        redirect("/app/perfil/editarPerfil");
     }
     
     public void redirect(String url) throws IOException {

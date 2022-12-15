@@ -11,7 +11,7 @@
     <meta charset="UTF-8" />
     <meta  name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
-    <link rel="stylesheet" href="resources/css/home.css" />
+    <link rel="stylesheet" href="../../resources/css/home.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet"
@@ -25,7 +25,7 @@
             <i class="material-symbols-outlined" >gamepadREDE</i>
         </div>
 
-        <div class="sidebarOption active">
+        <div class="sidebarOption">
             <span class="material-icons">home</span>
             <h2>Home</h2>
         </div>
@@ -37,12 +37,10 @@
             </h:commandLink>    
         </h:form>
         
-        <h:form class="sidebarOption sidebarOption__perfil"  rendered="#{usuarioSessionBean.authenticated}">
-            <h:commandLink class="perfil" action="#{pageController.goToPerfil()}">
+        <div class="sidebarOption active">
                 <span class="material-icons">person</span>
                 <h2>Perfil</h2>
-            </h:commandLink>
-        </h:form>
+        </div>
 
         <h:form class="sidebarOption sidebarOption__tema">
             <h:selectBooleanCheckbox class="checkBox__theme" value="#{usuarioSessionBean.darkMode}">
@@ -70,20 +68,44 @@
     <div class="feed">
 
         <div class="feed_header">
-            <h2>Posts Mais Recentes</h2>
+            <h2>Perfil</h2>
         </div>
-
-            <h:form class="caixaDePostagem" rendered="#{usuarioSessionBean.authenticated}">
-                <div class="caixapostagem__input">
-                    <img src="https://github.com/fboasorte.png" alt="alt"/>
-                    <h:inputText value="#{postagemController.conteudo}" a:placeholder="Compartilhe com sua rede!" />
-                </div>
-                <h:commandButton class="caixaDePostagem__button" action="#{postagemController.postar()}" value="Publicar" />
-            </h:form>
-
+        
+        <div class="perfil__head">
+                <div class="banner"><img src="../../resources/img/gallery.png" alt="alt"/></div>
+                
+            <div class="bio">
+                <div class="avatar"> <img src="https://github.com/andreviniciusmb.png" alt="alt"/></div>
+                <div class="informacoes">
+                    <h2 class="nickname">#{usuarioSessionBean.usuario.nickname}</h2>
+                    <h3 class="user">user: #{usuarioSessionBean.usuario.credencial.email}</h3> 
+                    <h3 class="data">Nascimento: #{usuarioSessionBean.usuario.dataNascimento}</h3>
+                    <h:form class="seg">
+                        <h:commandLink class="seguindo__botao">
+                            <h3 class="seguindo">#{perfilController.seguindo.size()} seguindo</h3>
+                        </h:commandLink> 
+                        <h:commandLink class="seguidores__botao">
+                            <h3 class="seguidores">#{perfilController.seguidoPor.size()} seguidores</h3>
+                        </h:commandLink>
+                    </h:form>
+                    <h:form class="contatos">
+                        <h:commandLink class="contatos_botao">
+                            <h3 class="contatos__cont">contatos</h3>
+                        </h:commandLink>
+                    </h:form>
+                    
+                    <p class="sobre">SOBRE: <br></br> #{usuarioSessionBean.usuario.sobre}</p>
+                </div> 
+                <h:form class="editarPefil">
+                    <h:commandLink class="editarPerfil__botao" action="#{pageController.goToEditarPerfil()}">
+                        <h2>Editar Perfil</h2>
+                    </h:commandLink>
+                </h:form>
+            </div>   
+        </div>    
 
         <section>
-            <ui:repeat value="#{postagemController.feed}" var="postagem">
+            <ui:repeat value="#{postagemController.feedPerfil}" var="postagem">
                 <custom:postagem p="#{postagem}" />
             </ui:repeat>
         </section>

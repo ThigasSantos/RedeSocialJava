@@ -33,4 +33,6 @@ public interface PostagemServiceLocal {
     List<PostagemDTO> getPostagemFeed();
 
     List<PostagemDTO> getPostagemFeed(Usuario u);
+    
+     public List<PostagemDTO> getPostagemPerfil(Usuario u);
 }
