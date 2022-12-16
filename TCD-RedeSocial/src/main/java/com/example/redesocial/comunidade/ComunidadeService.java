@@ -98,4 +98,13 @@ public class ComunidadeService implements ComunidadeServiceLocal {
     }
    
     
+    public Comunidade localizarPorNome(String nomeComunidade) {
+        String consulta = "SELECT c FROM Comunidade c "
+                + "WHERE c.nome = :nomeComunidade";
+            
+        return em.createQuery(consulta, Comunidade.class)
+                .setParameter("nomeComunidade", nomeComunidade)
+                .getSingleResult();
+    }
+
 }

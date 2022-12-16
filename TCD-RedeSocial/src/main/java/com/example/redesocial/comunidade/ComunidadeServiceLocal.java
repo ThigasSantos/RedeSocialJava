@@ -21,6 +21,8 @@ public interface ComunidadeServiceLocal {
     void salvar(Comunidade comunidade);
 
     Comunidade localizarPorId(long id);
+    
+    Comunidade localizarPorNome(String nomeComunidade);
 
     List<Comunidade> findComunidades();
 
@@ -35,6 +37,6 @@ public interface ComunidadeServiceLocal {
     List<Object[]> findMembros(Comunidade comunidade);
 
     List<SearchItemDTO> search(String name);
-    
-    public List<ComunidadeDTO> findComunidadesHome();
+   
+    List<ComunidadeDTO> findComunidadesHome();
 }

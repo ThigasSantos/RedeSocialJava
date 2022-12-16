@@ -5,6 +5,8 @@
 package controllers;
 
 import com.example.redesocial.client.UsuarioSessionBean;
+import com.example.redesocial.comunidade.Comunidade;
+import com.example.redesocial.comunidade.ComunidadeServiceLocal;
 import com.example.redesocial.dtos.PostagemDTO;
 import com.example.redesocial.postagem.Postagem;
 import com.example.redesocial.postagem.PostagemServiceLocal;
@@ -28,6 +30,9 @@ public class PostagemController {
     @Inject PostagemServiceLocal postagemService;
     
     @Inject UsuarioSessionBean usuarioSession;    
+    
+    @Inject
+    ComunidadeServiceLocal comunidadeService;
     
     private String conteudo;
     
@@ -63,4 +68,9 @@ public class PostagemController {
         postagemService.atualizarCurtidas(p.getPostagem().getId(), usuarioSession.getUsuario());
     }
     
+    
+    public List<PostagemDTO> getFeedComunidade(String nomeComunidade){
+            Comunidade comunidade = comunidadeService.localizarPorNome(nomeComunidade);
+            return postagemService.getPostagemComunidade(comunidade);   
+    }
 }

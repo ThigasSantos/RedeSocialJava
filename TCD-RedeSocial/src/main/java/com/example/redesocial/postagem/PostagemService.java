@@ -14,7 +14,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 
 /**
  *
@@ -94,6 +93,21 @@ public class PostagemService implements PostagemServiceLocal {
                 .getResultList();
     }
 
+    @Override
+    public List<PostagemDTO> getPostagemComunidade(Comunidade comunidade) {      
+        String consulta = "SELECT new com.example.redesocial.dtos.PostagemDTO(p, p.usuariosCurtiram.size, p.respostas.size, u.nickname, p.dataPostagem) "
+                + "FROM Postagem p "
+                + "LEFT JOIN p.usuario u "
+                + "LEFT JOIN p.comunidade c "
+                + "WHERE c = :comunidade "
+                + "GROUP BY p, u.nickname "
+                + "ORDER BY p.usuariosCurtiram.size desc, p.respostas.size desc";
+        
+        return em.createQuery(consulta, PostagemDTO.class)
+                .setParameter("comunidade", comunidade)
+                .getResultList();
+    }
+    
     @Override
     public List<PostagemDTO> getPostagemPerfil(Usuario u) {
         String consulta = "SELECT new com.example.redesocial.dtos.PostagemDTO(p, p.usuariosCurtiram.size, p.respostas.size, u.nickname, p.dataPostagem) FROM Postagem p LEFT JOIN p.usuario u where u = :usuario group by p, u.nickname order by p.usuariosCurtiram.size desc, p.respostas.size desc";

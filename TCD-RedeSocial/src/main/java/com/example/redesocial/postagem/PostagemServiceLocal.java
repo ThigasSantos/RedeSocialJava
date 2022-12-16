@@ -4,6 +4,7 @@
  */
 package com.example.redesocial.postagem;
 
+import com.example.redesocial.comunidade.Comunidade;
 import com.example.redesocial.dtos.PostagemDTO;
 import com.example.redesocial.usuario.Usuario;
 
@@ -16,6 +17,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface PostagemServiceLocal {
+
     void salvar(Postagem postagem);
 
     Postagem localizarPorId(long id);
@@ -33,8 +35,10 @@ public interface PostagemServiceLocal {
     List<PostagemDTO> getPostagemFeed();
 
     List<PostagemDTO> getPostagemFeed(Usuario u);
-    
-     public List<PostagemDTO> getPostagemPerfil(Usuario u);
+
+    List<PostagemDTO> getPostagemPerfil(Usuario u);
      
-     public void atualizarCurtidas(Long id, Usuario u);
+    void atualizarCurtidas(Long id, Usuario u);
+
+    List<PostagemDTO> getPostagemComunidade(Comunidade comunidade);
 }
