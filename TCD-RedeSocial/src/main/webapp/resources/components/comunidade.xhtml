@@ -41,7 +41,13 @@
                     <div class="comunidade__body">
                         <div class="post__header">
                             <div class="post__headerText">
-                                <h3>#{cc.attrs.c.nome}  #{cc.attrs.c.qtdMembros}
+                                <h3> 
+                                    <h:form>
+                                        <h:commandLink action="#{pageController.goToComunidade({cc.attrs.c.nome})}">
+                                            #{cc.attrs.c.nome}
+                                        </h:commandLink>
+                                        #{cc.attrs.c.qtdMembros}
+                                    </h:form>
                                 </h3>
                             </div>
                             

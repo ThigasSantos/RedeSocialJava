@@ -9,6 +9,7 @@ import com.example.redesocial.dtos.ComunidadeDTO;
 import com.example.redesocial.usuario.Usuario;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.security.enterprise.SecurityContext;
@@ -32,9 +33,16 @@ public class ComunidadeController {
     @Inject
     SecurityContext securityContext;
     
+    @Inject
+    FacesContext facesContext;
+    
     public List<ComunidadeDTO> getComunidades() {
         Usuario usuario = usuarioSession.getUsuario();
         return  comunidadeService.findComunidades(usuario);
+    }
+    
+    public String exibirComunidade(){
+        return facesContext.getExternalContext().getInitParameter("comunidade");  
     }
     
 }

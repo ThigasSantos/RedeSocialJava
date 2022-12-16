@@ -33,6 +33,10 @@ public class PageController {
         redirect("/comunidades");
     }
     
+    public void goToComunidade(String comunidade) throws IOException {
+        redirect("/comunidades/comunidade.xhtml?comunidade="+comunidade);
+    }
+    
     public void redirect(String url) throws IOException {
         externalContext.redirect(
                 externalContext.getApplicationContextPath() + url
