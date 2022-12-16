@@ -19,6 +19,8 @@ public interface ComunidadeServiceLocal {
     void salvar(Comunidade comunidade);
 
     Comunidade localizarPorId(long id);
+    
+    Comunidade localizarPorNome(String nomeComunidade);
 
     List<Comunidade> findComunidades();
 

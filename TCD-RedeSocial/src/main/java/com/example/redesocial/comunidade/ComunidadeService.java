@@ -73,4 +73,17 @@ public class ComunidadeService implements ComunidadeServiceLocal {
                 .setParameter("IdMembro", u.getId())
                 .getResultList();
     }
+    
+    @Override
+    public List<ComunidadeDTO> findComunidadePorNome(String nomeComunidade) {
+        String consulta = "SELECT new com.example.redesocial.dtos.ComunidadeDTO(c.nome, COUNT(m.id), c.postagens) FROM Usuario u "
+                + "LEFT JOIN u.comunidades c "
+                + "LEFT JOIN c.postagens p"
+                + "LEFT JOIN c.membros m WHERE c.nome = :nomeComunidade "
+                + "GROUP BY c.nome";
+            
+        return em.createQuery(consulta, ComunidadeDTO.class)
+                .setParameter("nomeComunidade", nomeComunidade)
+                .getResultList();
+    }
 }
