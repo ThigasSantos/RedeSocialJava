@@ -32,4 +32,6 @@ public interface UsuarioServiceLocal {
     List<SearchItemDTO> search(String like);
 
     List<Usuario> getSeguidoPor(Usuario usuario);
+    
+    public List<Usuario> findUsuariosHome();
 }

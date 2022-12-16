@@ -34,4 +34,8 @@ public class SearchController {
     public void setItem(SearchItemDTO item) {
         this.item = item;
     }
+    
+    public List<Usuario> getUsuarioHome(){
+        return usuarioService.findUsuariosHome();
+    }
 }

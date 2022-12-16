@@ -35,4 +35,6 @@ public interface PostagemServiceLocal {
     List<PostagemDTO> getPostagemFeed(Usuario u);
     
      public List<PostagemDTO> getPostagemPerfil(Usuario u);
+     
+     public void atualizarCurtidas(Long id, Usuario u);
 }

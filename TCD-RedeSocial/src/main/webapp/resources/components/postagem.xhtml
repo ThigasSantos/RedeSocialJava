@@ -33,12 +33,16 @@
             .badge-warning[href] {
                background-color: #c67605;
             }
+            .botaoLink:link{
+            text-decoration: none;
+             color:var(--rede-branco)   
+            }
 
          </style>
          <div class="post">
 
             <div class="post__avatar">
-               <img src="https://github.com/andreviniciusmb.png" alt="alt"/>
+               <img src="https://wp-content.bluebus.com.br/wp-content/uploads/2017/03/31142426/twitter-novo-avatar-padrao-2017-bluebus.png" alt="alt"/>
             </div>
 
             <div class="post__body">
@@ -58,17 +62,24 @@
 
 <!--               <img src="" alt="alt"/>-->
                <div class="post__footer">
-                  <div>
-                     <i class="material-symbols-outlined">rate_review</i>
-                     <span class="badge badge-warning lblCartCount">#{cc.attrs.p.qtdRespostas}</span>
-                  </div>
-                  <div>
-                     <i class="material-icons">repeat</i>
-                  </div>
-                  <div>
+                  <h:form>
+                    <h:commandLink class="botaoLink">
+                        <i class="material-symbols-outlined">rate_review</i>
+                        <span class="badge badge-warning lblCartCount">#{cc.attrs.p.qtdRespostas}</span>
+                    </h:commandLink>
+                  </h:form>  
+                  <h:form>
+                    <h:commandLink class="botaoLink">
+                        <i class="material-icons">repeat</i>
+                    </h:commandLink>
+                  </h:form> 
+                  <h:form>
+                    <h:commandLink class="botaoLink" 
+                            action="#{postagemController.atualizarCurtidas(cc.attrs.p)}">
                      <i class="material-icons">favorite_border </i>
                      <span class="badge badge-warning lblCartCount">#{cc.attrs.p.qtdCurtidas}</span>
-                  </div>
+                  </h:commandLink>
+                  </h:form> 
 
                </div>
             </div>

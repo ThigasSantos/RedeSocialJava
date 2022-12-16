@@ -123,5 +123,9 @@ public class UsuarioService implements Serializable, UsuarioServiceLocal{
                 .getResultList();
     }
 
+    @Override
+    public List<Usuario> findUsuariosHome(){
+        return em.createQuery("SELECT u FROM Usuario u").setMaxResults(5).getResultList();
+    }
 
 }

@@ -44,7 +44,14 @@ public class ComunidadeService implements ComunidadeServiceLocal {
     @Override
     public List<ComunidadeDTO> findComunidades(Usuario u) {
         // Recuperação de todas as entidades
-        return em.createQuery("SELECT new com.example.redesocial.dtos.ComunidadeDTO(c.nome, count(m.id)) from Comunidade c LEFT JOIN c.membros m GROUP BY c.nome ", ComunidadeDTO.class).getResultList();
+        String consulta = "SELECT new com.example.redesocial.dtos.ComunidadeDTO(c.nome, COUNT(m.id)) FROM Usuario u "
+                + "LEFT JOIN u.comunidades c "
+                + "LEFT JOIN c.membros m WHERE u.id = :IdMembro "
+                + "GROUP BY c.nome";
+            
+        return em.createQuery(consulta, ComunidadeDTO.class)
+                .setParameter("IdMembro", u.getId())
+                .getResultList();
     }
 
     @Override
@@ -84,4 +91,11 @@ public class ComunidadeService implements ComunidadeServiceLocal {
                 .setParameter("nome", '%' + name + '%')
                 .getResultList();
     }
+    
+    @Override
+    public List<ComunidadeDTO> findComunidadesHome(){
+        return em.createQuery("SELECT new com.example.redesocial.dtos.ComunidadeDTO(c.nome, COUNT(m.id)) FROM Comunidade c LEFT JOIN c.membros m GROUP BY c.nome").setMaxResults(5).getResultList();
+    }
+   
+    
 }

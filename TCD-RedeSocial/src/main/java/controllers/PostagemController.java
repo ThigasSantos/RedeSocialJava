@@ -27,7 +27,7 @@ public class PostagemController {
     
     @Inject PostagemServiceLocal postagemService;
     
-    @Inject UsuarioSessionBean usuarioSession;
+    @Inject UsuarioSessionBean usuarioSession;    
     
     private String conteudo;
     
@@ -57,5 +57,9 @@ public class PostagemController {
 
     public void setConteudo(String conteudo) {
         this.conteudo = conteudo;
+    }
+    
+    public void atualizarCurtidas(PostagemDTO p){
+        postagemService.atualizarCurtidas(p.getPostagem().getId(), usuarioSession.getUsuario());
     }
 }

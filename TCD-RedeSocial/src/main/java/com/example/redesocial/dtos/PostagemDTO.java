@@ -78,4 +78,5 @@ public class PostagemDTO {
     public void setDataPostagem(String dataPostagem) {
         this.dataPostagem = dataPostagem;
     }
+    
 }

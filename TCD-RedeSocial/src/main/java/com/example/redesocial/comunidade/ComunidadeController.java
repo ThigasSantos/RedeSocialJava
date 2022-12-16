@@ -32,4 +32,8 @@ public class ComunidadeController {
         Usuario usuario = usuarioSession.getUsuario();
         return comunidadeService.findComunidades(usuario);
     }
+    
+    public List<ComunidadeDTO> getComunidadeHome(){
+        return comunidadeService.findComunidadesHome();
+    }
 }

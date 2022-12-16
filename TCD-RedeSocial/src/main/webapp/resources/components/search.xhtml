@@ -16,8 +16,8 @@
               }
           </style>
 
-         <h:form>
-            <p:outputLabel value="Buscar: " for="acSimple" />
+         <h:form class="widgets__input">
+            <span class="material-icons widgets__searchIcon">search</span>
             <p:autoComplete id="acSimple"
                             value="#{searchController.item}"
                             completeMethod="#{searchController.search}"

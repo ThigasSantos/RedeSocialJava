@@ -25,7 +25,6 @@
 
     <div class="feed">
         <div class="feed_header">
-            <custom:search />
             <h2>Posts Mais Recentes</h2>
         </div>
 
@@ -43,6 +42,52 @@
             </ui:repeat>
         </section>
     </div>
+    <div class="widgets">
+        <div class="widgets__search"><custom:search /></div>     
+          
+        <div class="widgets__widgetContainer">
+            <h2>Comunidades</h2>
+            <section>
+            <ui:repeat class="comunidadesCont" value="#{comunidadeController.comunidadeHome}" var="comunidade">
+                <custom:comunidade c="#{comunidade}" />
+            </ui:repeat>
+            </section>
+        </div>
+        <div class="widgets__widgetContainer">
+<style>
+    .user_seg{
+        border-bottom: 1px solid var(--rede-roxo);
+        padding: 2vh;
+    }
+
+    .nome_seg{
+        padding-bottom: 1vh;
+    }
+    
+    .user_segBotao:link{
+        color: black;
+        text-decoration: none;
+    }
+
+    .user_segBotao:link:hover{
+        text-decoration: underline black;
+    }
+</style>
+          <h2>Pessoas</h2>  
+            <section>
+            <ui:repeat value="#{searchController.usuarioHome}" var="usuarioHome">
+                <h:form class="user_seg">
+                    <h:commandLink class="user_segBotao">
+                        <h:outputText class ="nome_seg" value="#{usuarioHome.nickname} --  #{usuarioHome.credencial.email}"/>
+                        <br></br>
+                        <h:outputText class="sobre_seg" value="#{usuarioHome.sobre}"/>
+                    </h:commandLink>    
+                </h:form>
+            </ui:repeat>
+            </section>
+        </div>
+    </div>
+
 </h:body>
 
 </html>
