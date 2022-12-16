@@ -20,61 +20,13 @@
           crossorigin="anonymous" />
 </h:head>
 <h:body class="#{usuarioSessionBean.darkMode ?'dark-mode':''}">
-    <div class="sidebar">
-        <div class="icon">
-            <i class="material-symbols-outlined" >gamepadREDE</i>
-        </div>
-
-        <h:form class="sidebarOption">
-            <h:commandLink class="sair" action="#{pageController.goToHome()}">
-                <span class="material-icons">home</span>
-                <h2>Home</h2>
-            </h:commandLink>
-        </h:form>
-        
-        <h:form class="sidebarOption">
-            <h:commandLink class="sair" action="#{pageController.goToComunidades()}">
-                <span class="material-symbols-outlined">diversity_3</span>
-                <h2>Comunidades</h2>
-            </h:commandLink>
-        </h:form>
-
-        <div class="sidebarOption">
-            <span class="material-icons">person</span>
-            <h2>Perfil</h2>
-        </div>
-
-        <h:form class="sidebarOption sidebarOption__tema">
-            <h:selectBooleanCheckbox class="checkBox__theme" value="#{usuarioSessionBean.darkMode}">
-                <f:ajax render="@all" event="change" />
-            </h:selectBooleanCheckbox>
-            <h2>Tema</h2>
-        </h:form>
-
-        <h:form class="sidebarOption sidebar__encerrar" rendered="#{usuarioSessionBean.authenticated}">
-            <h:commandLink class="sair" action="#{usuarioSessionBean.desconectar()}">
-                <span class="material-symbols-outlined">login</span>
-                <h2>#{'Encerrar Sessão'}</h2>
-            </h:commandLink>
-        </h:form>
-
-        <h:form class="sidebarOption sidebar__encerrar" rendered="#{not usuarioSessionBean.authenticated}">
-            <h:commandLink class="sair" action="#{pageController.goToLogin()}">
-                <span class="material-symbols-outlined">login</span>
-                <h2>#{'Iniciar Sessão'}</h2>
-            </h:commandLink>
-        </h:form>
-
-    </div>
-
+    <custom:sidebar comunidades="true"/>
     <div class="feed">
-
         <section>
             <ui:repeat value="#{comunidadeController.comunidades}" var="comunidade">
                 <custom:comunidade c="#{comunidade}" />
             </ui:repeat>
         </section>
-        
     </div>
 </h:body>
 </html>

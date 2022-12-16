@@ -93,4 +93,9 @@ public class PostagemService implements PostagemServiceLocal {
                 .setParameter("seguindo", seguindo)
                 .getResultList();
     }
+
+    @Override
+    public List<PostagemDTO> getPostagemPerfil(Usuario u) {
+        return null;
+    }
 }

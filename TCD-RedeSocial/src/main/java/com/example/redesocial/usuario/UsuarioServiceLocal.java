@@ -27,5 +27,9 @@ public interface UsuarioServiceLocal {
 
     List<Usuario> getSeguindo(Usuario u);
 
+    List<Usuario> getUsuariosEmComum(Usuario u);
+
     List<SearchItemDTO> search(String like);
+
+    List<Usuario> getSeguidoPor(Usuario usuario);
 }

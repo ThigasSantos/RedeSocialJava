@@ -28,42 +28,41 @@
         <h:form>
             <p:messages globalOnly="true"/>
            <h:panelGrid columns="3" cellpadding="3" style="margin: 0 auto;">
+
               <p:outputLabel for="username" value="Username"/>
               <p:inputText class="inputLogin__user" id="username" value="#{usuarioCadastroBean.nickname}" a:placeholder="Nickname"/>
               <p:message for="username"/>
 
-              <p:outputLabel for="username" value="Email"/>
-              <p:inputText class="inputLogin__user" id="email" value="#{usuarioCadastroBean.email}" a:placeholder="Email" type="email">
-              </p:inputText>
-              <p:message for="username"/>
+              <p:outputLabel for="email" value="Email"/>
+              <p:inputText class="inputLogin__user" id="email" value="#{usuarioCadastroBean.email}" a:placeholder="Email" type="email" maxlength="40" />
+              <p:message for="email"/>
 
               <p:outputLabel for="password" value="Password"/>
               <p:inputText class="inputLogin__pass" id="password" value="#{usuarioCadastroBean.password}" a:placeholder="Senha" type="password"/>
               <p:message for="password"/>
 
-              <p:outputLabel value="Nascimento"/>
+              <p:outputLabel for="nascimento" value="Nascimento"/>
               <p:inputText class="inputLogin__pass" id="nascimento" value="#{usuarioCadastroBean.nascimento}" type="date"/>
-              <p:message for="password"/>
+              <p:message for="nascimento"/>
 
-              <p:outputLabel value="Telefone"/>
+              <p:outputLabel for="telefone" value="Telefone"/>
               <p:inputText class="inputLogin__pass" id="telefone" value="#{usuarioCadastroBean.telefone}" a:placeholder="(__)____-____" type="tel">
               </p:inputText>
-              <p:message for="password"/>
-              
-              <p:commandButton
-                      id="submit"
-                      update="@form"
-                      value="Cadastrar"
-                      action="#{usuarioCadastroBean.cadastrar()}"
-                      ajax="false"/>
-              <p:commandButton
-                      id="submit2"
-                      update="@form"
-                      value="Já Possui Cadastro ?"
-                      action="#{pageController.goToLogin()}"
-                      ajax="false"/>   
-       
+              <p:message for="telefone"/>
            </h:panelGrid>
+               <h:panelGrid columns="2" cellpadding="3" style="margin: 30px auto 0 auto;">
+                   <p:commandButton
+                           id="submit"
+                           value="Cadastrar"
+                           action="#{usuarioCadastroBean.cadastrar()}"
+                           ajax="false"/>
+                   <p:commandButton
+                           id="submit2"
+                           value="Já Possui Cadastro ?"
+                           action="#{pageController.goToLogin()}"
+                           ajax="false"/>
+               </h:panelGrid>
+
         </h:form>
     </div>
 

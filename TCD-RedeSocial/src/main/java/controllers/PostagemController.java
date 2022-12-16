@@ -28,19 +28,8 @@ public class PostagemController {
     @Inject PostagemServiceLocal postagemService;
     
     @Inject UsuarioSessionBean usuarioSession;
-
-    @Inject
-    SecurityContext securityContext;
     
     private String conteudo;
-    
-    public String getConteudo(){
-        return conteudo;
-    }
-
-    public void setConteudo(String conteudo) {
-        this.conteudo = conteudo;
-    }
     
     public void postar(){
         Postagem post = new Postagem();
@@ -60,5 +49,13 @@ public class PostagemController {
     public List<PostagemDTO> getFeedPerfil(){
         Usuario usuario = usuarioSession.getUsuario();
         return postagemService.getPostagemPerfil(usuario);
+    }
+
+    public String getConteudo(){
+        return conteudo;
+    }
+
+    public void setConteudo(String conteudo) {
+        this.conteudo = conteudo;
     }
 }

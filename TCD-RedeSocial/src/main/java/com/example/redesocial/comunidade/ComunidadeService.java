@@ -4,7 +4,9 @@
  */
 package com.example.redesocial.comunidade;
 
+import com.example.redesocial.dtos.ComunidadeDTO;
 import com.example.redesocial.dtos.SearchItemDTO;
+import com.example.redesocial.usuario.Usuario;
 
 import java.util.List;
 import javax.ejb.Stateless;
@@ -37,6 +39,12 @@ public class ComunidadeService implements ComunidadeServiceLocal {
     public List<Comunidade> findComunidades() {
         // Recuperação de todas as entidades
         return em.createNamedQuery("findComunidades",Comunidade.class).getResultList();
+    }
+
+    @Override
+    public List<ComunidadeDTO> findComunidades(Usuario u) {
+        // Recuperação de todas as entidades
+        return em.createQuery("SELECT new com.example.redesocial.dtos.ComunidadeDTO(c.nome, count(m.id)) from Comunidade c LEFT JOIN c.membros m GROUP BY c.nome ", ComunidadeDTO.class).getResultList();
     }
 
     @Override

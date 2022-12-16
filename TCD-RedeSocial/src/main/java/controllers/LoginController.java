@@ -4,6 +4,7 @@
  */
 package controllers;
 
+import com.example.redesocial.client.PageController;
 import com.example.redesocial.client.UsuarioSessionBean;
 import com.example.redesocial.usuario.UsuarioServiceLocal;
 import java.io.IOException;
@@ -28,8 +29,12 @@ import javax.validation.constraints.NotEmpty;
 @Named
 @RequestScoped
 public class LoginController {
+
+    @Inject
+    PageController pageController;
+
     @NotEmpty
-    private String username = "thigas@gmail.com";
+    private String email = "thigas@gmail.com";
 
     @NotEmpty
     private String password = "senha123";
@@ -45,12 +50,12 @@ public class LoginController {
     @Inject UsuarioSessionBean usuarioSession;
     
     //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -65,20 +70,21 @@ public class LoginController {
     public void execute() throws IOException {
         switch (processAuthentication()) {
             case SEND_CONTINUE:
+                saveUserInSession();
                 facesContext.responseComplete();
                 break;
             case SEND_FAILURE:
                 facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Credentials", null));
                 break;
             case SUCCESS:
-                getExternalContext().redirect(getExternalContext().getRequestContextPath() + "/");
-                usuarioSession.conectar(usuarioService.buscarPorEmail(username));
+                saveUserInSession();
+                pageController.goToHome();
                 break;
         }
     }
-    
-    public void cadastrar()throws IOException{
-        getExternalContext().redirect(getExternalContext().getRequestContextPath() + "/cadastro");
+
+    private void saveUserInSession() {
+        usuarioSession.conectar(usuarioService.buscarPorEmail(email));
     }
 
     private AuthenticationStatus processAuthentication() {
@@ -86,7 +92,7 @@ public class LoginController {
         return securityContext.authenticate(
                 (HttpServletRequest) ec.getRequest(),
                 (HttpServletResponse) ec.getResponse(),
-                AuthenticationParameters.withParams().credential(new UsernamePasswordCredential(username, password)));
+                AuthenticationParameters.withParams().credential(new UsernamePasswordCredential(email, password)));
     }
 
     private ExternalContext getExternalContext() {

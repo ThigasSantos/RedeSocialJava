@@ -20,6 +20,10 @@ public class PageController {
     public void goToLogin() throws IOException {
         redirect("/login");
     }
+
+    public void goToCadastrar() throws IOException {
+        redirect("/cadastrar");
+    }
     
     public void goToPerfil() throws IOException {
         redirect("/app/perfil");
@@ -45,7 +49,5 @@ public class PageController {
         externalContext.redirect(
                 externalContext.getApplicationContextPath() + url
         );
-
     }
-
 }

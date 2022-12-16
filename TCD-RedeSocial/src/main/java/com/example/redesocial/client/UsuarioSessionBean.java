@@ -37,15 +37,15 @@ public class UsuarioSessionBean implements Serializable {
     }
 
     public boolean isAuthenticated() {
-//       return securityContext.getCallerPrincipal() != null;
-        return usuario != null;
+      return usuario != null;
     }
 
     public void desconectar() throws IOException {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        externalContext.invalidateSession();
         String path = externalContext.getApplicationContextPath();
         externalContext.redirect(path + "/login");
-        externalContext.invalidateSession();
+
     }
 
     // <editor-fold  defaultstate="collapsed" desc="Getters/Setters" >

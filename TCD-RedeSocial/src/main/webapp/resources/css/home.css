@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Ubuntu;
+    list-style: none;
 }
 
 body{
@@ -75,12 +76,14 @@ body{
     color: inherit;
 }
 
-.sidebarOption.active{
+.sidebarOption.active *{
     color: var(--rede-roxo);
 }
+
 .sidebarOption.active:hover{
     color: var(--rede-roxo);
     background-color: inherit;
+    cursor: default;
 }
 
 .sidebar__encerrar{

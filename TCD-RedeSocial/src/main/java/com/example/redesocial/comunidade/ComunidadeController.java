@@ -25,16 +25,11 @@ public class ComunidadeController {
     
     @Inject
     ComunidadeServiceLocal comunidadeService;
-    
     @Inject
     UsuarioSessionBean usuarioSession;
     
-    @Inject
-    SecurityContext securityContext;
-    
     public List<ComunidadeDTO> getComunidades() {
         Usuario usuario = usuarioSession.getUsuario();
-        return  comunidadeService.findComunidades(usuario);
+        return comunidadeService.findComunidades(usuario);
     }
-    
 }

@@ -99,7 +99,21 @@ public class UsuarioService implements Serializable, UsuarioServiceLocal{
                 .setParameter("usuario", u).getResultList();
     }
 
-//    Search
+    @Override
+    public List<Usuario> getSeguidoPor(Usuario u) {
+        return em.createQuery("SELECT s from Usuario u left join u.seguidoPor s where u = :usuario", Usuario.class)
+                .setParameter("usuario", u).getResultList();
+    }
+
+    @Override
+    public List<Usuario> getUsuariosEmComum(Usuario u) {
+        String consulta = "";
+        return em.createQuery(
+                "SELECT u.nickname, COUNT(sp.id) FROM Usuario u LEFT JOIN u.seguidoPor sp WHERE u <> :usuario and (sp IN (SELECT uss FROM Usuario us LEFT JOIN us.seguindo uss WHERE us = :usuario)) ORDER BY u.nickname",
+                Usuario.class)
+                .setParameter("usuario", u)
+                .getResultList();
+    }
 
     @Override
     public List<SearchItemDTO> search(String name) {
@@ -108,4 +122,6 @@ public class UsuarioService implements Serializable, UsuarioServiceLocal{
                 .setParameter("nickname", '%' + name + '%')
                 .getResultList();
     }
+
+
 }
