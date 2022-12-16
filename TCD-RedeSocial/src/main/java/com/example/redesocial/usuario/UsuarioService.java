@@ -1,15 +1,13 @@
 package com.example.redesocial.usuario;
 
 import com.example.redesocial.comunidade.Comunidade;
+import com.example.redesocial.dtos.SearchItemDTO;
 import com.example.redesocial.usuario.credencial.Credencial;
 import com.example.redesocial.usuario.credencial.CredencialServiceLocal;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
@@ -100,5 +98,14 @@ public class UsuarioService implements Serializable, UsuarioServiceLocal{
         return em.createQuery("SELECT s from Usuario u left join u.seguindo s where u = :usuario", Usuario.class)
                 .setParameter("usuario", u).getResultList();
     }
-    
+
+//    Search
+
+    @Override
+    public List<SearchItemDTO> search(String name) {
+        String consulta = "SELECT new com.example.redesocial.dtos.SearchItemDTO(u.nickname, 'usuario') FROM Usuario u WHERE LOWER(u.nickname) LIKE :nickname";
+        return em.createQuery(consulta, SearchItemDTO.class)
+                .setParameter("nickname", '%' + name + '%')
+                .getResultList();
+    }
 }

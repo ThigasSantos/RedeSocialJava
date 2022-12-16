@@ -68,6 +68,7 @@
     <div class="feed">
 
         <div class="feed_header">
+            <custom:search />
             <h2>Posts Mais Recentes</h2>
         </div>
 
@@ -78,7 +79,6 @@
                 </div>
                 <h:commandButton class="caixaDePostagem__button" action="#{postagemController.postar()}" value="Publicar" />
             </h:form>
-
 
         <section>
             <ui:repeat value="#{postagemController.feed}" var="postagem">

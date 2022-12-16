@@ -4,6 +4,8 @@
  */
 package com.example.redesocial.comunidade;
 
+import com.example.redesocial.dtos.SearchItemDTO;
+
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -66,6 +68,12 @@ public class ComunidadeService implements ComunidadeServiceLocal {
                 .setParameter("IdComunidade", comunidade.getId())
                 .getResultList();
     }
-    
-    
+
+    @Override
+    public List<SearchItemDTO> search(String name) {
+        String consulta = "SELECT new com.example.redesocial.dtos.SearchItemDTO(c.nome, 'comunidade') FROM Comunidade c WHERE LOWER(c.nome) LIKE :nome";
+        return em.createQuery(consulta, SearchItemDTO.class)
+                .setParameter("nome", '%' + name + '%')
+                .getResultList();
+    }
 }

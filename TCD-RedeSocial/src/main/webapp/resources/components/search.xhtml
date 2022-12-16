@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsf/composite"
+>
+<f:view>
+   <c:interface>
+      <c:implementation>
+          <style type="text/css">
+              .item-sel {
+                  display: flex;
+                  justify-content: space-between;
+              }
+          </style>
+
+         <h:form>
+            <p:outputLabel value="Buscar: " for="acSimple" />
+            <p:autoComplete id="acSimple"
+                            value="#{searchController.item}"
+                            completeMethod="#{searchController.search}"
+                            scrollHeight="250"
+                            moreText="Mais resultados"
+                            var="item"
+                            emptyMessage="Nenhum resultado :("
+                            inputStyle="width: 400px"
+            >
+              <p:column styleClass="item-sel">
+                  <span>#{item.nome}</span>
+                  <span style="color: #8A2BE2">#{item.type}</span>
+              </p:column>
+
+            </p:autoComplete>
+         </h:form>
+      </c:implementation>
+   </c:interface>
+</f:view>
+</html>
