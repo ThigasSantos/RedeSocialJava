@@ -73,4 +73,13 @@ public class PostagemController {
             Comunidade comunidade = comunidadeService.localizarPorNome(nomeComunidade);
             return postagemService.getPostagemComunidade(comunidade);   
     }
+    
+    public void responder(Long id){
+        Postagem post = new Postagem();
+        Postagem pai = postagemService.localizarPorId(id);
+        post.setConteudo(conteudo);
+        post.setUsuario(usuarioSession.getUsuario());
+        post.setPostagemPai(pai);
+        postagemService.salvar(post);
+    }
 }
