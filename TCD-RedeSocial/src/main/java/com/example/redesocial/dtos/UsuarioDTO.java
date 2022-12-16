@@ -4,6 +4,10 @@
  */
 package com.example.redesocial.dtos;
 
+import com.example.redesocial.usuario.Usuario;
+import java.time.LocalDate;
+import java.util.List;
+
 /**
  *
  * @author Tygsv
@@ -12,8 +16,12 @@ public class UsuarioDTO {
     
     private Long id;
     private String nickname;
+    private String email;
     private String sobre;
-
+    private LocalDate dataNascimento;
+    private List<Usuario> seguindo;
+    private List<Usuario> seguidoPor;
+    
     public UsuarioDTO() {
     }
     
@@ -21,6 +29,24 @@ public class UsuarioDTO {
         this.nickname = nickname;
         this.sobre = sobre;
         this.id = id;
+    }
+
+    public UsuarioDTO(Long id, String nickname, String email, String sobre, LocalDate dataNascimento) {
+        this.id = id;
+        this.nickname = nickname;
+        this.email = email;
+        this.sobre = sobre;
+        this.dataNascimento = dataNascimento;
+    }
+    
+    public UsuarioDTO(Long id, String nickname, String email, String sobre, LocalDate dataNascimento, List<Usuario> seguindo, List<Usuario> seguidoPor) {
+        this.id = id;
+        this.nickname = nickname;
+        this.email = email;
+        this.sobre = sobre;
+        this.dataNascimento = dataNascimento;
+        this.seguindo = seguindo;
+        this.seguidoPor = seguidoPor;
     }
     
     public String getNickname() {
@@ -45,6 +71,38 @@ public class UsuarioDTO {
 
     public void setSobre(String sobre) {
         this.sobre = sobre;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public List<Usuario> getSeguindo() {
+        return seguindo;
+    }
+
+    public void setSeguindo(List<Usuario> seguindo) {
+        this.seguindo = seguindo;
+    }
+
+    public List<Usuario> getSeguidoPor() {
+        return seguidoPor;
+    }
+
+    public void setSeguidoPor(List<Usuario> seguidoPor) {
+        this.seguidoPor = seguidoPor;
     }
     
     

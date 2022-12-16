@@ -2,6 +2,7 @@ package com.example.redesocial.usuario;
 
 import com.example.redesocial.comunidade.Comunidade;
 import com.example.redesocial.dtos.SearchItemDTO;
+import com.example.redesocial.dtos.UsuarioDTO;
 import com.example.redesocial.usuario.credencial.Credencial;
 
 import javax.ejb.Local;
@@ -34,4 +35,6 @@ public interface UsuarioServiceLocal {
     List<Usuario> getSeguidoPor(Usuario usuario);
     
     public List<Usuario> findUsuariosHome();
+    
+    public List<UsuarioDTO> findUsuarioEmail(String email);
 }

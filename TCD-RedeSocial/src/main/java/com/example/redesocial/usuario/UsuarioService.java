@@ -2,6 +2,7 @@ package com.example.redesocial.usuario;
 
 import com.example.redesocial.comunidade.Comunidade;
 import com.example.redesocial.dtos.SearchItemDTO;
+import com.example.redesocial.dtos.UsuarioDTO;
 import com.example.redesocial.usuario.credencial.Credencial;
 import com.example.redesocial.usuario.credencial.CredencialServiceLocal;
 
@@ -127,5 +128,12 @@ public class UsuarioService implements Serializable, UsuarioServiceLocal{
     public List<Usuario> findUsuariosHome(){
         return em.createQuery("SELECT u FROM Usuario u").setMaxResults(5).getResultList();
     }
-
+    
+    @Override
+    public List<UsuarioDTO> findUsuarioEmail(String nick){
+        String consulta = "SELECT new com.example.redesocial.dtos.UsuarioDTO(u.id, u.nickname, c.email, u.sobre, u.dataNascimento) FROM Usuario u WHERE u.nickname = :nick"
+                +"LEFT JOIN u.credencial c";
+        return em.createQuery(consulta,UsuarioDTO.class).setParameter("nick", nick).getResultList();
+    }
+    
 }

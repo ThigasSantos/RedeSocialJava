@@ -103,8 +103,14 @@ public class PostagemService implements PostagemServiceLocal {
     @Override
     public void atualizarCurtidas(Long id, Usuario u){
         Postagem p =localizarPorId(id);
-        p.getUsuariosCurtiram().add(u);
+        List<Usuario> user = p.getUsuariosCurtiram();
+        if(user.contains(u))
+        {
+            p.getUsuariosCurtiram().remove(u);
+        }else{
+            p.getUsuariosCurtiram().add(u);
+        }
         em.flush();
-    }
+    }   
     
 }

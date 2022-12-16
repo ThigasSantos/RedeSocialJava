@@ -93,7 +93,7 @@
         <section>
             <ui:repeat value="#{perfilController.seguindo}" var="seguindo">
                 <h:form class="user_seg">
-                    <h:commandLink class="user_segBotao">
+                    <h:commandLink class="user_segBotao" action="#{pageController.goToPerfilName(seguindo.nickname)}">
                         <h:outputText class ="nome_seg" value="#{seguindo.nickname} --  #{seguindo.credencial.email}"/>
                         <br></br>
                         <h:outputText class="sobre_seg" value="#{seguindo.sobre}"/>

@@ -62,4 +62,5 @@ public class PostagemController {
     public void atualizarCurtidas(PostagemDTO p){
         postagemService.atualizarCurtidas(p.getPostagem().getId(), usuarioSession.getUsuario());
     }
+    
 }

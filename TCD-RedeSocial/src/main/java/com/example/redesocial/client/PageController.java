@@ -45,6 +45,10 @@ public class PageController {
         redirect("/app/perfil/seguindo");
     }
     
+    public void goToPerfilName(String user) throws IOException{
+        redirect("/perfil/perfil.xhtml?perfil="+user);
+    }
+    
     public void redirect(String url) throws IOException {
         externalContext.redirect(
                 externalContext.getApplicationContextPath() + url

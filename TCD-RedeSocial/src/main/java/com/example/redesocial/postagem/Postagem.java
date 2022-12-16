@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @NamedQueries({
@@ -158,4 +159,11 @@ public class Postagem implements Serializable {
     }
 
     // </editor-fold >
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+    
 }
