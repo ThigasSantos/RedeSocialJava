@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:custom="http://java.sun.com/jsf/composite/components">
+<h:head>
+    <meta charset="UTF-8" />
+    <meta  name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="../../resources/css/home.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+          crossorigin="anonymous" />
+</h:head>
+<h:body class="#{usuarioSessionBean.darkMode ?'dark-mode':''}">
+    <div class="sidebar">
+        <div class="icon">
+            <i class="material-symbols-outlined" >gamepadREDE</i>
+        </div>
+
+        <div class="sidebarOption">
+            <span class="material-icons">home</span>
+            <h2>Home</h2>
+        </div>
+
+        <h:form class="sidebarOption sidebarOption__comunidade" rendered="#{usuarioSessionBean.authenticated}">
+            <h:commandLink class="comunidade">
+                <span class="material-symbols-outlined">diversity_3</span>
+                <h2>Comunidades</h2>
+            </h:commandLink>    
+        </h:form>
+        
+        <div class="sidebarOption active">
+                <span class="material-icons">person</span>
+                <h2>Perfil</h2>
+        </div>
+
+        <h:form class="sidebarOption sidebarOption__tema">
+            <h:selectBooleanCheckbox class="checkBox__theme" value="#{usuarioSessionBean.darkMode}">
+                <f:ajax render="@all" event="change" />
+            </h:selectBooleanCheckbox>
+            <h2>Tema</h2>
+        </h:form>
+
+        <h:form class="sidebarOption sidebar__encerrar" rendered="#{usuarioSessionBean.authenticated}">
+            <h:commandLink class="sair" action="#{usuarioSessionBean.desconectar()}">
+                <span class="material-symbols-outlined">login</span>
+                <h2>#{'Encerrar Sessão'}</h2>
+            </h:commandLink>
+        </h:form>
+
+        <h:form class="sidebarOption sidebar__encerrar" rendered="#{not usuarioSessionBean.authenticated}">
+            <h:commandLink class="sair" action="#{pageController.goToLogin()}">
+                <span class="material-symbols-outlined">login</span>
+                <h2>#{'Iniciar Sessão'}</h2>
+            </h:commandLink>
+        </h:form>
+
+    </div>
+
+    <div class="feed">
+
+        <div class="feed_header">
+            <h2>Perfil</h2>
+        </div>
+        
+        <div class="perfil__head">
+                <div class="banner"><img src="../../resources/img/gallery.png" alt="alt"/></div>
+                
+            <div class="bio">
+                <div class="avatar"> <img src="https://wp-content.bluebus.com.br/wp-content/uploads/2017/03/31142426/twitter-novo-avatar-padrao-2017-bluebus.png" alt="alt"/></div>
+                <div class="informacoes">
+                    <h2 class="nickname">#{usuarioSessionBean.usuario.nickname}</h2>
+                    <h3 class="user">user: #{usuarioSessionBean.usuario.credencial.email}</h3> 
+                    <h3 class="data">Nascimento: #{usuarioSessionBean.usuario.dataNascimento}</h3>
+                    <h:form class="seg">
+                        <h:commandLink class="seguindo__botao" action="#{pageController.goToSeguindo()}">
+                            <h3 class="seguindo">#{perfilController.seguindo.size()} seguindo</h3>
+                        </h:commandLink> 
+                        <h:commandLink class="seguidores__botao" action="#{pageController.goToSeguidoPor}">
+                            <h3 class="seguidores">#{perfilController.seguidoPor.size()} seguidores</h3>
+                        </h:commandLink>
+                    </h:form>                   
+                    <p class="sobre">SOBRE: <br></br> #{usuarioSessionBean.usuario.sobre}</p>
+                </div> 
+                <h:form class="editarPefil">
+                    <h:commandLink class="editarPerfil__botao" action="#{pageController.goToEditarPerfil()}">
+                        <h2>Editar Perfil</h2>
+                    </h:commandLink>
+                </h:form>
+            </div>   
+        </div>    
+
+        <section>
+            <ui:repeat value="#{postagemController.feedPerfil}" var="postagem">
+                <custom:postagem p="#{postagem}" />
+            </ui:repeat>
+        </section>
+    </div>
+
+    <div class="widgets">
+        <div class="widgets__input">
+            <span class="material-icons widgets__searchIcon">earch</span>
+            <input type="text" placeholder="search"/>
+        </div>
+
+        <div class="widgets__widgetContainer">
+            <h2>Comunidades</h2>
+        </div>
+    </div>
+</h:body>
+</html>
+

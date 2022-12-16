@@ -56,4 +56,9 @@ public class PostagemController {
         else
             return postagemService.getPostagemFeed(usuario);
     }
+    
+    public List<PostagemDTO> getFeedPerfil(){
+        Usuario usuario = usuarioSession.getUsuario();
+        return postagemService.getPostagemPerfil(usuario);
+    }
 }

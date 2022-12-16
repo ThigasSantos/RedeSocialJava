@@ -14,7 +14,7 @@ public class PageController {
     private final ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 
     public void goToHome() throws IOException {
-        redirect("");
+        redirect("/");
     }
 
     public void goToLogin() throws IOException {
@@ -22,7 +22,23 @@ public class PageController {
     }
     
     public void goToPerfil() throws IOException {
-        redirect("/perfil");
+        redirect("/app/perfil");
+    }
+    
+    public void goToEditarPerfil() throws IOException{
+        redirect("/app/perfil/editarPerfil");
+    }
+
+    public void goToComunidades() throws IOException {
+        redirect("/comunidades");
+    }
+    
+    public void goToSeguidoPor() throws IOException{
+        redirect("/app/perfil/seguidores");
+    }
+    
+    public void goToSeguindo() throws IOException{
+        redirect("/app/perfil/seguindo");
     }
     
     public void redirect(String url) throws IOException {
