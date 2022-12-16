@@ -33,7 +33,11 @@ public class UsuarioService implements Serializable, UsuarioServiceLocal{
 
         em.persist(usuario);
     }
-
+    
+    public void update(Usuario u){
+        em.merge(u);
+    }
+    
      @Override
     public Usuario buscarUsuario(Long id) {
         Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.id = :id").setParameter("id", id);

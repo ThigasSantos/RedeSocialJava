@@ -33,6 +33,14 @@ public class PageController {
         redirect("/comunidades");
     }
     
+    public void goToSeguidoPor() throws IOException{
+        redirect("/app/perfil/seguidores");
+    }
+    
+    public void goToSeguindo() throws IOException{
+        redirect("/app/perfil/seguindo");
+    }
+    
     public void redirect(String url) throws IOException {
         externalContext.redirect(
                 externalContext.getApplicationContextPath() + url

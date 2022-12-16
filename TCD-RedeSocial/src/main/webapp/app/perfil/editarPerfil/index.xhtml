@@ -29,20 +29,16 @@
             <p:messages globalOnly="true"/>
            <h:panelGrid columns="3" cellpadding="3" style="margin: 0 auto;">
               <p:outputLabel for="username" value="Username"/>
-              <p:inputText class="inputLogin__user" id="username" value="#{usuarioCadastroBean.nickname}" a:placeholder="Nickname"/>
+              <p:inputText class="inputLogin__user" id="username"/>
               <p:message for="username"/>
 
               <p:outputLabel value="Nascimento"/>
-              <p:inputText class="inputLogin__pass" id="nascimento" value="#{usuarioCadastroBean.nascimento}" type="date"/>
+              <p:inputText class="inputLogin__pass" id="nascimento" type="date"/>
               <p:message for="username"/>
 
-              <p:outputLabel value="Telefone"/>
-              <p:inputText class="inputLogin__pass" id="telefone" value="#{usuarioCadastroBean.telefone}" a:placeholder="(__)____-____" type="tel">
-              </p:inputText>
-              <p:message for="username"/>
               
               <p:outputLabel value="Sobre"/>
-              <p:inputText class="inputLogin__pass" id="sobre" value="#{usuarioCadastroBean.telefone}" a:placeholder="(__)____-____" type="tel">
+              <p:inputText class="inputLogin__pass" id="sobre" >
               </p:inputText>
               <p:message for="username"/>
               
@@ -56,7 +52,7 @@
                       id="submit2"
                       update="@form"
                       value="Salvar"
-                      action="#{pageController.goToLogin()}"
+                      action="#{pageController.goToPerfil()}"
                       ajax="false"/>   
        
            </h:panelGrid>

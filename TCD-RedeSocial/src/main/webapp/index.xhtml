@@ -21,21 +21,21 @@
             <h2>Home</h2>
         </div>
 
-        <h:form class="sidebarOption">
+        <h:form class="sidebarOption" rendered="#{usuarioSessionBean.authenticated}">
             <h:commandLink class="sair" action="#{pageController.goToComunidades()}">
                 <span class="material-symbols-outlined">diversity_3</span>
                 <h2>Comunidades</h2>
             </h:commandLink>
         </h:form>
 
-        <h:form class="sidebarOption">
+        <h:form class="sidebarOption" rendered="#{usuarioSessionBean.authenticated}">
             <h:commandLink class="sair" action="#{pageController.goToPerfil()}">
                 <span class="material-icons">person</span>
                 <h2>Perfil</h2>
             </h:commandLink>
         </h:form>
 
-        <h:form class="sidebarOption sidebarOption__tema">
+        <h:form class="sidebarOption sidebarOption__tema" >
             <h:selectBooleanCheckbox class="checkBox__theme" value="#{usuarioSessionBean.darkMode}">
                 <f:ajax render="@all" event="change" />
             </h:selectBooleanCheckbox>
@@ -66,7 +66,7 @@
 
         <h:form class="caixaDePostagem" rendered="#{usuarioSessionBean.authenticated}">
             <div class="caixapostagem__input">
-                <img src="https://github.com/fboasorte.png" alt="alt" />
+                <img src="https://wp-content.bluebus.com.br/wp-content/uploads/2017/03/31142426/twitter-novo-avatar-padrao-2017-bluebus.png" alt="alt" />
                 <h:inputText value="#{postagemController.conteudo}" a:placeholder="Compartilhe com sua rede!" />
             </div>
             <h:commandButton class="caixaDePostagem__button" action="#{postagemController.postar()}" value="Publicar" />

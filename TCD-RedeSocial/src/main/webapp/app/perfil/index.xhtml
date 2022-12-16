@@ -75,25 +75,19 @@
                 <div class="banner"><img src="../../resources/img/gallery.png" alt="alt"/></div>
                 
             <div class="bio">
-                <div class="avatar"> <img src="https://github.com/andreviniciusmb.png" alt="alt"/></div>
+                <div class="avatar"> <img src="https://wp-content.bluebus.com.br/wp-content/uploads/2017/03/31142426/twitter-novo-avatar-padrao-2017-bluebus.png" alt="alt"/></div>
                 <div class="informacoes">
                     <h2 class="nickname">#{usuarioSessionBean.usuario.nickname}</h2>
                     <h3 class="user">user: #{usuarioSessionBean.usuario.credencial.email}</h3> 
                     <h3 class="data">Nascimento: #{usuarioSessionBean.usuario.dataNascimento}</h3>
                     <h:form class="seg">
-                        <h:commandLink class="seguindo__botao">
+                        <h:commandLink class="seguindo__botao" action="#{pageController.goToSeguindo()}">
                             <h3 class="seguindo">#{perfilController.seguindo.size()} seguindo</h3>
                         </h:commandLink> 
-                        <h:commandLink class="seguidores__botao">
+                        <h:commandLink class="seguidores__botao" action="#{pageController.goToSeguidoPor}">
                             <h3 class="seguidores">#{perfilController.seguidoPor.size()} seguidores</h3>
                         </h:commandLink>
-                    </h:form>
-                    <h:form class="contatos">
-                        <h:commandLink class="contatos_botao">
-                            <h3 class="contatos__cont">contatos</h3>
-                        </h:commandLink>
-                    </h:form>
-                    
+                    </h:form>                   
                     <p class="sobre">SOBRE: <br></br> #{usuarioSessionBean.usuario.sobre}</p>
                 </div> 
                 <h:form class="editarPefil">
@@ -109,6 +103,17 @@
                 <custom:postagem p="#{postagem}" />
             </ui:repeat>
         </section>
+    </div>
+
+    <div class="widgets">
+        <div class="widgets__input">
+            <span class="material-icons widgets__searchIcon">earch</span>
+            <input type="text" placeholder="search"/>
+        </div>
+
+        <div class="widgets__widgetContainer">
+            <h2>Comunidades</h2>
+        </div>
     </div>
 </h:body>
 </html>
