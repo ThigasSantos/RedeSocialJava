@@ -27,11 +27,17 @@ public class AdminController implements Serializable {
     @Inject
     PostagemServiceLocal postagemService;
 
+    @Inject
+    PostagemController pc;
+
     private Usuario usuario;
 
     private Comunidade comunidade;
 
+    private Postagem postagemToDelete;
+
     private List<PostagemDTO> postagemDTOList;
+
     private SearchItemDTO item = new SearchItemDTO();
 
     public void info() {
@@ -41,9 +47,10 @@ public class AdminController implements Serializable {
         if (item == null)
             return;
 
-        if (item.getType().equals("usuario"))
+        if (item.getType().equals("usuario")) {
             usuario = usuarioService.getUsuarioByNickname(item.getNome());
-
+            pc.getFeedFromUser(usuario);
+        }
         if(item.getType().equals("comunidade"))
             comunidade = comunidadeService.getFromName(item.getNome());
 
@@ -58,14 +65,6 @@ public class AdminController implements Serializable {
         this.comunidade = comunidade;
     }
 
-    public List<PostagemDTO> getPostagemDTOList() {
-        return postagemDTOList;
-    }
-
-    public void setPostagemDTOList(List<PostagemDTO> postagemDTOList) {
-        this.postagemDTOList = postagemDTOList;
-    }
-
     public void editarUsuario() {
         this.usuario = usuarioService.merge(this.usuario);
         this.usuario = usuarioService.merge(this.usuario);
@@ -75,8 +74,8 @@ public class AdminController implements Serializable {
         usuarioService.remover(usuario);
     }
 
-    public void removerPostagem(PostagemDTO p) {
-        postagemService.remover(p.getPostagem());
+    public void removerPostagem() {
+        postagemService.remover(postagemToDelete);
     }
 
     public SearchItemDTO getItem() {
@@ -93,5 +92,23 @@ public class AdminController implements Serializable {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+
+    public Postagem getPostagemToDelete() {
+        return postagemToDelete;
+    }
+
+    public void setPostagemToDelete(Postagem postagemToDelete) {
+        this.postagemToDelete = postagemToDelete;
+    }
+
+
+    public List<PostagemDTO> getPostagemDTOList() {
+        return postagemDTOList;
+    }
+
+    public void setPostagemDTOList(List<PostagemDTO> postagemDTOList) {
+        this.postagemDTOList = postagemDTOList;
     }
 }

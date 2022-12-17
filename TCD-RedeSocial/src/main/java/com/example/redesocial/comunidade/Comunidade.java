@@ -59,6 +59,8 @@ public class Comunidade implements Serializable {
         this.membros = membros;
     }
 
+
+
     // <editor-fold  defaultstate="collapsed" desc="Getters/Setters" >
 
     public Long getId() {
