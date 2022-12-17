@@ -8,7 +8,10 @@ import com.example.redesocial.client.UsuarioSessionBean;
 import com.example.redesocial.dtos.ComunidadeDTO;
 import com.example.redesocial.usuario.Usuario;
 import java.util.List;
+import java.util.Map;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.security.enterprise.SecurityContext;
@@ -27,9 +30,30 @@ public class ComunidadeController {
     ComunidadeServiceLocal comunidadeService;
     @Inject
     UsuarioSessionBean usuarioSession;
+     
+    @Inject
+    FacesContext facesContext;
     
     public List<ComunidadeDTO> getComunidades() {
         Usuario usuario = usuarioSession.getUsuario();
         return comunidadeService.findComunidades(usuario);
     }
+    
+    public List<ComunidadeDTO> getComunidadeHome(){
+        return comunidadeService.findComunidadesHome();
+    }
+    
+    public String getComunidade(){
+        ExternalContext externalContext = facesContext.getExternalContext();
+        
+        Map<String, String> parameterMap = (Map<String, String>) externalContext.getRequestParameterMap();
+        String param = parameterMap.get("comunidade");
+        return param;
+    }
+    
+    public List<Usuario> exibirMembros(String c){
+        Comunidade com =comunidadeService.localizarPorNome(c);
+        return comunidadeService.pegarMembros(com);
+    }
+    
 }

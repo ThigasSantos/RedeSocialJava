@@ -54,6 +54,14 @@ public class PageController {
 
     }
     
+    public void goToPerfilName(String user) throws IOException{
+        redirect("/perfil/perfil.xhtml?perfil="+user);
+    }
+
+    public void goToComunidade(String comunidade) throws IOException {
+        redirect("/comunidades/comunidade.xhtml?comunidade="+comunidade);
+    }
+    
     public void redirect(String url) throws IOException {
         externalContext.redirect(
                 externalContext.getApplicationContextPath() + url

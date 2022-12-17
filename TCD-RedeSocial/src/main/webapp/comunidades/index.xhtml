@@ -11,7 +11,7 @@
     <meta charset="UTF-8" />
     <meta  name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
-    <link rel="stylesheet" href="../resources/css/comunidades.css" />
+    <link rel="stylesheet" href="../resources/css/home.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet"
@@ -22,11 +22,30 @@
 <h:body class="#{usuarioSessionBean.darkMode ?'dark-mode':''}">
     <custom:sidebar comunidades="true"/>
     <div class="feed">
-        <section>
+        <div class="feed_header">
+            <h2>Minhas Comunidades</h2>
+        </div>
+    <style>
+    .user__com{
+        border-bottom: 1px solid var(--rede-roxo);
+        padding: 2vh;
+    }      
+    .user__com h3{
+        font-size: 2vw;
+
+    }
+    .user__comBotao h3{
+        color: var(--rede-branco);
+    }
+    </style>
+        <section class="user_com">
             <ui:repeat value="#{comunidadeController.comunidades}" var="comunidade">
                 <custom:comunidade c="#{comunidade}" />
             </ui:repeat>
         </section>
+    </div>
+    <div class="widgets">
+        <div class="widgets__search"><custom:search /></div>              
     </div>
 </h:body>
 </html>

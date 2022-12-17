@@ -457,37 +457,63 @@ input[type=checkbox]:disabled::after {
 .widgets{
     flex: 0.3;
 }
-
-.widgets__input {
-    color: var(--rede-branco);
+.widgets__input{
     display: flex;
     align-items: center;
-    background-color: var(--rede-void);
-    padding: 10px;
+    background-color: var(--rede-cinza);
+    padding: 1vh;
     border-radius: 20px;
-    margin-top: 10px;
+    margin-top: 2vh;
+    margin-left: 1vw;
 }
 
 .widgets__input input{
-    color: var(--rede-branco);
     border: none;
-    background-color: var(--rede-void);
+    background-color: var(--rede-cinza);
     outline: none;
+    color: var(--rede-branco);
 }
 
 .widgets__searchIcon{
-    color: var(--rede-cinza);
+    color: var(--rede-branco);
 }
 
 .widgets__widgetContainer{
     margin-top: 15px;
     margin-left: 20px;
     padding: 20px;
-    background-color: var(--rede-void);
+    background-color: var(--rede-cinza);
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .widgets__widgetContainer h2{
-    font-size: 18px;
+    font-size: 2vw;
     font-weight: 800;
+    align-self: center;
+    justify-self: center;
+}
+
+.user__com{
+    border-bottom: 1px solid var(--rede-roxo);
+    padding: 2vh;
+}
+
+.user__comBotao h3{
+    color: var(--rede-void2);
+}
+
+.user__comBotao:link{
+    text-decoration: none;
+    color: var(--rede-void2);
+}
+
+.user__comBotao:link:hover{
+    text-decoration: underline var(--rede-void2);
+}
+
+.nome__comunidade{
+    font-size: 2vw;
+    color: var(--rede-branco);
 }

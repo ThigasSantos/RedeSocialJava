@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:custom="http://java.sun.com/jsf/composite/components"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+>
+<h:head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <h:outputStylesheet library="css" name="home.css" />
+</h:head>
+
+<h:body class="#{usuarioSessionBean.darkMode ?'dark-mode':''}">
+
+    <custom:sidebar home="true" />
+ <div class="feed">
+
+        <section>             
+            <div class="perfil__head">
+                <div class="banner"><img src="../../resources/img/gallery.png" alt="alt"/></div>
+                
+            <div class="bio">
+                <div class="avatar"> <img src="https://wp-content.bluebus.com.br/wp-content/uploads/2017/03/31142426/twitter-novo-avatar-padrao-2017-bluebus.png" alt="alt"/></div>
+                <div class="informacoes">
+                    <h2 class="nickname">#{cc.attrs.c.nickname}</h2>
+                    <h3 class="user">user: #{cc.attrs.c.email}</h3> 
+                    <h3 class="data">Nascimento: #{cc.attrs.c.dataNascimento}</h3>
+                    <h:form class="seg">
+                        <h:commandLink class="seguindo__botao" action="#{pageController.goToSeguindo()}">
+                            <h3 class="seguindo">#{cc.attrs.c.seguindo.size()} seguindo</h3>
+                        </h:commandLink> 
+                        <h:commandLink class="seguidores__botao" action="#{pageController.goToSeguidoPor}">
+                            <h3 class="seguidores">#{cc.attrs.c.seguidoPor.size()} seguidores</h3>
+                        </h:commandLink>
+                    </h:form>                   
+                    <p class="sobre">SOBRE: <br></br> #{cc.attrs.c.sobre}</p>
+                </div> 
+            </section>
+        </div>
+    </h:body>
+</html>

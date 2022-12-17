@@ -44,7 +44,14 @@ public class ComunidadeService implements ComunidadeServiceLocal {
     @Override
     public List<ComunidadeDTO> findComunidades(Usuario u) {
         // Recuperação de todas as entidades
-        return em.createQuery("SELECT new com.example.redesocial.dtos.ComunidadeDTO(c.nome, count(m.id)) from Comunidade c LEFT JOIN c.membros m GROUP BY c.nome ", ComunidadeDTO.class).getResultList();
+        String consulta = "SELECT new com.example.redesocial.dtos.ComunidadeDTO(c.nome, COUNT(m.id)) FROM Usuario u "
+                + "LEFT JOIN u.comunidades c "
+                + "LEFT JOIN c.membros m WHERE u.id = :IdMembro "
+                + "GROUP BY c.nome";
+            
+        return em.createQuery(consulta, ComunidadeDTO.class)
+                .setParameter("IdMembro", u.getId())
+                .getResultList();
     }
 
     @Override
@@ -71,9 +78,9 @@ public class ComunidadeService implements ComunidadeServiceLocal {
 
     @Override
     public List<Object[]> findMembros(Comunidade comunidade) {
-        String consulta = "SELECT c.membros FROM Comunidade c WHERE c.id = :IdComunidade";
+        String consulta = "SELECT c.membros FROM Comunidade c WHERE c.nome = :IdComunidade";
         return em.createQuery(consulta, Object[].class)
-                .setParameter("IdComunidade", comunidade.getId())
+                .setParameter("IdComunidade", comunidade.getNome())
                 .getResultList();
     }
 
@@ -94,5 +101,25 @@ public class ComunidadeService implements ComunidadeServiceLocal {
         return em.createQuery(consulta, SearchItemDTO.class)
                 .setParameter("nome", '%' + name + '%')
                 .getResultList();
+    }
+    
+    @Override
+    public List<ComunidadeDTO> findComunidadesHome(){
+        return em.createQuery("SELECT new com.example.redesocial.dtos.ComunidadeDTO(c.nome, COUNT(m.id)) FROM Comunidade c LEFT JOIN c.membros m GROUP BY c.nome").setMaxResults(5).getResultList();
+    }
+   
+    
+    public Comunidade localizarPorNome(String nomeComunidade) {
+        String consulta = "SELECT c FROM Comunidade c "
+                + "WHERE c.nome = :nomeComunidade";
+            
+        return em.createQuery(consulta, Comunidade.class)
+                .setParameter("nomeComunidade", nomeComunidade)
+                .getSingleResult();
+    }
+
+    @Override
+    public List<Usuario> pegarMembros(Comunidade c){
+        return em.createQuery("SELECT c.membros FROM Comunidade c WHERE c.nome =:comunidade").setParameter("comunidade", c.getNome()).getResultList();
     }
 }

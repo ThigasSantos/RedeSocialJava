@@ -4,6 +4,8 @@
  */
 package com.example.redesocial.dtos;
 
+import java.util.List;
+
 /**
  *
  * @author felipe
@@ -13,6 +15,8 @@ public class ComunidadeDTO {
     private String nome;
 
     private Long qtdMembros;
+    
+    private List<PostagemDTO> postagens;
 
     //<editor-fold defaultstate="collapsed" desc="Constructors">
     public ComunidadeDTO() {
@@ -21,6 +25,12 @@ public class ComunidadeDTO {
     public ComunidadeDTO(String nome, Long qtdMembros) {
         this.nome = nome;
         this.qtdMembros = qtdMembros;
+    }
+    
+    public ComunidadeDTO(String nome, Long qtdMembros, List<PostagemDTO> postagens) {
+        this.nome = nome;
+        this.qtdMembros = qtdMembros;
+        this.postagens = postagens;
     }
 //</editor-fold>
     
@@ -39,6 +49,14 @@ public class ComunidadeDTO {
 
     public void setQtdMembros(Long qtdMembros) {
         this.qtdMembros = qtdMembros;
+    }
+    
+    public List<PostagemDTO> getPostagens() {
+        return postagens;
+    }
+
+    public void setPostagens(List<PostagemDTO> postagens) {
+        this.postagens = postagens;
     }
 //</editor-fold>
     
