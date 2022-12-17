@@ -42,12 +42,6 @@
                           converter="searchItemConverter"
          >
             <p:column styleClass="item-sel" exportValue="" >
-               <j:if test="#{item.type == 'usuario'}">
-                  <h:link includeViewParams="true" outcome="#{item.type}" value="#{item.nome}" />
-               </j:if>
-               <j:if test="#{item.type == 'comunidade'}">
-                  <h:commandLink class="user__comBotao" action="#{pageController.goToComunidade(item.nome)}" />
-               </j:if>
             </p:column>
          </p:autoComplete>
       </div>
