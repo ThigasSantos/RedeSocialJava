@@ -499,3 +499,21 @@ input[type=checkbox]:disabled::after {
     border-bottom: 1px solid var(--rede-roxo);
     padding: 2vh;
 }
+
+.user__comBotao h3{
+    color: var(--rede-void2);
+}
+
+.user__comBotao:link{
+    text-decoration: none;
+    color: var(--rede-void2);
+}
+
+.user__comBotao:link:hover{
+    text-decoration: underline var(--rede-void2);
+}
+
+.nome__comunidade{
+    font-size: 2vw;
+    color: var(--rede-branco);
+}

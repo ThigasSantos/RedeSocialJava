@@ -51,4 +51,9 @@ public class ComunidadeController {
         return param;
     }
     
+    public List<Usuario> exibirMembros(String c){
+        Comunidade com =comunidadeService.localizarPorNome(c);
+        return comunidadeService.pegarMembros(com);
+    }
+    
 }

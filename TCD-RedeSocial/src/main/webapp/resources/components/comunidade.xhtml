@@ -11,40 +11,11 @@
         <c:interface>
             <c:attribute name="c" type="com.example.redesocial.dtos.ComunidadeDTO" />
             <c:implementation>
-
-                <style>
-                    .badge {
-                        padding-left: 9px;
-                        padding-right: 9px;
-                        -webkit-border-radius: 9px;
-                        -moz-border-radius: 9px;
-                        border-radius: 9px;
-                    }
-                    .label-warning[href], .badge-warning[href] {
-                        background-color: #c67605;
-                    }
-
-                </style>
-                <div class="comunidade">
-
-                    <div class="comunidade__body">
-                        <div class="post__header">
-                            <div class="post__headerText">
-                                <h3>
-                                    <h:form>
-                                        <h:commandLink action="#{pageController.goToComunidade(cc.attrs.c.nome)}">
-                                            #{cc.attrs.c.nome}
-                                        </h:commandLink>
-                                        #{cc.attrs.c.qtdMembros}
-                                    </h:form>
-                                </h3>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-
+                    <h:form class="user__com">
+                        <h:commandLink class="user__comBotao" action="#{pageController.goToComunidade(cc.attrs.c.nome)}">
+                            <h3>#{cc.attrs.c.nome} -- #{cc.attrs.c.qtdMembros}</h3>
+                        </h:commandLink>
+                    </h:form>
             </c:implementation>
         </c:interface>
     </f:view>

@@ -39,4 +39,6 @@ public interface ComunidadeServiceLocal {
     List<SearchItemDTO> search(String name);
    
     List<ComunidadeDTO> findComunidadesHome();
+    
+    List<Usuario> pegarMembros(Comunidade c);
 }

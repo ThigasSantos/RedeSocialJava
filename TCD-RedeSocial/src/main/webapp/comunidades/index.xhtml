@@ -32,10 +32,13 @@
     }      
     .user__com h3{
         font-size: 2vw;
-    }
 
+    }
+    .user__comBotao h3{
+        color: var(--rede-branco);
+    }
     </style>
-        <section>
+        <section class="user_com">
             <ui:repeat value="#{comunidadeController.comunidades}" var="comunidade">
                 <custom:comunidade c="#{comunidade}" />
             </ui:repeat>
