@@ -34,8 +34,12 @@ public interface PostagemServiceLocal {
     List<PostagemDTO> getPostagemFeed();
 
     List<PostagemDTO> getPostagemFeed(Usuario u);
-    
-     public List<PostagemDTO> getPostagemPerfil(Usuario u);
+
+    List<PostagemDTO> getPostagemComunidade(Comunidade comunidade);
+
+    public List<PostagemDTO> getPostagemPerfil(Usuario u);
+
+    void atualizarCurtidas(Long id, Usuario u);
 
     List<PostagemDTO> getPostagensComunidade(Comunidade c);
 }
