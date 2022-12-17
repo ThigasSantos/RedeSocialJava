@@ -53,22 +53,12 @@
                   <h2>Posts de #{adminController.item.type} #{adminController.item.nome}</h2>
                </div>
                <div>
-                  <p:selectOneRadio id="customRadio2" value="#{radioView.color2}" layout="custom">
-                     <f:selectItem itemLabel="Red" itemValue="Red"/>
-                     <f:selectItem itemLabel="Green" itemValue="Green"/>
-                     <f:selectItem itemLabel="Blue" itemValue="Blue"/>
-                  </p:selectOneRadio>
-
-                     <ui:repeat value="#{adminController.postagemDTOList}" var="postagem" >
+                     <ui:repeat value="#{postagemController.getFeedFromUser(adminController.usuario)}" var="postagem" >
                         <p:panelGrid columns="2">
-                           <p:column>
                               <p:commandButton value="deletar">
                                  <p:ajax listener="#{adminController.removerPostagem}" update="@form" />
                               </p:commandButton>
-                           </p:column>
-                           <p:column>
                               <custom:postagem p="#{postagem}" />
-                           </p:column>
                         </p:panelGrid>
                      </ui:repeat>
                </div>

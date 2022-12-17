@@ -6,14 +6,26 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:custom="http://java.sun.com/jsf/composite/components"
 >
 <f:view>
    <f:metadata>
       <f:viewParam name="nickname" value="#{usuarioController.nickname}" />
    </f:metadata>
 </f:view>
+
+<h:head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Home</title>
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+   <h:outputStylesheet library="css" name="home.css" />
+</h:head>
    <h:body>
       <c:if test="#{usuarioController.nickname != null }">
+         <custom:sidebar />
 
          <div class="perfil__head">
             <div class="banner"><img src="../resources/img/gallery.png" alt="alt"/></div>

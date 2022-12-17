@@ -6,11 +6,10 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://java.sun.com/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 >
 <f:view>
-   <f:metadata>
-      <f:viewParam name="nickname" value="#{usuarioController.nickname}" />
-   </f:metadata>
    <c:interface>
       <c:attribute name="p" type="com.example.redesocial.dtos.PostagemDTO" />
       <c:implementation>
@@ -36,43 +35,64 @@
             .badge-warning[href] {
                background-color: #c67605;
             }
+            .botaoLink:link{
+               text-decoration: none;
+               color:var(--rede-branco)
+            }
 
          </style>
          <div class="post">
 
             <div class="post__avatar">
-               <img src="https://github.com/andreviniciusmb.png" alt="alt"/>
+               <img src="https://wp-content.bluebus.com.br/wp-content/uploads/2017/03/31142426/twitter-novo-avatar-padrao-2017-bluebus.png" alt="alt"/>
             </div>
 
             <div class="post__body">
                <div class="post__header">
-                     <h3>
-                        <h:link includeViewParams="true"  value="#{cc.attrs.p.username}" outcome="usuario" >
-                          <f:param name="nickname" value="#{cc.attrs.p.username}"/>
-                        </h:link>
-                        <span class="material-symbols-outlined post__badge">workspace_premium</span><span class="post__headerSpecial">@#{cc.attrs.p.username} - 13s</span>
-                     </h3>
+                  <h3>
+                     <h:link includeViewParams="true"  value="#{cc.attrs.p.username}" outcome="usuario" >
+                        <f:param name="nickname" value="#{cc.attrs.p.username}"/>
+                     </h:link>
+                  </h3>
                   <div class="post__headerDescription">
                      <p>#{cc.attrs.p.postagem.conteudo}</p>
                   </div>
                </div>
-                  <h:graphicImage
-                          rendered="#{cc.attrs.p.postagem.midias.size() != 0 }"
-                          url="#{cc.attrs.p.postagem.midias.get(0).link}?random=#{cc.attrs.p.postagem.id}"
-                  />
+               <h:graphicImage
+                       rendered="#{cc.attrs.p.postagem.midias.size() != 0 }"
+                       url="#{cc.attrs.p.postagem.midias.get(0).link}?random=#{cc.attrs.p.postagem.id}"
+               />
 
                <div class="post__footer">
-                  <div>
-                     <i class="material-symbols-outlined">rate_review</i>
-                     <span class="badge badge-warning lblCartCount">#{cc.attrs.p.qtdRespostas}</span>
-                  </div>
-                  <div>
-                     <i class="material-icons">repeat</i>
-                  </div>
-                  <div>
-                     <i class="material-icons">favorite_border </i>
-                     <span class="badge badge-warning lblCartCount">#{cc.attrs.p.qtdCurtidas}</span>
-                  </div>
+
+                  <h:form>
+                     <h:commandLink class="botaoLink" onclick="PF('resposta').show();">
+                        <p:ajax />
+                        <i class="material-symbols-outlined">rate_review</i>
+                        <span class="badge badge-warning lblCartCount">#{cc.attrs.p.qtdRespostas}</span>
+                     </h:commandLink>
+
+                     <p:dialog widgetVar="resposta" minHeight="400" >
+                        <h:inputText value="#{postagemController.conteudo}" a:placeholder="Responda esse otário!!" />
+                        <h:commandButton action="#{postagemController.responder(cc.attrs.p.postagem.id)}" value="Publicar" />
+                     </p:dialog>
+
+                  </h:form>
+
+                  <h:form>
+                     <h:commandLink class="botaoLink">
+                        <i class="material-icons">repeat</i>
+                     </h:commandLink>
+                  </h:form>
+                  <h:form>
+                     <h:commandLink class="botaoLink"
+                                    disabled="#{not usuarioSessionBean.authenticated}"
+                                    action="#{postagemController.atualizarCurtidas(cc.attrs.p)}">
+                        <p:ajax update="@form" />
+                        <i class="material-icons">favorite_border </i>
+                        <span class="badge badge-warning lblCartCount">#{cc.attrs.p.qtdCurtidas}</span>
+                     </h:commandLink>
+                  </h:form>
 
                </div>
             </div>
