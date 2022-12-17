@@ -4,6 +4,7 @@
  */
 package com.example.redesocial.postagem;
 
+import com.example.redesocial.comunidade.Comunidade;
 import com.example.redesocial.dtos.PostagemDTO;
 import com.example.redesocial.usuario.Usuario;
 
@@ -35,4 +36,6 @@ public interface PostagemServiceLocal {
     List<PostagemDTO> getPostagemFeed(Usuario u);
     
      public List<PostagemDTO> getPostagemPerfil(Usuario u);
+
+    List<PostagemDTO> getPostagensComunidade(Comunidade c);
 }

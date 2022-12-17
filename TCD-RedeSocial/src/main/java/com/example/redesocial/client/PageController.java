@@ -44,6 +44,15 @@ public class PageController {
     public void goToSeguindo() throws IOException{
         redirect("/app/perfil/seguindo");
     }
+
+    public void goToUsuario() throws IOException{
+        redirect("/usuario");
+    }
+
+    public String getUsuarioUrl(){
+        return "usuario";
+
+    }
     
     public void redirect(String url) throws IOException {
         externalContext.redirect(

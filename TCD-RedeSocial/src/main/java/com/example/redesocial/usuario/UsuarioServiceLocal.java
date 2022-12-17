@@ -6,13 +6,18 @@ import com.example.redesocial.usuario.credencial.Credencial;
 
 import javax.ejb.Local;
 import javax.persistence.Tuple;
+import java.time.LocalDate;
 import java.util.List;
 
 @Local
 public interface UsuarioServiceLocal {
 
     void persist(Usuario usuario);
-    
+
+    void remover(Usuario usuario);
+
+    Usuario merge(Usuario usuario);
+
     Usuario buscarUsuario(Long id);
 
     List<Object[]> findPostsSeguidores(Usuario usuario);
@@ -28,6 +33,8 @@ public interface UsuarioServiceLocal {
     List<Usuario> getSeguindo(Usuario u);
 
     List<Usuario> getUsuariosEmComum(Usuario u);
+
+    Usuario getUsuarioByNickname(String nickname);
 
     List<SearchItemDTO> search(String like);
 

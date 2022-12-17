@@ -8,6 +8,7 @@ import com.example.redesocial.usuario.credencial.CredencialServiceLocal;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 
@@ -17,21 +18,35 @@ public class UsuarioService implements Serializable, UsuarioServiceLocal{
     @PersistenceContext
     private EntityManager em;
 
+
     @Inject
     CredencialServiceLocal credencialService;
+
 
     @Override
     public void persist(Usuario usuario) {
         Credencial cr = usuario.getCredencial();
-
-        usuario.setCredencial(
-                credencialService.criarCredencial(cr)
-        );
-
+        usuario.setCredencial(credencialService.criarCredencial(cr));
         em.persist(usuario);
     }
 
-     @Override
+    @Override
+    public void remover(Usuario usuario) {
+
+        em.remove(usuario);
+
+    }
+
+    @Override
+    public Usuario merge(Usuario usuario) {
+        Usuario updated = em.merge(usuario);
+        updated.setDataNascimento(usuario.getDataNascimento());
+        updated.setNickname(usuario.getNickname());
+        updated.setSobre(usuario.getSobre());
+        return updated;
+    }
+
+    @Override
     public Usuario buscarUsuario(Long id) {
         Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.id = :id").setParameter("id", id);
         return (Usuario) q.getSingleResult();
@@ -107,16 +122,22 @@ public class UsuarioService implements Serializable, UsuarioServiceLocal{
 
     @Override
     public List<Usuario> getUsuariosEmComum(Usuario u) {
-        String consulta = "";
-        return em.createQuery(
-                "SELECT u.nickname, COUNT(sp.id) FROM Usuario u LEFT JOIN u.seguidoPor sp WHERE u <> :usuario and (sp IN (SELECT uss FROM Usuario us LEFT JOIN us.seguindo uss WHERE us = :usuario)) ORDER BY u.nickname",
-                Usuario.class)
+        String consulta = "SELECT u.nickname, COUNT(sp.id) FROM Usuario u LEFT JOIN u.seguidoPor sp WHERE u <> :usuario and (sp IN (SELECT uss FROM Usuario us LEFT JOIN us.seguindo uss WHERE us = :usuario)) ORDER BY u.nickname";
+        return em.createQuery(consulta, Usuario.class)
                 .setParameter("usuario", u)
                 .getResultList();
     }
 
     @Override
+    public Usuario getUsuarioByNickname(String nickname) {
+        String consulta = "SELECT u FROM Usuario u where u.nickname = :nickname";
+        return em.createQuery(consulta, Usuario.class)
+                .setParameter("nickname", nickname).getSingleResult();
+    }
+
+    @Override
     public List<SearchItemDTO> search(String name) {
+        em.flush();
         String consulta = "SELECT new com.example.redesocial.dtos.SearchItemDTO(u.nickname, 'usuario') FROM Usuario u WHERE LOWER(u.nickname) LIKE :nickname";
         return em.createQuery(consulta, SearchItemDTO.class)
                 .setParameter("nickname", '%' + name + '%')

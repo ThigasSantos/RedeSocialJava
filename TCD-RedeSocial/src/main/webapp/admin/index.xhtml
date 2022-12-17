@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:custom="http://java.sun.com/jsf/composite/components"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+>
+<h:head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Home</title>
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+   <h:outputStylesheet library="css" name="home.css" />
+</h:head>
+
+<h:body class="#{usuarioSessionBean.darkMode ?'dark-mode':''}">
+      <p:panelGrid columns="2" layout="grid" style="grid-template-columns: 1fr 1fr">
+         <p:column>
+            <h:form id="search-form">
+               <custom:search value="#{adminController.item}">
+                  <f:ajax event="itemSelect" listener="#{adminController.info}" render="@all" />
+               </custom:search>
+
+            </h:form>
+            <h:form rendered="#{adminController.usuario != null}">
+               <h:panelGrid columns="3" cellpadding="3" style="margin: 0 auto;">
+                  <p:outputLabel for="username" value="Username"/>
+                  <p:inputText class="inputLogin__user" value="#{adminController.usuario.nickname}" id="username"/>
+                  <p:message for="username"/>
+
+                  <p:outputLabel value="Sobre"/>
+                  <p:inputText class="inputLogin__pass" value="#{adminController.usuario.sobre}" id="sobre" />
+                  <p:message for="sobre"/>
+               </h:panelGrid>
+               <p:commandButton value="Editar">
+                  <p:ajax listener="#{adminController.editarUsuario}" />
+               </p:commandButton>
+               <p:commandButton value="Deletar">
+                  <p:ajax listener="#{adminController.removerUsuario}" update="@all" />
+               </p:commandButton>
+            </h:form>
+
+         </p:column>
+         <p:column>
+            <h:form rendered="#{adminController.usuario != null}" >
+               <div class="feed_header">
+                  <h2>Posts de #{adminController.item.type} #{adminController.item.nome}</h2>
+               </div>
+               <div>
+                     <ui:repeat value="#{postagemController.getFeedFromUser(adminController.usuario)}" var="postagem" >
+                        <p:panelGrid columns="2">
+                           <p:column>
+                              <p:commandButton value="deletar">
+                                 <p:ajax listener="#{adminController.removerPostagem(postagem)}" update="@form" />
+                              </p:commandButton>
+                           </p:column>
+                           <p:column>
+                              <custom:postagem p="#{postagem}" />
+                           </p:column>
+                        </p:panelGrid>
+                     </ui:repeat>
+               </div>
+            </h:form>
+         </p:column>
+      </p:panelGrid>
+</h:body>
+</html>

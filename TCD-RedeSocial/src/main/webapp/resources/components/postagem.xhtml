@@ -8,6 +8,9 @@
       xmlns:c="http://java.sun.com/jsf/composite"
 >
 <f:view>
+   <f:metadata>
+      <f:viewParam name="nickname" value="#{usuarioController.nickname}" />
+   </f:metadata>
    <c:interface>
       <c:attribute name="p" type="com.example.redesocial.dtos.PostagemDTO" />
       <c:implementation>
@@ -43,10 +46,12 @@
 
             <div class="post__body">
                <div class="post__header">
-                  <div class="post__headerText">
-                     <h3>#{cc.attrs.p.username}<span class="material-symbols-outlined post__badge">workspace_premium</span><span class="post__headerSpecial">@#{cc.attrs.p.username} - 13s</span>
+                     <h3>
+                        <h:link includeViewParams="true"  value="#{cc.attrs.p.username}" outcome="usuario" >
+                          <f:param name="nickname" value="#{cc.attrs.p.username}"/>
+                        </h:link>
+                        <span class="material-symbols-outlined post__badge">workspace_premium</span><span class="post__headerSpecial">@#{cc.attrs.p.username} - 13s</span>
                      </h3>
-                  </div>
                   <div class="post__headerDescription">
                      <p>#{cc.attrs.p.postagem.conteudo}</p>
                   </div>
@@ -56,7 +61,6 @@
                           url="#{cc.attrs.p.postagem.midias.get(0).link}?random=#{cc.attrs.p.postagem.id}"
                   />
 
-<!--               <img src="" alt="alt"/>-->
                <div class="post__footer">
                   <div>
                      <i class="material-symbols-outlined">rate_review</i>
@@ -77,26 +81,3 @@
    </c:interface>
 </f:view>
 </html>
-
-<!--
-#lblCartCount {
-    font-size: 12px;
-    background: #8A2BE2;
-    color: #fff;
-    padding: 0 5px;
-    vertical-align: top;
-    margin-left: -10px;
-}
-.badge {
-  padding-left: 9px;
-  padding-right: 9px;
-  -webkit-border-radius: 9px;
-  -moz-border-radius: 9px;
-  border-radius: 9px;
-}
-
-.label-warning[href],
-.badge-warning[href] {
-  background-color: #c67605;
-}
--->

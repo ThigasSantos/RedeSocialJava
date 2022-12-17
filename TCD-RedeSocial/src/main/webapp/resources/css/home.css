@@ -458,7 +458,8 @@ input[type=checkbox]:disabled::after {
     flex: 0.3;
 }
 
-.widgets__input{
+.widgets__input {
+    color: var(--rede-branco);
     display: flex;
     align-items: center;
     background-color: var(--rede-void);
@@ -468,6 +469,7 @@ input[type=checkbox]:disabled::after {
 }
 
 .widgets__input input{
+    color: var(--rede-branco);
     border: none;
     background-color: var(--rede-void);
     outline: none;

@@ -1,8 +1,13 @@
 package com.example.redesocial.dtos;
 
-public class SearchItemDTO {
+import java.io.Serializable;
+
+public class SearchItemDTO implements Serializable, Comparable<SearchItemDTO> {
     private String nome;
     private String type;
+
+    public SearchItemDTO() {
+    }
 
     public SearchItemDTO(String nome, String type) {
         this.nome = nome;
@@ -23,5 +28,10 @@ public class SearchItemDTO {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public int compareTo(SearchItemDTO o) {
+        return 0;
     }
 }

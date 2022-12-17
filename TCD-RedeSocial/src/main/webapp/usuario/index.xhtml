@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+>
+<f:view>
+   <f:metadata>
+      <f:viewParam name="nickname" value="#{usuarioController.nickname}" />
+   </f:metadata>
+</f:view>
+   <h:body>
+      <c:if test="#{usuarioController.nickname != null }">
+
+         <div class="perfil__head">
+            <div class="banner"><img src="../resources/img/gallery.png" alt="alt"/></div>
+
+         <div class="bio">
+            <div class="avatar"> <img src="https://wp-content.bluebus.com.br/wp-content/uploads/2017/03/31142426/twitter-novo-avatar-padrao-2017-bluebus.png" alt="alt"/></div>
+            <div class="informacoes">
+               <h2 class="nickname">#{usuarioController.usuario.nickname}</h2>
+               <h3 class="user">user: #{usuarioController.usuario.credencial.email}</h3>
+               <h3 class="data">Nascimento: #{usuarioController.usuario.dataNascimento}</h3>
+<!--               <h:form class="seg">-->
+<!--                  <h:commandLink class="seguindo__botao" action="#{pageController.goToSeguindo()}">-->
+<!--                     <h3 class="seguindo">#{perfilController.seguindo.size()} seguindo</h3>-->
+<!--                  </h:commandLink>-->
+<!--                  <h:commandLink class="seguidores__botao" action="#{pageController.goToSeguidoPor}">-->
+<!--                     <h3 class="seguidores">#{perfilController.seguidoPor.size()} seguidores</h3>-->
+<!--                  </h:commandLink>-->
+<!--               </h:form>-->
+               <p class="sobre">SOBRE: <br></br> #{usuarioController.usuario.sobre}</p>
+            </div>
+<!--            <h:form class="editarPefil">-->
+<!--               <h:commandLink class="editarPerfil__botao" action="#{pageController.goToEditarPerfil()}">-->
+<!--                  <h2>Editar Perfil</h2>-->
+<!--               </h:commandLink>-->
+<!--            </h:form>-->
+         </div>
+      </div>
+      </c:if>
+   </h:body>
+</html>
