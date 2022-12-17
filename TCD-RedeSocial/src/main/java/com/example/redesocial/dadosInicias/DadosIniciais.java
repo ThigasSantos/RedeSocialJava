@@ -99,7 +99,7 @@ public class DadosIniciais {
         juninho.setTelefones(List.of(juninhoTel));
         
         
-        Credencial marcosCR = new Credencial(TipoPerfil.USUARIO_PADRAO,"marcosdapizzaria@gmail.com","1452");
+        Credencial marcosCR = new Credencial(TipoPerfil.USUARIO_PADRAO,"marcosdapizzaria@gmail.com","senha1452");
         Usuario marcos = new Usuario(
                 "MarquinhoPizzas",
                 "Pizzaria mais gostosa da cidade",
