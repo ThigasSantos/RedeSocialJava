@@ -11,7 +11,6 @@ public class PostagemDTO {
     private Long qtdCurtidas;
     private Long qtdRespostas;
     private String username;
-
     private String dataPostagem;
 
     public PostagemDTO() {

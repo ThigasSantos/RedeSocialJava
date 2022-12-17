@@ -56,7 +56,7 @@ public class Usuario implements Serializable {
     @JsonSerialize(using = UsuarioListSerializer.class)
     private List<Usuario> seguidoPor;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "usuario_id")
     @JsonSerialize(using = PostagemListSerializer.class)
     private List<Postagem> postagens;

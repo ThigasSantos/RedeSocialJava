@@ -50,6 +50,7 @@ public class PostagemService implements PostagemServiceLocal {
     public void update(Postagem postagem) {
         // Atualização de entidade preexistente
         em.merge(postagem);
+        em.flush();
     }
     
     // TODO envio da entidade para a lixeira
@@ -94,7 +95,7 @@ public class PostagemService implements PostagemServiceLocal {
     }
 
     @Override
-    public List<PostagemDTO> getPostagemComunidade(Comunidade comunidade) {      
+    public List<PostagemDTO> getPostagemComunidade(Comunidade comunidade) {
         String consulta = "SELECT new com.example.redesocial.dtos.PostagemDTO(p, p.usuariosCurtiram.size, p.respostas.size, u.nickname, p.dataPostagem) "
                 + "FROM Postagem p "
                 + "LEFT JOIN p.usuario u "
@@ -102,18 +103,20 @@ public class PostagemService implements PostagemServiceLocal {
                 + "WHERE c = :comunidade "
                 + "GROUP BY p, u.nickname "
                 + "ORDER BY p.usuariosCurtiram.size desc, p.respostas.size desc";
-        
+
         return em.createQuery(consulta, PostagemDTO.class)
                 .setParameter("comunidade", comunidade)
                 .getResultList();
     }
-    
+
     @Override
     public List<PostagemDTO> getPostagemPerfil(Usuario u) {
-        String consulta = "SELECT new com.example.redesocial.dtos.PostagemDTO(p, p.usuariosCurtiram.size, p.respostas.size, u.nickname, p.dataPostagem) FROM Postagem p LEFT JOIN p.usuario u where u = :usuario group by p, u.nickname order by p.usuariosCurtiram.size desc, p.respostas.size desc";
-        return em.createQuery(consulta, PostagemDTO.class).setParameter("usuario", u).getResultList();
+        String consulta = "SELECT new com.example.redesocial.dtos.PostagemDTO(p, p.usuariosCurtiram.size, p.respostas.size, u.nickname, p.dataPostagem) FROM Postagem p LEFT JOIN p.usuario u where u = :usuario group by p, u.nickname order by p.dataPostagem desc";
+        return em.createQuery(consulta, PostagemDTO.class)
+                .setParameter("usuario", u)
+                .getResultList();
     }
-    
+
     @Override
     public void atualizarCurtidas(Long id, Usuario u){
         Postagem p =localizarPorId(id);
@@ -125,6 +128,15 @@ public class PostagemService implements PostagemServiceLocal {
             p.getUsuariosCurtiram().add(u);
         }
         em.flush();
-    }   
-    
+    }
+
+    @Override
+    public List<PostagemDTO> getPostagensComunidade(Comunidade c) {
+        String consulta = "SELECT new com.example.redesocial.dtos.PostagemDTO(p, p.usuariosCurtiram.size, p.respostas.size, u.nickname, p.dataPostagem) FROM Postagem p LEFT JOIN p.usuario u LEFT JOIN p.comunidade c where c = :comunidade group by p, u.nickname order by p.dataPostagem desc";
+        return em.createQuery(consulta, PostagemDTO.class)
+                .setParameter("comunidade", c)
+                .getResultList();
+    }
+
+
 }

@@ -17,7 +17,6 @@ import javax.ejb.Local;
  */
 @Local
 public interface PostagemServiceLocal {
-
     void salvar(Postagem postagem);
 
     Postagem localizarPorId(long id);
@@ -36,9 +35,11 @@ public interface PostagemServiceLocal {
 
     List<PostagemDTO> getPostagemFeed(Usuario u);
 
-    List<PostagemDTO> getPostagemPerfil(Usuario u);
-     
+    List<PostagemDTO> getPostagemComunidade(Comunidade comunidade);
+
+    public List<PostagemDTO> getPostagemPerfil(Usuario u);
+
     void atualizarCurtidas(Long id, Usuario u);
 
-    List<PostagemDTO> getPostagemComunidade(Comunidade comunidade);
+    List<PostagemDTO> getPostagensComunidade(Comunidade c);
 }

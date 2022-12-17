@@ -6,8 +6,14 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://java.sun.com/jsf/composite"
+      xmlns:j="http://java.sun.com/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 >
    <c:interface>
+       <c:attribute name="value" type="com.example.redesocial.dtos.SearchItemDTO" required="true"/>
+        <c:attribute name="action" type="javax.el.MethodExpression" />
+       <c:clientBehavior name="itemSelect" targets="acSimple" event="itemSelect" />
+
       <c:implementation>
           <style type="text/css">
               .item-sel {
@@ -15,24 +21,27 @@
                   justify-content: space-between;
               }
           </style>
+            <div>
+                 <span class="material-icons widgets__searchIcon">serch</span>
 
-         <h:form class="widgets__input">
-            <span class="material-icons widgets__searchIcon">search</span>
-            <p:autoComplete id="acSimple"
-                            value="#{searchController.item}"
-                            completeMethod="#{searchController.search}"
-                            scrollHeight="250"
-                            moreText="Mais resultados"
-                            var="item"
-                            emptyMessage="Nenhum resultado :("
-                            inputStyle="width: 400px"
-            >
-              <p:column styleClass="item-sel">
-                  <span>#{item.nome}</span>
-                  <span style="color: #8A2BE2">#{item.type}</span>
-              </p:column>
-            </p:autoComplete>
-         </h:form>
+                <p:outputLabel value="Buscar" for="acSimple"/>
+                <p:autoComplete  id="acSimple"
+                                completeMethod="#{searchController.search}"
+                                 value="#{cc.attrs.value}"
+                                 itemValue="#{item}"
+                                 itemLabel="#{item.nome}"
+                                scrollHeight="250"
+                                var="item"
+                                inputStyle="width: 400px"
+                                emptyMessage="Nenhum resultado :("
+                                 converter="searchItemConverter"
+                >
+                    <p:column styleClass="item-sel">
+                        <span>#{item.nome}</span>
+                        <span style="color: #8A2BE2">#{item.type}</span>
+                    </p:column>
+                </p:autoComplete>
+            </div>
       </c:implementation>
    </c:interface>
 </html>

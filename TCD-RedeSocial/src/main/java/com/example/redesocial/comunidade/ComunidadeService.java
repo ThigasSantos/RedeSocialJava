@@ -85,6 +85,17 @@ public class ComunidadeService implements ComunidadeServiceLocal {
     }
 
     @Override
+    public Comunidade getFromName(String nome) {
+        String consulta = "SELECT c from Comunidade c WHERE c.nome = :nome";
+        try {
+            return em.createQuery(consulta, Comunidade.class).getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
+    @Override
     public List<SearchItemDTO> search(String name) {
         String consulta = "SELECT new com.example.redesocial.dtos.SearchItemDTO(c.nome, 'comunidade') FROM Comunidade c WHERE LOWER(c.nome) LIKE :nome";
         return em.createQuery(consulta, SearchItemDTO.class)

@@ -43,7 +43,9 @@
         </section>
     </div>
     <div class="widgets">
-        <div class="widgets__search"><custom:search /></div>     
+        <h:form class="widgets__search">
+            <custom:search value="#{adminController.item}" />
+        </h:form>
           
         <div class="widgets__widgetContainer">
             <h2>Comunidades</h2>
